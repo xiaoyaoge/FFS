@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>企业管理</title>
+    <title>律所管理</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- <link href="css/bk.css" rel="stylesheet"> -->
     <link href="css/bk_pro.css" rel="stylesheet">
@@ -16,6 +16,11 @@
         <!-- <img src="https://magicbox.bkclouds.cc/static_api/v3/components_pro/horizontal_nav1/images/logo.png"> -->
         法法社CRM客户管理系统
     </div>
+    <ul class="ffs-breadcrumb">
+        <li class="fir"><a href="#none">首页</a></li>
+        <li class="sec"><a href="#none">二级页面</a></li>
+        <li class="last active"><a href="#none">三级页面</a></li>
+    </ul>
     <div class="bk-nav-user fr">
         <span class="mr5">admin</span>
         <img src="https://magicbox.bkclouds.cc/static_api/v3/components_pro/horizontal_nav1/images/avatar.png">
@@ -36,17 +41,11 @@
                     <div class="flex-subnavs">
                         <a href="订单管理-短信订单.html"><i></i>短信订单</a>
                         <a href="订单管理-电子信函.html"><i></i>电子信函</a>
-                        <a href="订单管理-纸质信函.html"><i></i>纸质信函</a>
-                        <a href="订单管理-专人律师.html"><i></i>专人律师 </a>
+                        <!-- <a href="订单管理-纸质信函.html"><i></i>纸质信函</a>
+                        <a href="订单管理-专人律师.html"><i></i>专人律师 </a> -->
                     </div>
                 </li>
                 <li class="pureLink">
-                    <a href="律所管理-律所池.html">
-                        <span class="icon-box"><i class="bk-icon icon-id"></i></span>
-                        <span class="nav-name">律所管理</span>
-                    </a>
-                </li>
-                <li class="pureLink open">
                     <a href="企业管理-企业池.html">
                         <span class="icon-box"><i class="bk-icon icon-apps"></i></span>
                         <span class="nav-name">企业管理</span>
@@ -56,6 +55,12 @@
                     <a href="办公管理.html">
                         <span class="icon-box"><i class="bk-icon icon-empty"></i></span>
                         <span class="nav-name">办公管理</span>
+                    </a>
+                </li>
+                <li class="pureLink open">
+                    <a href="律所管理-律所池.html">
+                        <span class="icon-box"><i class="bk-icon icon-id"></i></span>
+                        <span class="nav-name">律所管理</span>
                     </a>
                 </li>
             </ul>
@@ -71,67 +76,56 @@
         </div>
         <div class="info">
             <div class="cont">
-                <div class="b-manage-title">
-                    <h5 class="fl">短信余额</h5>
-                    <div class="edit-btns b-manage-btns fr">
-                        <!-- 交互说明 
-                             点击修改后，把保存于取消按钮显示出来，同时把info里所有input 的 readonly 去除
-                        -->
-                        <a class="bk-button bk-primary bk-button-small ml10 fr" title="修改"><span>修改</span></a>
-                        <a class="bk-button bk-success bk-button-small ml10 fr" title="保存"><span>保存</span></a>
-                        <a class="bk-button bk-default bk-button-small ml10 fr" title="取消"><span>取消</span></a>
-                    </div>
-                </div>
-                <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
-                    <div class="bk-form-item mt5">
-                        <label class="bk-label">短信剩余次数：</label>
-                        <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="30000" readonly>
-                        </div>
-                    </div>
-                </form>
+                <h5>短信模板</h5>
+                <table class="bk-table has-table-bordered has-table-hover">
+                    <thead>
+                        <tr>
+                            <th>模板名称</th>
+                            <th>是否有效</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>催收模板</td>
+                            <td>
+                                <select name="validation_select" class="table-select">
+                                    <option value="有效" selected>有效</option>
+                                    <option value="无效">无效</option>
+                                </select>
+                            </td>
+                            <td>2017-08-20 15:22</td>
+                            <td><a data-toggle="modal" data-target="#myModal" href="javascript:void(0);" class="bk-text-button">查看详情</a></td>
+                        </tr>
+                    </tbody>  
+                </table> 
             </div>
             <div class="cont">
-                <div class="b-manage-title">
-                    <h5 class="fl">电子信函余额</h5>
-                    <div class="edit-btns b-manage-btns fr">
-                        <!-- 交互说明 
-                             点击修改后，把保存于取消按钮显示出来，同时把info里所有input 的 readonly 去除
-                        -->
-                        <a class="bk-button bk-primary bk-button-small ml10 fr" title="修改"><span>修改</span></a>
-                        <a class="bk-button bk-success bk-button-small ml10 fr" title="保存"><span>保存</span></a>
-                        <a class="bk-button bk-default bk-button-small ml10 fr" title="取消"><span>取消</span></a>
-                    </div>
-                </div>
-                <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
-                    <div class="bk-form-item mt5">
-                        <label class="bk-label">电子信函剩余次数：</label>
-                        <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="30000" readonly>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="cont">
-                <div class="b-manage-title">
-                    <h5 class="fl">纸质信函余额</h5>
-                    <div class="edit-btns b-manage-btns fr">
-                        <!-- 交互说明 
-                             点击修改后，把保存于取消按钮显示出来，同时把info里所有input 的 readonly 去除
-                        -->
-                        <a class="bk-button bk-primary bk-button-small ml10 fr" title="修改"><span>修改</span></a>
-                        <a class="bk-button bk-success bk-button-small ml10 fr" title="保存"><span>保存</span></a>
-                        <a class="bk-button bk-default bk-button-small ml10 fr" title="取消"><span>取消</span></a>
-                    </div>
-                </div>
-                <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
-                    <div class="bk-form-item mt5">
-                        <label class="bk-label">纸质信函剩余次数：</label>
-                        <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="200" readonly>
-                        </div>
-                    </div>
-                </form>
+                <h5>信函模板</h5>
+                <table class="bk-table has-table-bordered has-table-hover">
+                    <thead>
+                        <tr>
+                            <th>模板名称</th>
+                            <th>是否有效</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>催收模板</td>
+                            <td>
+                                <select name="validation_select" class="table-select">
+                                    <option value="有效" selected>有效</option>
+                                    <option value="无效">无效</option>
+                                </select>
+                            </td>
+                            <td>2017-08-20 15:22</td>
+                            <td><a target="_blank" href="images/temp.png" class="bk-text-button">查看详情</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

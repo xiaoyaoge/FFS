@@ -16,6 +16,11 @@
         <!-- <img src="https://magicbox.bkclouds.cc/static_api/v3/components_pro/horizontal_nav1/images/logo.png"> -->
         法法社CRM客户管理系统
     </div>
+    <ul class="ffs-breadcrumb">
+        <li class="fir"><a href="#none">首页</a></li>
+        <li class="sec"><a href="#none">二级页面</a></li>
+        <li class="last active"><a href="#none">三级页面</a></li>
+    </ul>
     <div class="bk-nav-user fr">
         <span class="mr5">admin</span>
         <img src="https://magicbox.bkclouds.cc/static_api/v3/components_pro/horizontal_nav1/images/avatar.png">
@@ -36,15 +41,9 @@
                     <div class="flex-subnavs">
                         <a href="订单管理-短信订单.html"><i></i>短信订单</a>
                         <a href="订单管理-电子信函.html"><i></i>电子信函</a>
-                        <a href="订单管理-纸质信函.html"><i></i>纸质信函</a>
-                        <a href="订单管理-专人律师.html"><i></i>专人律师 </a>
+                        <!-- <a href="订单管理-纸质信函.html"><i></i>纸质信函</a>
+                        <a href="订单管理-专人律师.html"><i></i>专人律师 </a> -->
                     </div>
-                </li>
-                <li class="pureLink">
-                    <a href="律所管理-律所池.html">
-                        <span class="icon-box"><i class="bk-icon icon-id"></i></span>
-                        <span class="nav-name">律所管理</span>
-                    </a>
                 </li>
                 <li class="pureLink open">
                     <a href="企业管理-企业池.html">
@@ -56,6 +55,12 @@
                     <a href="办公管理.html">
                         <span class="icon-box"><i class="bk-icon icon-empty"></i></span>
                         <span class="nav-name">办公管理</span>
+                    </a>
+                </li>
+                <li class="pureLink">
+                    <a href="律所管理-律所池.html">
+                        <span class="icon-box"><i class="bk-icon icon-id"></i></span>
+                        <span class="nav-name">仁良律所</span>
                     </a>
                 </li>
             </ul>
@@ -81,16 +86,15 @@
                     <div class="row more-query-cont mb15">
                         <div class="col-md-3 col-lg-3 col-xs-3">
                             <div class="bk-form-item mb20">
-                                <label class="bk-label pr15" style="width:100px;">企业名：</label>
+                                <label class="bk-label pr15" style="width:100px;">企业名称：</label>
                                 <div class="bk-form-content" style="margin-left:100px;">
                                     <input type="text" class="bk-form-input" style="width:100%;">
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-3 col-lg-3 col-xs-3">
                             <div class="bk-form-item mb20">
-                                <label class="bk-label pr15" style="width:100px;">手机号：</label>
+                                <label class="bk-label pr15" style="width:100px;">联系电话：</label>
                                 <div class="bk-form-content" style="margin-left:100px;">
                                     <input type="text" class="bk-form-input" style="width:100%;">
                                 </div>
@@ -122,7 +126,7 @@
                     <div class="bk-form bk-inline-form bk-form-small">
                         <div class="bk-form-item is-required">
                             <div class="bk-form-content">
-                                <button class="bk-button bk-primary bk-button-small" title="新增">新增</button>
+                                <button class="bk-button bk-primary bk-button-small" title="入驻新企业">入驻新企业</button>
                             </div>
                         </div>
                     </div>
@@ -132,27 +136,21 @@
                 <table class="bk-table has-thead-bordered">
                     <thead>
                         <tr>
-                            <th>订单号</th>
-                            <th>律所名</th>
-                            <th>律所类型</th>
+                            <th>企业号</th>
                             <th>联系电话</th>
-                            <th>市场经理</th>
                             <th>入驻时间</th>
                             <th style="width:325px">操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>XY20170303254541</td>
-                            <td>法法社自营律所</td>
-                            <td>自营</td>
+                            <td>仁良律师</td>
                             <td>13838383838</td>
-                            <td>赵四</td>
                             <td>2017年08月18日</td>
                             <td>
                                 <a href="企业管理-基本信息.html" class="bk-text-button">基本信息</a>
-                                <a href="企业管理-财务管理.html" class="bk-text-button">财务管理</a>
-                                <a href="企业管理-订单明细.html" class="bk-text-button">订单明细</a>
+                                <a href="企业管理-短信订单.html" class="bk-text-button">短信订单</a>
+                                <a href="企业管理-电子信函.html" class="bk-text-button">电子信函</a>
                             </td>
                         </tr>
                     </tbody>

@@ -33,19 +33,19 @@
         </div>
         <div class="nav-list">
             <ul>
-                <li class="open">
+                <li>
                     <a href="订单管理-短信订单.html">
                         <span class="icon-box"><i class="bk-icon icon-order"></i></span>
                         <span class="nav-name">订单管理</span>
                     </a>
-                    <div class="flex-subnavs" style="display: block">
-                        <a class="on" href="订单管理-短信订单.html"><i></i>短信订单</a>
+                    <div class="flex-subnavs">
+                        <a href="订单管理-短信订单.html"><i></i>短信订单</a>
                         <a href="订单管理-电子信函.html"><i></i>电子信函</a>
                         <!-- <a href="订单管理-纸质信函.html"><i></i>纸质信函</a>
                         <a href="订单管理-专人律师.html"><i></i>专人律师 </a> -->
                     </div>
                 </li>
-                <li class="pureLink">
+                <li class="pureLink open">
                     <a href="企业管理-企业池.html">
                         <span class="icon-box"><i class="bk-icon icon-apps"></i></span>
                         <span class="nav-name">企业管理</span>
@@ -71,6 +71,9 @@
         </div>
     </div>
     <div class="page-content">
+        <div class="cont-btns mb15">
+            <a class="bk-button bk-default bk-button-small fl" title="返回" href="企业管理-企业池.html"><span>返回</span></a>
+        </div>
         <div class="bk-panel mb20">
             <div class="bk-panel-body p25">
                 <form class="bk-form">
@@ -85,14 +88,8 @@
                         <div id="status" class="col-md-12 col-lg-12 col-xs-12 mb15">
                             <label class="bk-label pr15" style="width:100px;">当前状态：</label>
                             <a class="bk-button bk-default bk-button-small check-list-button on" title=""><span>全部</span></a>
-                            <a class="bk-button bk-default bk-button-small check-list-button" title=""><span>申请中</span></a>
-                            <a class="bk-button bk-default bk-button-small check-list-button" title=""><span>已发送</span></a>
-                        </div>
-                        <div id="source" class="col-md-12 col-lg-12 col-xs-12 mb15">
-                            <label class="bk-label pr15" style="width:100px;">订单来源：</label>
-                            <a class="bk-button bk-default bk-button-small check-list-button on" title=""><span>全部</span></a>
-                            <a class="bk-button bk-default bk-button-small check-list-button" title=""><span>企业</span></a>
-                            <a class="bk-button bk-default bk-button-small check-list-button" title=""><span>用户</span></a>
+                            <a class="bk-button bk-default bk-button-small check-list-button" title=""><span>发送成功</span></a>
+                            <a class="bk-button bk-default bk-button-small check-list-button" title=""><span>发送失败</span></a>
                         </div>
                     </div>
 
@@ -105,34 +102,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-3 col-lg-3 col-xs-3">
-                            <div class="bk-form-item mb20">
-                                <label class="bk-label pr15" style="width:100px;">联系电话：</label>
-                                <div class="bk-form-content" style="margin-left:100px;">
-                                    <input type="text" class="bk-form-input" style="width:100%;">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- <div class="col-md-3 col-lg-3 col-xs-3">
-                            <div class="bk-form-item mb20">
-                                <label class="bk-label pr15" style="width:100px;">律所：</label>
-                                <div class="bk-form-content" style="margin-left:100px;">
-                                    <input type="text" class="bk-form-input" style="width:100%;">
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <div class="col-md-3 col-lg-3 col-xs-3">
-                            <div class="bk-form-item mb20">
-                                <label class="bk-label pr15" style="width:100px;">企业名称：</label>
-                                <div class="bk-form-content" style="margin-left:100px;">
-                                    <input type="text" class="bk-form-input" style="width:100%;">
-                                </div>
-                            </div>
-                        </div>
-
 
                         <div class="col-md-12 col-lg-12 col-xs-12">
                             <div class="bk-form-content" style="margin-left:100px;">
@@ -165,8 +134,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </th> -->
                             <th>订单号</th>
-                            <th>订单来源</th>
-                            <th>联系电话</th>
                             <th>律所</th>
                             <th>当前状态</th>
                             <th>提交时间</th>
@@ -179,8 +146,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info"><span class="fb bk-text-info">申请中</span></span></td>
                             <td>36分钟前</td>
@@ -193,8 +158,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-success">发送成功</span>(50/60)</td>
                             <td>36分钟前</td>
@@ -207,8 +170,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-danger">发送失败</span></td>
                             <td>36分钟前</td>
@@ -221,8 +182,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -235,8 +194,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -249,8 +206,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -263,8 +218,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -277,8 +230,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -291,8 +242,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -305,8 +254,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -319,8 +266,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -333,8 +278,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -347,8 +290,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -361,8 +302,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -375,8 +314,6 @@
                                 <input type="checkbox" name="checkall" value="">
                             </td> -->
                             <td>XY20170303254541</td>
-                            <td>企业\发大财企业</td>
-                            <td>123-4567-8954</td>
                             <td>仁良律所</td>
                             <td><span class="fb bk-text-info">申请中</span></td>
                             <td>36分钟前</td>
@@ -444,7 +381,7 @@
                     <div class="bk-form-item">
                         <label class="bk-label">订单类型：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="短信" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="短信\电子信函\纸质信函\专人律师" readonly>
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
@@ -468,7 +405,7 @@
                     <div class="bk-form-item mt5">
                         <label class="bk-label">联系电话：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="13634340013" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="王尼玛/13634340013" readonly>
                         </div>
                     </div>
                 </form>
@@ -476,6 +413,12 @@
             <div class="cont">
                 <h5>业务信息</h5>
                 <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
+                    <!-- <div class="bk-form-item">
+                        <label class="bk-label">订单类型：</label>
+                        <div class="bk-form-content">
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="短信" readonly>
+                        </div>
+                    </div> -->
                     <div class="bk-form-item mt5">
                         <label class="bk-label">律所：</label>
                         <div class="bk-form-content">
@@ -485,8 +428,7 @@
                     <div class="bk-form-item mt5">
                         <label class="bk-label">模板：</label>
                         <div class="bk-form-content">
-                            <!-- <input type="text" class="bk-form-input" name="" placeholder="" value="模板2：【法法社】今日有酒今日醉" readonly> -->
-                            <textarea class="bk-form-textarea ignore" readonly>亲爱的${name},非常抱歉的通知您，您的大额福利贷申请暂时没有通过，您还是可以继续使用现有额度取现消费。祝您生活愉快</textarea>
+                            <a class="bk-text-button bk-info ml10" target="_blank" href="images/temp.png" title="查看模板">查看模板</a>
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
@@ -498,13 +440,13 @@
                     <div class="bk-form-item mt5">
                         <label class="bk-label">第三方：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="法大大" readonly>
+                        <p class="mb0"><span class="fb bk-text-info">法大大</span> ,<span class="fb bk-text-info">法大大</span> ,<span class="fb bk-text-info">法大大</span></p>
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label">到达时间：</label>
                         <div class="bk-form-content">
-                            <p class="mb0"><span class="fb bk-text-success ml10">发送成功</span>(50/60) 2017年8月8日 18:28:18</p>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="发送失败" readonly>
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
@@ -521,11 +463,10 @@
                 <a id="back_cont" class="bk-button bk-default bk-button-small mb15 fl" title="返回"><span>返回</span></a>
                 <a class="bk-button bk-default bk-button-small mb15 fr" title="批量导入"><span>批量导入</span></a>
             </div>
-
             <div class="bk-panel bk-demo">
                 <div class="bk-panel-header" role="tab">
                     <div class="bk-panel-info fl">
-                        <div class="panel-title">短信发送明细</div>
+                        <div class="panel-title">信函发送明细</div>
                     </div>
                     <div class="bk-panel-action fr">
                         <div class="bk-form bk-inline-form bk-form-small">
@@ -544,35 +485,39 @@
                             <tr>
                                 <th>号码</th>
                                 <th>发送状态</th>
+                                <th>下载协议</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>188-4884-4546</td>
+                                <td>18848844546@qq.com</td>
                                 <td>
                                     <span class="fb bk-text-success">发送成功</span>
                                 </td>
+                                <td><a href="javascript:void(0);" class="bk-text-button">下载电子协议</a></td>
                             </tr>
                             <tr>
-                                <td>188-4884-4546</td>
+                                <td>18848844546@qq.com</td>
                                 <td>
                                     <span class="fb bk-text-danger">发送失败</span>
                                 </td>
+                                <td><a href="javascript:void(0);" class="bk-text-button">下载电子协议</a></td>
                             </tr>
                             <tr>
-                                <td>188-4884-4546</td>
+                                <td>18848844546@qq.com</td>
                                 <td><span class="send">发送中</span></td>
+                                <td><a href="javascript:void(0);" class="bk-text-button">下载电子协议</a></td>
                             </tr>
                             <tr>
-                                <td>188-4884-4546</td>
+                                <td>18848844546@qq.com</td>
                                 <td><span class="send">发送中</span></td>
+                                <td><a href="javascript:void(0);" class="bk-text-button">下载电子协议</a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="bk-panel-footer"></div>
             </div>
-
         </div>
       </div>
       <div class="modal-footer ta-c">

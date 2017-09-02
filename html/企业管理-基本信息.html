@@ -16,6 +16,11 @@
         <!-- <img src="https://magicbox.bkclouds.cc/static_api/v3/components_pro/horizontal_nav1/images/logo.png"> -->
         法法社CRM客户管理系统
     </div>
+    <ul class="ffs-breadcrumb">
+        <li class="fir"><a href="#none">首页</a></li>
+        <li class="sec"><a href="#none">二级页面</a></li>
+        <li class="last active"><a href="#none">三级页面</a></li>
+    </ul>
     <div class="bk-nav-user fr">
         <span class="mr5">admin</span>
         <img src="https://magicbox.bkclouds.cc/static_api/v3/components_pro/horizontal_nav1/images/avatar.png">
@@ -36,15 +41,9 @@
                     <div class="flex-subnavs">
                         <a href="订单管理-短信订单.html"><i></i>短信订单</a>
                         <a href="订单管理-电子信函.html"><i></i>电子信函</a>
-                        <a href="订单管理-纸质信函.html"><i></i>纸质信函</a>
-                        <a href="订单管理-专人律师.html"><i></i>专人律师 </a>
+                        <!-- <a href="订单管理-纸质信函.html"><i></i>纸质信函</a>
+                        <a href="订单管理-专人律师.html"><i></i>专人律师 </a> -->
                     </div>
-                </li>
-                <li class="pureLink">
-                    <a href="律所管理-律所池.html">
-                        <span class="icon-box"><i class="bk-icon icon-id"></i></span>
-                        <span class="nav-name">律所管理</span>
-                    </a>
                 </li>
                 <li class="pureLink open">
                     <a href="企业管理-企业池.html">
@@ -58,6 +57,12 @@
                         <span class="nav-name">办公管理</span>
                     </a>
                 </li>
+                <li class="pureLink">
+                    <a href="律所管理-律所池.html">
+                        <span class="icon-box"><i class="bk-icon icon-id"></i></span>
+                        <span class="nav-name">仁良律所</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="copyright">
@@ -67,20 +72,21 @@
     </div>
     <div class="page-content">
         <div class="cont-btns mb15">
-            <a class="bk-button bk-default bk-button-small fl" title="返回" href="律所管理-律所池.html"><span>返回</span></a>
-
-            <div class="edit-btns">
-                <!-- 交互说明 
-                     点击修改后，把保存于取消按钮显示出来，同时把info里所有input 的 readonly 去除
-                -->
-                <a class="bk-button bk-primary bk-button-small ml10 fr" title="修改"><span>修改</span></a>
-                <a class="bk-button bk-success bk-button-small ml10 fr" title="保存"><span>保存</span></a>
-                <a class="bk-button bk-default bk-button-small ml10 fr" title="取消"><span>取消</span></a>
-            </div>
+            <a class="bk-button bk-default bk-button-small fl" title="返回" href="企业管理-企业池.html"><span>返回</span></a>
         </div>
         <div class="info">
             <div class="cont">
-                <h5>账号信息</h5>
+                <div class="b-manage-title">
+                    <h5 class="fl">账号信息</h5>
+                    <div class="edit-btns b-manage-btns fr">
+                        <!-- 交互说明 
+                             点击修改后，把保存于取消按钮显示出来，同时把info里所有input 的 readonly 去除
+                        -->
+                        <a class="bk-button bk-primary bk-button-small ml10 fr" title="修改"><span>修改</span></a>
+                        <a class="bk-button bk-success bk-button-small ml10 fr" title="保存"><span>保存</span></a>
+                        <a class="bk-button bk-default bk-button-small ml10 fr" title="取消"><span>取消</span></a>
+                    </div>
+                </div>
                 <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
                     <div class="bk-form-item">
                         <label class="bk-label">账号：</label>
@@ -97,7 +103,17 @@
                 </form>
             </div>
             <div class="cont">
-                <h5>企业信息</h5>
+                <div class="b-manage-title">
+                    <h5 class="fl">企业信息</h5>
+                    <div class="edit-btns b-manage-btns fr">
+                        <!-- 交互说明 
+                             点击修改后，把保存于取消按钮显示出来，同时把info里所有input 的 readonly 去除
+                        -->
+                        <a class="bk-button bk-primary bk-button-small ml10 fr" title="修改"><span>修改</span></a>
+                        <a class="bk-button bk-success bk-button-small ml10 fr" title="保存"><span>保存</span></a>
+                        <a class="bk-button bk-default bk-button-small ml10 fr" title="取消"><span>取消</span></a>
+                    </div>
+                </div>
                 <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
                     <div class="bk-form-item">
                         <label class="bk-label">企业名称：</label>
@@ -143,6 +159,134 @@
                     </div>
                 </form>
             </div>
+            <div class="cont">
+                <h5>图片信息</h5>
+                <div class="row img-wrap">
+
+                    <div class="col-md-3 col-lg-3">
+                        <div class="img-title">企业营业执照(必填)</div>
+                        <div class="img-box"><img src="images/temp.png"></div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <a class="bk-button bk-primary" href="#none">上传照片</a>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <a class="bk-button bk-default" href="images/temp.png" target="_blank">预览照片</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3">
+                        <div class="img-title">企业印章图样(必填)</div>
+                        <div class="img-box"><img src="images/temp.png"></div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <a class="bk-button bk-primary" href="#none">修改照片</a>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <a class="bk-button bk-default" href="images/temp.png" target="_blank">预览照片</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3">
+                        <div class="img-title">企业签约协议1(必填)</div>
+                        <div class="img-box"><img src="images/temp.png"></div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <a class="bk-button bk-primary" href="#none">上传照片</a>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <a class="bk-button bk-default" href="images/temp.png" target="_blank">预览照片</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3">
+                        <div class="img-title">企业签约协议2(必填)</div>
+                        <div class="img-box"><img src="images/temp.png"></div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <a class="bk-button bk-primary" href="#none">上传照片</a>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <a class="bk-button bk-default" href="images/temp.png" target="_blank">预览照片</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="cont">
+                <div class="b-manage-title">
+                    <h5 class="fl">结算信息</h5>
+                    <div class="edit-btns b-manage-btns fr">
+                        <!-- 交互说明 
+                             点击修改后，把保存于取消按钮显示出来，同时把info里所有input 的 readonly 去除
+                        -->
+                        <a class="bk-button bk-primary bk-button-small ml10 fr" title="修改"><span>修改</span></a>
+                        <a class="bk-button bk-success bk-button-small ml10 fr" title="保存"><span>保存</span></a>
+                        <a class="bk-button bk-default bk-button-small ml10 fr" title="取消"><span>取消</span></a>
+                    </div>
+                </div>
+                <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
+                    <div class="bk-form-item mt5">
+                        <label class="bk-label">短信剩余次数：</label>
+                        <div class="bk-form-content">
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="30000" readonly>
+                        </div>
+                    </div>
+                    <div class="bk-form-item mt5">
+                        <label class="bk-label">电子信函剩余次数：</label>
+                        <div class="bk-form-content">
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="30000" readonly>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="bk-panel bk-demo">
+            <div class="bk-panel-header" role="tab">
+                <div class="bk-panel-info fl">
+                    <div class="panel-title">操作日志</div>
+                </div>
+            </div>
+            <div class="bk-panel-body">
+                <table class="bk-table">
+                    <thead>
+                        <tr>
+                            <th>操作时间</th>
+                            <th>操作人</th>
+                            <th>操作内容</th>
+                            <th>操作备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2017-08-13</td>
+                            <td>张三</td>
+                            <td>信息确认</td>
+                            <td>偿还计划</td>
+                        </tr>
+                        <tr>
+                            <td>2017-08-13</td>
+                            <td>张三</td>
+                            <td>编辑代偿状态：代偿完成</td>
+                            <td>偿还计划制定完成</td>
+                        </tr>
+                        <tr>
+                            <td>2017-08-13</td>
+                            <td>张三</td>
+                            <td>信息确认</td>
+                            <td>偿还计划</td>
+                        </tr>
+                        <tr>
+                            <td>2017-08-13</td>
+                            <td>张三</td>
+                            <td>编辑代偿状态：代偿完成</td>
+                            <td>偿还计划制定完成</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="bk-panel-footer"></div>
         </div>
     </div>
 </div>
