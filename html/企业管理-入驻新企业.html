@@ -9,7 +9,7 @@
     <link href="css/iconfont.css" rel="stylesheet">
     <link href="css/common.css" rel="stylesheet">
 </head>
-<body class="ffs b-info">
+<body class="ffs b-add-new">
 
 <nav class="bk-horz-nav bk-horz-nav-min">
     <div class="bk-nav-logo fl">
@@ -78,26 +78,18 @@
             <div class="cont">
                 <div class="b-manage-title">
                     <h5 class="fl">账号信息</h5>
-                    <div class="edit-btns b-manage-btns fr">
-                        <!-- 交互说明 
-                             点击修改后，把保存于取消按钮显示出来，同时把info里所有input 的 readonly 去除
-                        -->
-                        <a class="bk-button bk-primary bk-button-small ml10 fr" title="修改"><span>修改</span></a>
-                        <a class="bk-button bk-success bk-button-small ml10 fr" title="保存"><span>保存</span></a>
-                        <a class="bk-button bk-default bk-button-small ml10 fr" title="取消"><span>取消</span></a>
-                    </div>
                 </div>
                 <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
                     <div class="bk-form-item">
                         <label class="bk-label">账号：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="13634340013" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="" >
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label">密码：</label>
                         <div class="bk-form-content">
-                            <a data-toggle="modal" data-target="#myModal" class="bk-text-button bk-info ml10" title="重置（身份证后6位）">重置（身份证后6位）</a>
+                            <input type="password" class="bk-form-input" name="" placeholder="" value="" >
                         </div>
                     </div>
                 </form>
@@ -105,56 +97,48 @@
             <div class="cont">
                 <div class="b-manage-title">
                     <h5 class="fl">企业信息</h5>
-                    <div class="edit-btns b-manage-btns fr">
-                        <!-- 交互说明 
-                             点击修改后，把保存于取消按钮显示出来，同时把info里所有input 的 readonly 去除
-                        -->
-                        <a class="bk-button bk-primary bk-button-small ml10 fr" title="修改"><span>修改</span></a>
-                        <a class="bk-button bk-success bk-button-small ml10 fr" title="保存"><span>保存</span></a>
-                        <a class="bk-button bk-default bk-button-small ml10 fr" title="取消"><span>取消</span></a>
-                    </div>
                 </div>
                 <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
                     <div class="bk-form-item">
                         <label class="bk-label">企业名称：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="企业企业" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="" >
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label">企业地址：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="深圳市南山区科兴科学院" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="" >
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label">营业执照编号：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="483456789144544" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="" >
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label">纳税人识别号：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="483456789144544" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="" >
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label">法人姓名：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="李四（未实名认证\已实名认证）" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="" >
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label">法人身份证：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="98745445445521452142（未实名认证\已实名认证）" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="" >
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label">企业电话：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="18718487881" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="" >
                         </div>
                     </div>
                 </form>
@@ -217,77 +201,28 @@
             <div class="cont">
                 <div class="b-manage-title">
                     <h5 class="fl">结算信息</h5>
-                    <div class="edit-btns b-manage-btns fr">
-                        <!-- 交互说明 
-                             点击修改后，把保存于取消按钮显示出来，同时把info里所有input 的 readonly 去除
-                        -->
-                        <a class="bk-button bk-primary bk-button-small ml10 fr" title="修改"><span>修改</span></a>
-                        <a class="bk-button bk-success bk-button-small ml10 fr" title="保存"><span>保存</span></a>
-                        <a class="bk-button bk-default bk-button-small ml10 fr" title="取消"><span>取消</span></a>
-                    </div>
                 </div>
                 <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
                     <div class="bk-form-item mt5">
                         <label class="bk-label">短信剩余次数：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="30000" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="">
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label">电子信函剩余次数：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" name="" placeholder="" value="30000" readonly>
+                            <input type="text" class="bk-form-input" name="" placeholder="" value="">
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="bk-panel bk-demo">
-            <div class="bk-panel-header" role="tab">
-                <div class="bk-panel-info fl">
-                    <div class="panel-title">操作日志</div>
-                </div>
+            <div class="cont-from-btns ta-c">
+                <a class="bk-button bk-default bk-button-large" title="取消"><span>取消</span></a>
+                <a class="bk-button bk-success bk-button-large" title="提交"><span>提交</span></a>
             </div>
-            <div class="bk-panel-body">
-                <table class="bk-table">
-                    <thead>
-                        <tr>
-                            <th>操作时间</th>
-                            <th>操作人</th>
-                            <th>操作内容</th>
-                            <th>操作备注</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>2017-08-13</td>
-                            <td>张三</td>
-                            <td>信息确认</td>
-                            <td>偿还计划</td>
-                        </tr>
-                        <tr>
-                            <td>2017-08-13</td>
-                            <td>张三</td>
-                            <td>编辑代偿状态：代偿完成</td>
-                            <td>偿还计划制定完成</td>
-                        </tr>
-                        <tr>
-                            <td>2017-08-13</td>
-                            <td>张三</td>
-                            <td>信息确认</td>
-                            <td>偿还计划</td>
-                        </tr>
-                        <tr>
-                            <td>2017-08-13</td>
-                            <td>张三</td>
-                            <td>编辑代偿状态：代偿完成</td>
-                            <td>偿还计划制定完成</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="bk-panel-footer"></div>
         </div>
+
     </div>
 </div>
 
