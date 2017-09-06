@@ -181,9 +181,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -968,9 +965,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -1038,8 +1032,7 @@ th {
     height: 4px;
     position: absolute;
     left: 50%;
-    top: 50%;
-    background-image: url(../images/loading-point1.png);
+    top: 50%; 
     background-position: 0 0;
     background-repeat: no-repeat;
     transform: translate(-50%, -50%);
@@ -1114,8 +1107,7 @@ th {
     height: 4px;
     position: absolute;
     left: 50%;
-    top: 50%;
-    background-image: url(../images/loading-point7.png);
+    top: 50%; 
     background-position: 0 0;
     background-repeat: no-repeat;
     transform: translate(-50%, -50%);
@@ -1331,7 +1323,7 @@ th {
     position: absolute;
     left: 50%;
     top: 50%;
-    background: url(../images/loading_circle2.png) no-repeat 0 0;
+    
     margin: -6px 0 0 -6px;
     animation: bk-icon-button-loading 0.8s infinite linear;
     -ms-animation: bk-icon-button-loading 0.8s infinite linear;
@@ -1340,11 +1332,10 @@ th {
 }
 
 .bk-icon-button.is-loading:hover .bk-icon::before {
-    background-image: url(../images/loading_circle1.png)
+    
 }
 
 .bk-icon-button.bk-default.is-loading:hover .bk-icon::before {
-    background-image: url(../images/loading_circle2.png)
 }
 
 .bk-icon-button.bk-info {
@@ -1604,80 +1595,7 @@ th {
     line-height: 40px;
     padding: 0 16px;
     min-width: 120px
-}
-
-@keyframes bk-button-loading1 {
-    0% {
-        background-image: url(../images/loading-point1.png)
-    }
-    50% {
-        background-image: url(../images/loading-point2.png)
-    }
-    100% {
-        background-image: url(../images/loading-point3.png)
-    }
-}
-
-@-ms-keyframes bk-button-loading1 {
-    0% {
-        background-image: url(../images/loading-point1.png)
-    }
-    50% {
-        background-image: url(../images/loading-point2.png)
-    }
-    100% {
-        background-image: url(../images/loading-point3.png)
-    }
-}
-
-@-moz-keyframes bk-button-loading1 {
-    0% {
-        background-image: url(../images/loading-point1.png)
-    }
-    50% {
-        background-image: url(../images/loading-point2.png)
-    }
-    100% {
-        background-image: url(../images/loading-point3.png)
-    }
-}
-
-@-webkit-keyframes bk-button-loading1 {
-    0% {
-        background-image: url(../images/loading-point1.png)
-    }
-    50% {
-        background-image: url(../images/loading-point2.png)
-    }
-    100% {
-        background-image: url(../images/loading-point3.png)
-    }
-}
-
-@keyframes bk-button-loading2 {
-    0% {
-        background-image: url(../images/loading-point7.png)
-    }
-    50% {
-        background-image: url(../images/loading-point8.png)
-    }
-    100% {
-        background-image: url(../images/loading-point9.png)
-    }
-}
-
-@-webkit-keyframes bk-button-loading2 {
-    0% {
-        background-image: url(../images/loading-point7.png)
-    }
-    50% {
-        background-image: url(../images/loading-point8.png)
-    }
-    100% {
-        background-image: url(../images/loading-point9.png)
-    }
-}
-
+} 
 @keyframes bk-icon-button-loading {
     from {
         transform: rotate(0)
@@ -1697,9 +1615,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -1846,11 +1761,11 @@ th {
 }
 
 .bk-collapse-panel .panel-icon.panel-spread {
-    background: url(../images/shrink.png) no-repeat
+    
 }
 
 .bk-collapse-panel .panel-icon.panel-spread.collapsed {
-    background: url(../images/spread.png) no-repeat
+    
 }
 
 .bk-collapse-panel .bk-table {
@@ -1954,9 +1869,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -2046,9 +1958,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -2067,7 +1976,7 @@ th {
 .bk-message-box .message.warning-message {
     margin-top: 60px;
     padding-top: 60px;
-    background: url(../images/message_warning_icon.png) no-repeat center top
+    
 }
 
 .bk-message-box .message.empty-message {
@@ -2079,9 +1988,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -2186,9 +2092,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -2289,9 +2192,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -2583,8 +2483,7 @@ th {
     outline: none;
     visibility: visible;
     cursor: pointer;
-    vertical-align: middle;
-    background-image: url(../images/bk_check.png);
+    vertical-align: middle; 
     display: inline-block;
     background-position: 0 0;
     -webkit-appearance: none;
@@ -2645,8 +2544,7 @@ th {
     outline: none;
     visibility: visible;
     cursor: pointer;
-    vertical-align: middle;
-    background-image: url(../images/bk_check.png);
+    vertical-align: middle; 
     display: inline-block;
     background-position: 0 -62px;
     -webkit-appearance: none;
@@ -2744,8 +2642,7 @@ th {
 .bk-radio input[checked="checked"] ~ .bk-radio-control:after {
     content: "";
     width: 50%;
-    height: 50%;
-    background: url(../images/radio.png);
+    height: 50%; 
     background-size: cover;
     border-radius: 80px;
     position: absolute;
@@ -2834,8 +2731,7 @@ th {
 .bk-checkbox input[checked="checked"] ~ .bk-checkbox-control:after {
     content: "";
     width: 50%;
-    height: 50%;
-    background: url(../images/checkbox.png) no-repeat;
+    height: 50%; 
     background-size: cover;
     background-position: center center;
     position: absolute;
@@ -2859,8 +2755,7 @@ th {
 .bk-checkbox input[disabled][checked] ~ .bk-checkbox-control:after {
     content: "";
     width: 50%;
-    height: 50%;
-    background: url(../images/checkbox-disabled.png) no-repeat;
+    height: 50%; 
     background-size: cover;
     background-position: center center;
     position: absolute;
@@ -2873,9 +2768,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -2938,9 +2830,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -3005,9 +2894,6 @@ th {
 }
 
 @font-face {
-    font-family: 'kingFont';
-    src: url("../fonts/kingFont.eot?phkh80");
-    src: url("../fonts/kingFont.eot?phkh80#iefix") format("embedded-opentype"), url("../fonts/kingFont.ttf?phkh80") format("truetype"), url("../fonts/kingFont.woff?phkh80") format("woff"), url("../fonts/kingFont.svg?phkh80#kingFont") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -3042,9 +2928,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -3662,8 +3545,7 @@ th {
 .king-layout-main .king-flexible-nav .king-layout-sider-trigger .open-icon {
     display: inline-block;
     width: 22px;
-    height: 14px;
-    background: url(./images/nav-min.png)
+    height: 14px; 
 }
 
 .king-layout-main .king-flexible-content {
@@ -3730,15 +3612,13 @@ th {
 .king-layout-main .king-flexible-content .right-layout-header .king-layout-sider-trigger .open-icon {
     display: inline-block;
     width: 22px;
-    height: 14px;
-    background: url(../images/nav-min.png)
+    height: 14px; 
 }
 
 .king-layout-main .king-flexible-content .right-layout-header .king-layout-sider-trigger .close-icon {
     display: inline-block;
     width: 22px;
-    height: 14px;
-    background: url(../images/nav-min.png);
+    height: 14px; 
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
@@ -3757,9 +3637,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -4052,9 +3929,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -4276,9 +4150,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -4313,9 +4184,6 @@ th {
 }
 
 @font-face {
-    font-family: 'PingFang Light';
-    src: url("../fonts/pingfanglight/PingFang Light_0.eot");
-    src: local("â˜º"), url("../fonts/pingfanglight/PingFang Light_0.woff") format("woff"), url("../fonts/pingfanglight/PingFang Light_0.ttf") format("truetype"), url("../fonts/pingfanglight/PingFang Light_0.svg") format("svg");
     font-weight: normal;
     font-style: normal
 }

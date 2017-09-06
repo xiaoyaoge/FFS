@@ -42,7 +42,7 @@
     margin: 4px 4px 0 0;
     border-radius: 50%;
     background-repeat: no-repeat;
-    background-image: url("./../images/close.png");
+     
     background-size: 11px 11px;
     background-position: 50% 50%;
     cursor: pointer; }

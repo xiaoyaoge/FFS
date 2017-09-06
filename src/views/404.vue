@@ -4,23 +4,23 @@
 <script>
 export default {
     data() {
-            return {}
-        },
-        methods: {
+        return {}
+    },
+    methods: {
 
-        },
-        mounted() {
-            var user = sessionStorage.getItem('user');
-            if (user) {
-                user = JSON.parse(user);
-                this.sysUserName = user.name || '';
-                this.sysUserAvatar = user.role || '';
-                if (this.sysUserAvatar !== 99) {
-                    this.$router.push('/orderConten');
-                } else {
-                    this.$router.push('/users');
-                }
-            }
-        }
+    },
+    mounted() {
+        // var user = sessionStorage.getItem('user');
+        // if (user) {
+        //     user = JSON.parse(user);
+        //     this.sysUserName = user.name || '';
+        //     this.sysUserAvatar = user.role || '';
+        //     if (this.sysUserAvatar !== 99) {
+        //         this.$router.push('/orderConten');
+        //     } else {
+        //         this.$router.push('/users');
+        //     }
+        // }
+    }
 }
-</script>
+</script> 

@@ -4095,14 +4095,13 @@ th {
     background: #2b2e39
 }
 
-.slide-open .flex-subnavs {
-    display: none;
+.slide-open .flex-subnavs { 
     padding-left: 60px;
     background: #2b2e39
 }
 
 .slide-close .flex-subnavs {
-    display: none
+    // display: none
 }
 
  

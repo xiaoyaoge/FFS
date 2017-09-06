@@ -9,8 +9,8 @@ let count = 0;
 Vue.use(VueResource);
 //Vue.http.options.emulateJSON = true;
 //Vue.http.options.root = 'http://119.23.52.238/cgi-admin/';
-Vue.http.options.root = 'http://test.admin.twoeyes.cn/cgi-admin/';
-//Vue.http.options.root = 'http://localhost:8091/';
+//Vue.http.options.root = 'http://test.admin.twoeyes.cn/cgi-admin/';
+Vue.http.options.root = 'http://localhost:8080/';
 //Vue.http.options.root = 'http://10.9.2.173:8080/'; 
 
 Vue.http.interceptors.push((req, next) => {

@@ -51,7 +51,7 @@ module.exports = (options = {}) => ({
     },
     devServer: {
         host: '127.0.0.1',
-        port: 8012,
+        port: 8014,
         proxy: {
             '/api/': {
                 target: 'http://10.9.2.253:8080',
