@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>订单管理</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="css/bk.css" rel="stylesheet"> -->
     <link href="css/bk_pro.css" rel="stylesheet">
+    <link href="css/bkDialog.css" rel="stylesheet">
     <link href="css/iconfont.css" rel="stylesheet">
     <link href="css/common.css" rel="stylesheet">
 </head>
@@ -431,7 +431,10 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+        <div class="bk-dialog-tool">
+            <i class="bk-dialog-close" id="bkDialogClose" data-dismiss="modal" aria-label="Close"></i>
+        </div>
         <h4 class="modal-title">订单详情</h4>
       </div>
       <div class="modal-body ffs-modal">

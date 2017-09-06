@@ -15,6 +15,8 @@ a:focus{text-decoration: none;}
 
 .king-page-topbar{background: transparent;border: none;}
 
+.bk-form-radio input[type=radio]{background-image: url(../images/bk_check.png);}
+
 .bk-horz-nav{background:#616ed6;padding: 0px;}
 .bk-horz-nav a{color: #fff;}
 .bk-horz-nav .bk-nav-logo{width: 240px;padding-left:25px;background:#434fad;}
@@ -34,6 +36,9 @@ a:focus{text-decoration: none;}
 
 .check-list-button{border-color:transparent;}
 .check-list-button.on{background:#616ed6;color: #fff;}
+
+.ffs .modal-dialog .bk-dialog-close{margin: 14px 10px 0 0;}
+.ffs .modal-dialog .modal-header{border-bottom: none;}
 
 /* 面包屑 */
 .ffs-breadcrumb{display: inline-block;float: left;margin: 0px;padding: 0px;}
@@ -82,4 +87,10 @@ a:focus{text-decoration: none;}
 
 .ffs .table-select{width: 80px;}
 
+ 
 .page-container { font-size: 20px; text-align: center; color: rgb(192, 204, 218);}
+ 
+.ffs.b-info .bk-form-input,
+.ffs.b-add-new .bk-form-input{width: 400px;}
+.ffs.b-add-new .cont-from-btns{padding: 60px 0;}
+ 
