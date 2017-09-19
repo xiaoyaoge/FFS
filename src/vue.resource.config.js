@@ -31,13 +31,14 @@ Vue.http.aop = function(res, cb) {
                 // 未登录
             case 10000:
                 //todo 
+                sessionStorage.removeItem('user');
+                window.location.href = '#/login';
                 Message.warning(res.body.errMsg);
-                //window.location.href ='/login'
-                return;
+                return; 
                 // 异常
             default:
-                Message.warning(res.body.errMsg || '服务器忙');
-                return;
+                Message.warning(res.body.errmsg || '服务器忙');
+                break;
         }
     }
 

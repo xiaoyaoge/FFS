@@ -357,7 +357,6 @@
     height: 32px;
     float: left;
     margin: 15px 10px 0 20px;
-    
 }
 
 .king-vertical-nav6 .nav-list li i.icon_business {
@@ -1141,18 +1140,14 @@
 }
 
 .king-horizontal-nav2 .navbar-nav li a:hover i,
-.king-horizontal-nav2 .navbar-nav li a:active i {
-     
-}
+.king-horizontal-nav2 .navbar-nav li a:active i {}
 
 .king-horizontal-nav2 .navbar-nav li.king-navbar-active a {
     background: #4a9bff;
     color: #fff
 }
 
-.king-horizontal-nav2 .navbar-nav li.king-navbar-active a i {
-    
-}
+.king-horizontal-nav2 .navbar-nav li.king-navbar-active a i {}
 
 @media (max-width: 768px) {
     .king-horizontal-nav2 .navbar-collapse {
@@ -1448,7 +1443,7 @@
 .king-horizontal-nav4 .logo_wrap a.logo_app {
     width: 136px;
     height: 41px;
-    text-indent: -9999px; 
+    text-indent: -9999px;
 }
 
 .king-horizontal-nav4 .logo_wrap a.logo_business {
@@ -3485,7 +3480,7 @@
 
 .king-layout-main .king-flexible-nav.king-layout-sider-collapsed .logo {
     margin: 16px;
-    
+
     background-size: 78px 24px;
     -webkit-transition: all .3s ease;
     transition: all .3s ease
@@ -3507,7 +3502,6 @@
     width: auto;
     height: 32px;
     margin: 16px 24px;
-    
 }
 
 .king-layout-main .king-flexible-nav .flexible-list {
@@ -3578,7 +3572,6 @@
     display: inline-block;
     width: 22px;
     height: 14px;
-    
 }
 
 .king-layout-main .king-flexible-content {
@@ -3655,14 +3648,13 @@
     display: inline-block;
     width: 22px;
     height: 14px;
-    
 }
 
 .king-layout-main .king-flexible-content .right-layout-header .king-layout-sider-trigger .close-icon {
     display: inline-block;
     width: 22px;
     height: 14px;
-    
+
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
@@ -4230,7 +4222,7 @@
     text-align: center;
     z-index: 999;
     content: " ";
-    
+
     background-repeat: no-repeat
 }
 
@@ -7133,29 +7125,17 @@ a.king-block-link-hover3:active {
     display: inline-block
 }
 
-.king-notice-box.king-notice-warning {
-    
-}
+.king-notice-box.king-notice-warning {}
 
-.king-notice-box.king-notice-success {
-    
-}
+.king-notice-box.king-notice-success {}
 
-.king-notice-box.king-notice-fail {
-    
-}
+.king-notice-box.king-notice-fail {}
 
-.king-notice-box.king-notice-question {
-    
-}
+.king-notice-box.king-notice-question {}
 
-.king-notice-box.king-notice-sad {
-    
-}
+.king-notice-box.king-notice-sad {}
 
-.king-notice-box.king-notice-happy {
-    
-}
+.king-notice-box.king-notice-happy {}
 
 .king-notice-box .king-notice-text {
     margin: 0;
@@ -7346,7 +7326,7 @@ a.king-block-link-hover3:active {
     width: 78px;
     height: 78px;
     display: block;
-    margin: 5px auto 20px; 
+    margin: 5px auto 20px;
 }
 
 .king-notice3 .f12 {
@@ -7800,9 +7780,7 @@ a.king-block-link-hover3:active {
     padding: 5px 10px
 }
 
-.king-autocomplete-loading {
-   
-}
+.king-autocomplete-loading {}
 
 .king-tab-content {
     border: 1px solid #ddd;
@@ -9698,7 +9676,8 @@ button.king-btn.bk-block {
     border-radius: 2px;
     box-shadow: none!important;
 }
-.type-class .el-radio-button:first-child .el-radio-button__inner{ 
+
+.type-class .el-radio-button:first-child .el-radio-button__inner {
     border-radius: 2px;
     box-shadow: none!important;
 }
@@ -9727,7 +9706,7 @@ button.king-btn.bk-block {
 }
 
 .type-class .el-radio-button__inner {
-    border: 1px solid #bfcbd9!important; 
+    border: 1px solid #bfcbd9!important;
     margin-right: 10px;
 }
 
@@ -9755,17 +9734,35 @@ button.king-btn.bk-block {
 .el-radio-button__inner:hover {
     background-color: #f1f1f1;
 }
+
 .el-upload__input {
     display: none!important;
 }
-.el-upload-list--picture-card .el-upload-list__item,.el-upload--picture-card{
-    width: 60px;
-    height: 60px; 
-}
-.el-upload--picture-card{
-    line-height: 70px;
-}
-.modal-footer {
-    padding: 20px 0 0 0; 
+
+.el-upload-list--picture-card .el-upload-list__item,
+.el-upload--picture-card {
+    width: 100px;
+    height: 100px;
 }
 
+.el-upload--picture-card {
+    line-height: 110px;
+    border:2px dashed #c0ccda; 
+}
+
+.modal-footer {
+    padding: 20px 0 0 0;
+}
+
+.el-input--large .el-input__inner {
+    height: 36px;
+}
+
+.el-input__inner {
+    color: #666;
+    border: 1px solid #ccc;
+}
+.el-input--large, .el-cascader--large{
+    color: #666;
+    font-size: 14px;
+}

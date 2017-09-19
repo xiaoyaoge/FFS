@@ -5,11 +5,9 @@
             <input type="text" class="bk-form-input" v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></input>
             <input type="password" class="bk-form-input" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="密码"></input>
             <el-form-item prop="account"></el-form-item>
-            <el-form-item prop="checkPass"></el-form-item>
-            <!-- <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox> -->
+            <el-form-item prop="checkPass"></el-form-item> 
             <el-form-item style="width:100%;">
-                <el-button type="primary" class="button" style="width:100%; margin-top: 0;" @click.native.prevent="handleSubmit2" :loading="logining">登录</el-button>
-                <!-- <el-button @click.native.prevent="handleReset2">重置</el-button> -->
+                <el-button type="primary" class="button" style="width:100%; margin-top: 0;" @click.native.prevent="handleSubmit2" :loading="logining">登录</el-button> 
             </el-form-item>
             <span class="note">忘记密码请联系管理员找回</span>
         </el-form>
@@ -59,7 +57,7 @@ export default {
                         this.$http.aop(res, () => {
                             sessionStorage.setItem('user', JSON.stringify(res.body.data));
                             this.$router.push({
-                                path: '/users'
+                                path: '/lawFirm'
                             });
 
                         });

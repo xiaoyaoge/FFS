@@ -3,12 +3,16 @@ import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
 import Main from './views/Main.vue'
 import UserCenter from './views/user/user-center.vue'
-import OrderList from './views/order/order-list.vue'
+import OrderMsg from './views/order/order-msg.vue'
+import OrderEmail from './views/order/order-email.vue'
 import OrderInfo from './views/order/order-info.vue'
 import Enterprise from './views/enterprise/enterprise-center.vue'
 import EnterInfo from './views/enterprise/enterprise-info.vue'
+import EnterForm from './views/enterprise/enterprise-form.vue' 
 import EnterMsg from './views/enterprise/enterprise-msg.vue'
 import EnterEmail from './views/enterprise/enterprise-email.vue'
+import LawFirm from './views/firm/law-firm.vue'
+
 
 let routes = [{
         path: '/login',
@@ -29,13 +33,12 @@ let routes = [{
         iconCls: 'icon-order', //图标样式class
         leaf: false, //只有一个节点
         hidden: false,
-        paths: '/orderConten,/page2,/page3,/orderInfo',
+        paths: '/msgOder,/emailOder,/letterOder',
         children: [
-            { path: '/msgOder', component: NotFound, name: '短信订单' },
-            { path: '/orderConten', component: OrderList, name: '电子信函' },
-            { path: '/page2', component: NotFound, name: '纸质信函' },
-            { path: '/page3', component: NotFound, name: '专人律师' },
-            { path: '/orderInfo/:id', component: NotFound, name: '', hidden: true }
+            { path: '/msgOder', component: OrderMsg, name: '短信订单' },
+            { path: '/emailOder', component: OrderEmail, name: '电子信函' },
+            //{ path: '/letterOder', component: OrderList, name: '纸质信函' }, 
+             
         ]
     },
     {
@@ -45,9 +48,9 @@ let routes = [{
         iconCls: 'icon-id',
         hidden: false,
         leaf: true, //只有一个节点
-        paths: '/page4',
+        paths: '/lawFirm',
         children: [
-            { path: '/page4', component: NotFound, name: '律所管理' }
+            { path: '/lawFirm', component: LawFirm, name: '仁良律所' }
 
         ]
     },
@@ -58,12 +61,13 @@ let routes = [{
         iconCls: 'icon-apps',
         leaf: true, //只有一个节点
         hidden: false,
-        paths: '/enterprise,/enterInfo,/enterMsg,/enterEmail',
+        paths: '/enterprise,/enterInfo/,/enterMsg/,/enterEmail/',
         children: [
             { path: '/enterprise', component: Enterprise, name: '企业管理' },
-            { path: '/enterInfo/:id', component: EnterInfo, name: '短信管理', hidden: true },
-            { path: '/enterMsg/:id', component: EnterMsg, name: '短信管理', hidden: true },
-            { path: '/enterEmail/:id', component: EnterEmail, name: '短信管理', hidden: true }
+            { path: '/enterprise/enterForm', component: EnterForm, name: '入驻新企业', hidden: true },
+            { path: '/enterprise/enterInfo/:id', component: EnterInfo, name: '基本信息', hidden: true },
+            { path: '/enterprise/enterMsg/:id', component: EnterMsg, name: '短信订单', hidden: true },
+            { path: '/enterprise/enterEmail/:id', component: EnterEmail, name: '电子信函', hidden: true }
         ]
     },
     {

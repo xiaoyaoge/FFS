@@ -5,9 +5,19 @@
                 {{sysName}}
             </div>
             <ul class="ffs-breadcrumb">
-                <li class="fir"><a href="#/">首页</a></li>
-                <li class="sec"><a href="#none">二级页面</a></li>
-                <li class="last"><a href="#none">三级页面</a></li>
+                <li class="fir">
+                    <router-link :to="{pat:'#/'}">首页</router-link>
+                </li>
+                <li class="sec">
+                    <a v-if="$route.path.split('/')[2]" @click="$router.push(parentUrls)">{{parentUrlName}}</a>
+                    <router-link v-else :to="{path:$route.path}">
+                        {{$route.name}}
+                    </router-link>
+                </li>
+                <!-- 二级页面要添加 首页的  -->
+                <li v-show="$route.path.split('/')[2]" class="last">
+                    <a> {{$route.name}} </a>
+                </li>
             </ul>
             <div class="bk-nav-user fr">
                 <el-dropdown class="bk-nav-user fr" trigger="hover">
@@ -70,6 +80,8 @@ export default {
     data() {
         return {
             sysName: '法法社CRM客户管理系统',
+            parentUrlName: '',
+            parentUrls: '',
             collapsed: false,
             sysUserName: 'admin',
             sysUserAvatar: '',
@@ -109,7 +121,7 @@ export default {
             }).then(() => {
                 sessionStorage.removeItem('user');
 
-                _this.$router.push('/login');
+                this.$router.push('/login');
             }).catch(() => {
 
             });

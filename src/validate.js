@@ -23,6 +23,9 @@ export default {
     checkNum(val) { //正整数
         return /^\d+$/.test(val);
     },
+    checkUrl(val) {
+        return /^(((https|http|ftp|rtsp|mms)?:\/\/)?)+[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/.test(val);
+    },
     fixNum(val) {
         if (!/^\d+$/.test(val)) {
             return val.replace(/[^\d]/g, '');

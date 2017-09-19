@@ -41,8 +41,10 @@
                 <!--列表-->
                 <!--工具条-->
                 <el-col :span="24" class="toolbar mt20">
-                    <el-pagination v-show="total>1" layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="pageSize" :total="total" style="float:right;">
-                    </el-pagination>
+                    <div class="bk-panel-footer p10">
+                        <el-pagination v-show="total>10" layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="pageSize" :total="total" style="float:right;">
+                        </el-pagination>
+                    </div>
                 </el-col>
             </div>
         </div>
@@ -84,7 +86,7 @@
             <div class="modal-footer ta-c">
                 <a class="bk-button bk-default" @click="addFormVisible = false" title="取消">取消</a>
                 <a class="bk-button bk-primary" @click="addSubmit" title="添加">添加</a>
-            </div> 
+            </div>
         </el-dialog>
     </section>
 </template>
@@ -197,7 +199,7 @@ export default {
             }
             this.listLoading = true;
             this.$http.ajaxPost({
-                url: 'admin/queryManagerInfo',
+                url: 'admin/query',
                 params: params
             }, (res) => {
                 this.$http.aop(res, () => {
@@ -216,7 +218,7 @@ export default {
                     mid: row.mid
                 };
                 this.$http.ajaxPost({
-                    url: 'admin/deleteManager',
+                    url: 'admin/delete',
                     params: para
                 }, (res) => {
                     this.$http.aop(res, () => {
@@ -229,7 +231,10 @@ export default {
                 });
 
             }).catch(() => {
-
+                this.$message({
+                    type: 'info',
+                    message: '已取消'
+                });
             });
         },
         //显示编辑界面
@@ -257,7 +262,7 @@ export default {
                         let para = Object.assign({}, this.editForm);
                         para.role = ((this.orderType === '超级管理员') ? 99 : 1);
                         this.$http.ajaxPost({
-                            url: 'admin/modifyManagerInfo',
+                            url: 'admin/modify',
                             params: para
                         }, (res) => {
                             this.$http.aop(res, () => {
@@ -270,6 +275,11 @@ export default {
                             })
                         });
                         this.editFormVisible = false;
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消'
+                        });
                     });
                 }
             });
@@ -282,7 +292,7 @@ export default {
                         let para = Object.assign({}, this.addForm);
                         para.role = ((this.orderType === '超级管理员') ? 99 : 1);
                         this.$http.ajaxPost({
-                            url: 'admin/createManager',
+                            url: 'admin/create',
                             params: para
                         }, (res) => {
                             this.$http.aop(res, () => {
@@ -296,6 +306,11 @@ export default {
 
                         });
                         this.addFormVisible = false;
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消'
+                        });
                     });
                 }
             });
