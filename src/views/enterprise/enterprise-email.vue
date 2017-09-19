@@ -101,7 +101,7 @@
                                 <td>{{sourceText(item.userType)}}</td>
                                 <td>{{item.telephone}}</td>
                                 <td>{{item.lawFirmName}}</td>
-                                <td>{{item.orderState}}<span class="fb bk-text-success">发送成功</span> <span class="fb bk-text-info">申请中</span><span class="fb bk-text-danger">发送失败</span></td>
+                                <td v-html="templateStute(item.orderState)"></td>
                                 <td>{{dateTime(item.createTime)}}</td>
                                 <td>
                                     <a @click="previewInfo(item)" class="bk-text-button">查看详情</a>
@@ -111,7 +111,7 @@
                     </table>
                 </form>
                 <div class="bk-panel-footer p10">
-                    <button class="bk-button bk-default bk-button-small fl" title="下载搜索结果">
+                    <button v-show="false" class="bk-button bk-default bk-button-small fl" title="下载搜索结果">
                         下载搜索结果
                     </button>
                     <el-pagination v-show="table.total>10" layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="table.pageSize" :total="table.total" style="float:right;">
@@ -304,9 +304,9 @@ export default {
                 case '全部':
                     return '';
                 case '申请中':
-                    return '1';
+                    return '100';
                 case '已发送':
-                    return '2';
+                    return '360';
                 default:
                     return '未知状态';
             }
@@ -357,6 +357,16 @@ export default {
                     return '纸质信函';
                 default:
                     return '';
+            }
+        },
+        templateStute(val) {
+            switch (val) {
+                case 100:
+                    return '<span class="fb bk-text-info">申请中</span>';
+                case 360:
+                    return '<span class="fb bk-text-success">发送成功</span>';
+                default:
+                    return '<span class="fb bk-text-danger">发送失败</span>';
             }
         },
         handleCurrentChange(val) {

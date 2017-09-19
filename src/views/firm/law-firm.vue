@@ -138,7 +138,7 @@ export default {
             dataList: [],
             emailList: [],
             msgForm: {
-                lawFirmId: 2,
+                lawFirmId: 1,
                 status: 0,
                 templateContent: '',
                 templateId: 0,
@@ -253,7 +253,7 @@ export default {
         gitData(type) {
             let params = {};
             params = {
-                lawFirmId: 2,
+                lawFirmId: 1,
                 templateType: type
             }
             this.listLoading = true;
