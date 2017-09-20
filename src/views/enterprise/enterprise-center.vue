@@ -75,17 +75,14 @@
                                 <td>{{item.telephone}}</td>
                                 <td>{{dateTime(item.createDate)}}</td>
                                 <td>
-                                    <router-link :to="{path:'/enterprise/enterInfo/'+item.eid}" class="bk-icon-button bk-warning bk-button-mini mr5" title="查看">
-                                        <i class="bk-icon icon-eye bk-icon"></i>
-                                        <i class="bk-text">基本信息</i>
+                                    <router-link :to="{path:'/enterprise/enterInfo/'+item.eid}" class="bk-text-button" title="查看">
+                                        基本信息
                                     </router-link>
-                                    <router-link :to="{path:'/enterprise/enterMsg/'+item.eid}" class="bk-icon-button bk-warning bk-button-mini mr5" title="查看">
-                                        <i class="bk-icon icon-eye bk-icon"></i>
-                                        <i class="bk-text">短信订单</i>
+                                    <router-link :to="{path:'/enterprise/enterMsg/'+item.eid}" class="bk-text-button" title="查看"> 
+                                        短信订单
                                     </router-link>
-                                    <router-link :to="{path:'/enterprise/enterEmail/'+item.eid}" class="bk-icon-button bk-warning bk-button-mini mr5" title="查看">
-                                        <i class="bk-icon icon-eye bk-icon"></i>
-                                        <i class="bk-text">电子信函</i>
+                                    <router-link :to="{path:'/enterprise/enterEmail/'+item.eid}" class="bk-text-button" title="查看">
+                                        电子信函
                                     </router-link>
                                 </td>
                             </tr>

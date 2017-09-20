@@ -29,7 +29,7 @@
                         <label class="bk-label">密码：</label>
                         <div class="bk-form-content">
                             <div class="bk-text-button bk-info">
-                                <a class="bk-text-button bk-info" title="重置（身份证后6位）">重置（身份证后6位）</a> &nbsp;&nbsp;&nbsp;
+                                <a class="bk-text-button bk-info" @click="resetPassword(form.eid)" title="重置（身份证后6位）">重置（重置后的密码为法人身份证后6位）</a> &nbsp;&nbsp;&nbsp;
                             </div>
                         </div>
                     </div>
@@ -207,7 +207,7 @@
                 </form>
             </div>
         </div>
-        <div class="bk-panel bk-demo">
+        <div v-if="false" class="bk-panel bk-demo">
             <div class="bk-panel-header" role="tab">
                 <div class="bk-panel-info fl">
                     <div class="panel-title">操作日志</div>
@@ -571,7 +571,7 @@ export default {
                                 });
                             } else {
                                 this.getDataList();
-                            } 
+                            }
                         });
                         this.formEdit = true;
                         this.formEditBtn = true;
@@ -664,6 +664,38 @@ export default {
         },
         onSubmit() {
             this.getDataList();
+
+        },
+        resetPassword(eid) { 
+            let params = {
+                eid: eid
+            }
+            this.$confirm('确认重置密码吗？', '提示', {}).then(() => {
+                this.listLoading = true;
+                this.$http.ajaxPost({
+                    url: 'enterprise/resetPassword',
+                    params: params
+                }, (res) => {
+                    this.$http.aop(res, () => {
+                        if (res.body.ret == '0') {
+                            this.$message({
+                                message: '重置密码成功,密码为法人身份证后6位',
+                                type: 'success'
+                            });
+                        } else {
+                             
+                        }
+                    });
+                    this.formEdit = true;
+                    this.formEditBtn = true;
+                    this.listLoading = false;
+                });
+            }).catch(() => { 
+                this.$message({
+                    type: 'info',
+                    message: '已取消'
+                });
+            });
 
         },
         handleChange(value) {}

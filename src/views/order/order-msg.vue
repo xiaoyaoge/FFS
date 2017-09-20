@@ -91,18 +91,20 @@
                             <tr>
                                 <th>订单号</th>
                                 <th>订单来源</th>
+                                <th>来源名称</th>
                                 <th>联系电话</th>
                                 <th>律所</th>
                                 <th>当前状态</th>
                                 <th>提交时间</th>
-                                <th style="width:255px">操作</th>
+                                <th style="width:165px">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(item,index) in table.dataList">
                                 <td>{{item.orderId}}</td>
                                 <td>{{sourceText(item.userType)}}</td>
-                                <td>{{item.telephone}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{mobileView(item.telephone)}}</td>
                                 <td>{{item.lawFirmName}}</td>
                                 <td v-html="templateStute(item.orderState)"></td>
                                 <td>{{dateTime(item.createTime)}}</td>
@@ -114,7 +116,7 @@
                     </table>
                 </form>
                 <div class="bk-panel-footer p10">
-                    <button  v-show="false" class="bk-button bk-default bk-button-small fl" title="下载搜索结果">
+                    <button v-show="false" class="bk-button bk-default bk-button-small fl" title="下载搜索结果">
                         下载搜索结果
                     </button>
                     <el-pagination v-show="table.total>10" layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="table.pageSize" :total="table.total" style="float:right;">
@@ -122,9 +124,9 @@
                 </div>
             </div>
         </div>
-        <el-dialog title="订单详情" v-model="previewVisible" :close-on-click-modal="false">
+        <el-dialog title="订单详情" v-model="previewVisible" v-loading="infoLoading" :close-on-click-modal="false">
             <div class="modal-body ffs-modal">
-                <div class="info">
+                <div v-if="deDetailShow" class="info">
                     <div class="cont">
                         <h5>下单信息</h5>
                         <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
@@ -155,7 +157,7 @@
                             <div class="bk-form-item mt5">
                                 <label class="bk-label">联系电话：</label>
                                 <div class="bk-form-content">
-                                    {{orderInfo.telephone}}
+                                    {{orderInfo.telephone?mobileView(orderInfo.telephone):''}}
                                 </div>
                             </div>
                         </form>
@@ -181,12 +183,12 @@
                                     {{dateTimes(orderDeliveryInfo.sendTime)}}
                                 </div>
                             </div>
-                            <div class="bk-form-item mt5">
+                            <!-- <div class="bk-form-item mt5">
                                 <label class="bk-label">第三方：</label>
                                 <div class="bk-form-content">
                                     {{orderInfo.name}}
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="bk-form-item mt5">
                                 <label class="bk-label">到达时间：</label>
                                 <div class="bk-form-content">
@@ -196,16 +198,16 @@
                             <div class="bk-form-item mt5">
                                 <label class="bk-label">发送明细：</label>
                                 <div class="bk-form-content">
-                                    <a id="toggle_cont" class="bk-text-button bk-info ml10" title="查看明细">查看明细</a>
+                                    <a id="toggle_cont" @click="searchBtn({orderId:orderInfo.orderId})" class="bk-text-button bk-info ml10" title="查看明细">查看明细</a>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="detail">
+                <div v-else class="detail" style="display: block;">
                     <div class="cont-btns">
-                        <a id="back_cont" class="bk-button bk-default bk-button-small mb15 fl" title="返回"><span>返回</span></a>
-                        <a class="bk-button bk-default bk-button-small mb15 fr" title="批量导入"><span>批量导入</span></a>
+                        <a id="back_cont" @click="delieryInfo()" class="bk-button bk-default bk-button-small mb15 fl" title="返回"><span>返回</span></a>
+                        <!-- <a class="bk-button bk-default bk-button-small mb15 fr" title="批量导入"><span>批量导入</span></a> -->
                     </div>
                     <div class="bk-panel bk-demo">
                         <div class="bk-panel-header" role="tab">
@@ -216,10 +218,10 @@
                                 <div class="bk-form bk-inline-form bk-form-small">
                                     <div class="bk-form-item is-required">
                                         <div class="bk-form-content">
-                                            <input type="text" class="bk-form-input" placeholder="请输入关键字" style="width:150px;">
+                                            <input type="text" class="bk-form-input" v-model="keyword" placeholder="请输入关键字" style="width:150px;">
                                         </div>
                                     </div>
-                                    <button class="bk-button bk-primary bk-button-small" title="查询">查询</button>
+                                    <button class="bk-button bk-primary bk-button-small" @click="searchBtn({orderId:orderInfo.orderId})" title="查询">查询</button>
                                 </div>
                             </div>
                         </div>
@@ -232,30 +234,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>188-4884-4546</td>
-                                        <td>
-                                            <span class="fb bk-text-success">发送成功</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>188-4884-4546</td>
-                                        <td>
-                                            <span class="fb bk-text-danger">发送失败</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>188-4884-4546</td>
-                                        <td><span class="send">发送中</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>188-4884-4546</td>
-                                        <td><span class="send">发送中</span></td>
+                                    <tr v-for="(item,index) in deDetailData.dataList">
+                                        <td>{{item.mobile?mobileView(item.mobile):''}}</td>
+                                        <td v-html="deliveDetailStatus(item.status)">
+                                        </td> 
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="bk-panel-footer"></div>
+                        <div class="bk-panel-footer">
+                            <el-pagination v-show="deDetailData.total>10" layout="prev, pager, next" @current-change="handlePageChange()" :page-size="deDetailData.pageSize" :total="deDetailData.total" style="float:right;">
+                            </el-pagination>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -267,6 +257,7 @@
 </template>
 <script>
 import moment from 'moment'
+import validate from '../../validate';
 export default {
     data() {
         return {
@@ -293,6 +284,20 @@ export default {
             previewVisible: false,
             orderDeliveryInfo: {},
             orderInfo: {},
+            deDetailShow: true,
+            deDetailData: {
+                dataList: [],
+                total: 0,
+                pageSize: 10,
+                pageNum: 1
+            },
+            infoLoading: false,
+            keyword: '',
+            search: {
+                orderId: '',
+                name: '',
+                mobile: ''
+            }
         }
     },
     methods: {
@@ -372,6 +377,26 @@ export default {
                     return '<span class="fb bk-text-danger">发送失败</span>';
             }
         },
+        deliveDetailStatus(val) {
+            switch (val) {
+                case 0:
+                    return '<span class="fb bk-text-info">为开始</span>';
+                case 50:
+                    return '<span class="fb bk-text-info">处理中</span>';
+                case 60:
+                    return '<span class="fb bk-text-info">处理完</span>';
+                case 70:
+                    return '<span class="fb bk-text-danger">发送失败</span>';
+                case 80:
+                    return '<span class="fb bk-text-success">发送成功</span>';
+                default:
+                    return '';
+            }
+        },
+        mobileView(val) {
+            //return val;
+            return val.replace(/\B(?=(?:\d{4})+$)/g, '-');
+        },
         handleCurrentChange(val) {
             this.table.pageNum = val;
             this.getDataList();
@@ -409,11 +434,12 @@ export default {
             //console.log(value)
         },
         previewInfo(opts) {
+            this.deDetailShow = true;
             let params = {};
             params = {
                 orderId: opts.orderId,
             }
-            this.listLoading = true;
+            this.infoLoading = true;
             this.$http.ajaxPost({
                 url: 'order/getInfo',
                 params: params
@@ -438,11 +464,53 @@ export default {
                         sendTime: '',
                         smsList: null
                     };
-                    console.log(this.orderInfo, this.orderDeliveryInfo);
                     this.previewVisible = true;
+                    this.infoLoading = false;
                 });
             });
             this.listLoading = false;
+        },
+        deliveryDetail() {
+            this.infoLoading = true;
+            let params = {
+                mobile: this.search.mobile,
+                name: this.search.name,
+                orderId: this.search.orderId,
+                pageNum: this.deDetailData.pageNum,
+                pageSize: this.deDetailData.pageSize
+            };
+            this.$http.ajaxPost({
+                url: 'deliveryDetail/query',
+                params: params
+            }, (res) => {
+                this.$http.aop(res, () => {
+                    this.deDetailShow = false;
+                    this.deDetailData.total = res.body.data.total;
+                    this.deDetailData.dataList = res.body.data.deliveryDetails;
+                    this.infoLoading = false;
+                });
+
+            });
+        },
+        handlePageChange(val) {
+            this.deDetailData.pageNum = val;
+            this.deliveryDetail();
+        },
+        searchBtn(obj) {
+            this.search.orderId = obj.orderId; 
+            if (validate.checkPhoneNum(this.keyword)) {
+                this.search.mobile = this.keyword;
+                this.search.name = '';
+            } else {
+                this.search.name = this.keyword;
+                this.search.mobile = '';
+            }
+
+
+            this.deliveryDetail();
+        },
+        delieryInfo() {
+            this.deDetailShow = true;
         }
     },
     mounted() {
