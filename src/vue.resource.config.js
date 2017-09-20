@@ -10,7 +10,8 @@ Vue.use(VueResource);
 //Vue.http.options.emulateJSON = true;
 //Vue.http.options.root = 'http://119.23.52.238/cgi-admin/';
 //Vue.http.options.root = 'http://test.admin.twoeyes.cn/cgi-admin/';
-Vue.http.options.root = 'http://localhost:8080/';
+//Vue.http.options.root = 'http://localhost:8080/';
+Vue.http.options.root = 'http://06843329.ngrok.io';
 //Vue.http.options.root = 'http://10.9.2.173:8080/'; 
 
 Vue.http.interceptors.push((req, next) => {
@@ -34,7 +35,7 @@ Vue.http.aop = function(res, cb) {
                 sessionStorage.removeItem('user');
                 window.location.href = '#/login';
                 Message.warning(res.body.errMsg);
-                return; 
+                return;
                 // 异常
             default:
                 Message.warning(res.body.errmsg || '服务器忙');

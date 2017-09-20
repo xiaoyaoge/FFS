@@ -93,7 +93,7 @@
                     </table>
                 </form>
                 <div class="bk-panel-footer p10">
-                    <button class="bk-button bk-default bk-button-small fl" title="下载搜索结果">
+                    <button v-show="false" class="bk-button bk-default bk-button-small fl" title="下载搜索结果">
                         下载搜索结果
                     </button>
                     <el-pagination v-show="table.total>10" layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="table.pageSize" :total="table.total" style="float:right;">
