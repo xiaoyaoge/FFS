@@ -58,7 +58,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-xs-12">
-                            <div class="bk-form-content" style="margin-left:85px;">
+                            <div class="bk-form-content" style="margin-left:100px;">
                                 <button class="bk-button bk-success">查询</button>
                                 <!-- 交互说明 ：收起时更改文案为 展开更多查询条件，同时隐藏 more-query-cont -->
                             </div>
@@ -124,8 +124,8 @@
                 </div>
             </div>
         </div>
-        <el-dialog title="订单详情" v-model="previewVisible" v-loading="infoLoading" :close-on-click-modal="false">
-            <div class="modal-body ffs-modal">
+        <el-dialog title="订单详情" v-model="previewVisible"  :close-on-click-modal="false">
+            <div class="modal-body ffs-modal" v-loading="infoLoading">
                 <div v-if="deDetailShow" class="info">
                     <div class="cont">
                         <h5>下单信息</h5>
@@ -468,7 +468,7 @@ export default {
                     this.infoLoading = false;
                 });
             });
-            this.listLoading = false;
+            this.infoLoading = false;
         },
         deliveryDetail() {
             this.infoLoading = true;
