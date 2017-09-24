@@ -51,7 +51,7 @@
                             <div class="bk-form-item mb20">
                                 <label class="bk-label pr15" style="width:100px;">企业名称：</label>
                                 <div class="bk-form-content" style="margin-left:100px;">
-                                    <input type="text" v-model="form.ename" class="bk-form-input" placeholder="请输入面签员姓名" style="width:100%;">
+                                    <input type="text" v-model="form.ename" class="bk-form-input" placeholder="请输入企业名称" style="width:100%;">
                                 </div>
                             </div>
                         </div>
@@ -89,8 +89,7 @@
                     <table class="bk-table has-thead-bordered">
                         <thead>
                             <tr>
-                                <th>订单号</th>
-                                <th>订单来源</th>
+                                <th>订单号</th> 
                                 <th>来源名称</th>
                                 <th>联系电话</th>
                                 <th>律所</th>
@@ -101,8 +100,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="(item,index) in table.dataList">
-                                <td>{{item.orderId}}</td>
-                                <td>{{sourceText(item.userType)}}</td>
+                                <td>{{item.orderId}}</td> 
                                 <td>{{item.name}}</td>
                                 <td>{{mobileView(item.telephone)}}</td>
                                 <td>{{item.lawFirmName}}</td>
@@ -189,10 +187,19 @@
                                     {{orderInfo.name}}
                                 </div>
                             </div> -->
-                            <div class="bk-form-item mt5">
+                            <div class="bk-form-item mt5" v-if="orderInfo.orderState>100">
                                 <label class="bk-label">到达时间：</label>
                                 <div class="bk-form-content">
-                                    <p class="mb0"><span class="fb bk-text-success ml10">发送成功</span>({{orderInfo.succNum}}/{{orderInfo.sendNum}}) {{dateTimes(orderDeliveryInfo.sendTime)}}</p>
+                                    <p class="mb0"><span v-html="templateStute(orderInfo.orderState)"></span>
+                                        <span>({{orderInfo.succNum}}/{{orderInfo.sendNum}}) {{dateTimes(orderDeliveryInfo.sendTime)}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="bk-form-item mt5" v-else>
+                                <label class="bk-label">状态：</label>
+                                <div class="bk-form-content">
+                                    <p class="mb0" v-html="templateStute(orderInfo.orderState)">
+                                    </p>
                                 </div>
                             </div>
                             <div class="bk-form-item mt5">
@@ -375,7 +382,7 @@ export default {
             switch (val) {
                 case 100:
                     return '<span class="fb bk-text-info">申请中</span>';
-                case 360:
+                case 350:
                     return '<span class="fb bk-text-success">发送成功</span>';
                 default:
                     return '<span class="fb bk-text-danger">发送失败</span>';
@@ -413,7 +420,7 @@ export default {
                 orderId: this.form.orderId,
                 telephone: this.form.telephone,
                 ename: this.form.ename,
-                userType: this.form.userType,
+                userType: this.querySource(this.orderSource),
                 hours: this.queryTime(this.topTime),
                 orderState: this.orderState(this.orderStateSelect),
                 orderType: this.form.orderType

@@ -22,9 +22,9 @@
                     </thead>
                     <tbody>
                         <tr v-for="(item,index) in dataList">
-                            <td>{{dateTime(item.modifyDate)}}</td>
+                            <td>{{dateTime(item.modifyTime)}}</td>
                             <td>{{item.name}}</td>
-                            <td>{{item.mobile}}</td>
+                            <td>{{mobileView(item.mobile)}}</td>
                             <td>
                                 <a class="bk-icon-button bk-warning bk-button-mini" title="修改" @click="handleEdit(index, item)">
                                     <i class="bk-icon icon-edit bk-icon"></i>
@@ -61,6 +61,12 @@
                     <el-form-item label="密码" prop="password">
                         <el-input type="password" v-model="editForm.password" placeholder="............................" auto-complete="off"></el-input>
                     </el-form-item>
+                    <el-form-item label="角色" prop="orderType" class="type-class">
+                        <el-radio-group v-model="orderType">
+                            <el-radio-button label="超级管理员"></el-radio-button>
+                            <el-radio-button label="普通管理员"></el-radio-button>
+                        </el-radio-group>
+                    </el-form-item>
                 </div>
             </el-form>
             <div class="dialog-btns">
@@ -80,6 +86,12 @@
                     </el-form-item>
                     <el-form-item label="密码" prop="password">
                         <el-input type="password" v-model="addForm.password" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="角色" prop="orderType" class="type-class">
+                        <el-radio-group v-model="orderType">
+                            <el-radio-button label="超级管理员"></el-radio-button>
+                            <el-radio-button label="普通管理员"></el-radio-button>
+                        </el-radio-group>
                     </el-form-item>
                 </div>
             </el-form>
@@ -178,6 +190,10 @@ export default {
     methods: {
         dateTime(val) {
             return moment(val).format('YYYY-MM-DD');
+        },
+        mobileView(val) {
+            //return val;
+            return val.replace(/\B(?=(?:\d{4})+$)/g, '-');
         },
         handleCurrentChange(val) {
             this.pageNum = val;
@@ -317,18 +333,7 @@ export default {
         }
     },
     mounted() {
-        this.getDataList();
-        // this.getUs(() => {
-        //     if (this.user.role === 99) {
-        //         this.getDataList();
-        //     } else {
-        //         this.$router.push({
-        //             path: '/orderConten'
-        //         });
-        //     }
-
-        // });
-
+        this.getDataList(); 
     }
 }
 </script>

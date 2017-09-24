@@ -27,11 +27,13 @@
                                 <select v-model="items.status" class="table-select" @change="changeMsgStatus(items)">
                                     <option value="0">未生效</option>
                                     <option value="1">有效</option>
+                                    <option value="2">删除</option>
                                 </select>
                             </td>
                             <td>{{dateTime(items.modifyTime)}}</td>
                             <td>
-                                <a @click="preview(items,'msg')" class="bk-text-button">查看详情</a> 
+                                <a @click="preview(items,'msg','info')" class="bk-text-button">查看详情</a>
+                                <a @click="preview(items,'msg','edit')" class="bk-text-button">编辑</a>
                             </td>
                         </tr>
                     </tbody>
@@ -63,10 +65,14 @@
                                 <select v-model="item.status" class="table-select" @change="changeMsgStatus(item)">
                                     <option value="0">未生效</option>
                                     <option value="1">有效</option>
+                                    <option value="2">删除</option>
                                 </select>
                             </td>
                             <td>{{dateTime(item.modifyTime)}}</td>
-                            <td><a @click="preview(item,'email')" class="bk-text-button">查看详情</a></td>
+                            <td>
+                                <a @click="preview(item,'email','info')" class="bk-text-button">查看详情</a>
+                                <a @click="preview(item,'email','edit')" class="bk-text-button">编辑</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -87,7 +93,7 @@
                 <a class="bk-button bk-primary" @click="previewVisible = false" title="取消">取消</a>
             </div>
         </el-dialog>
-        <el-dialog title="新建模版" v-model="formVisible" :close-on-click-modal="false">
+        <el-dialog :title="fromTitle" v-model="formVisible" :close-on-click-modal="false">
             <div class="temp ffs-modal">
                 <el-form class="bk-form pb15" ref="form" label-width="80px">
                     <div class="bk-form-item mt5">
@@ -109,16 +115,24 @@
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label w100 pr20">内容：</label>
-                        <el-select v-model="msgForm.status" placeholder="请选择活动区域">
+                        <el-select v-model="msgForm.status" placeholder="请选择">
                             <el-option label="不生效" :value="0"></el-option>
                             <el-option label="生效" :value="1"></el-option>
+                            <option value="2">删除</option>
                         </el-select>
+                    </div>
+                    <div class="bk-form-item mt10">
+                        <label class="bk-label w100 pr20"></label>
+                        <div class="bk-form-content" style="margin-left: 100px">
+                            <span class="info">提示：模板内容支持的变量如下：接收人${receiver_name}、公司简称${platform_short_name}、逾期天数${overdue_days}</span>
+                        </div>
                     </div>
                 </el-form>
             </div>
             <div class="modal-footer ta-c">
                 <a class="bk-button bk-default" @click="formVisible = false" title="取消">取消</a>
-                <a class="bk-button bk-primary" @click="severForm" title="保存">保存</a>
+                <a v-if="formPot=='add'" class="bk-button bk-primary" @click="severForm('add')" title="保存">保存</a>
+                <a v-else class="bk-button bk-primary" @click="severForm('edit')" title="保存">保存</a>
             </div>
         </el-dialog>
     </section>
@@ -137,6 +151,7 @@ export default {
             formType: 'msg',
             dataList: [],
             emailList: [],
+            fromTitle: '新建模版',
             msgForm: {
                 lawFirmId: 1,
                 status: 0,
@@ -145,6 +160,7 @@ export default {
                 templateName: '',
                 templateType: 0,
             },
+            formPot: 'add',
             uploadPolicy: {
                 host: '',
             },
@@ -159,12 +175,19 @@ export default {
     },
     methods: {
         dateTime(val) {
-            return moment(val).format('YYYY-MM-DD,hh:mm');
+            return moment(val).format('YYYY-MM-DD hh:mm');
         },
-        preview(opts, type) {
-            this.previewVisible = true;
-            this.msgForm = opts;
-            this.previewSize = type;
+        preview(opts, type, opt) {
+            if (opt === 'edit') {
+                this.editTemple(type, opts);
+                this.formPot = opt;
+            } else {
+                this.previewVisible = true;
+                this.previewSize = type;
+                this.msgForm = opts;
+            }
+
+
         },
         checkForm(data) { //验证担保人信息
             let isOk = true;
@@ -202,15 +225,16 @@ export default {
             }
             return true;
         },
-        severForm() {
+        severForm(type) {
             let params = {};
+            let url = type == 'add' ? 'template/create' : 'template/modify'
             params = {
                 templateInfo: this.msgForm
             }
             if (this.checkForm(params.templateInfo)) {
                 this.$confirm('确认要保存吗？', '提示', {}).then(() => {
                     this.$http.ajaxPost({
-                        url: 'template/create',
+                        url: url,
                         params: params
                     }, (res) => {
                         this.$http.aop(res, () => {
@@ -273,24 +297,40 @@ export default {
             });
 
         },
+        initUpload() {
+            this.$http.post('upload/getAliyunPostPolicy', { dir: 'template' }).then((res) => {
+                this.$http.aop(res, () => {
+                    this.uploadPolicy = res.body.data || {};
+                    this.uploadConfig.data.policy = this.uploadPolicy.policy;
+                    this.uploadConfig.data.OSSAccessKeyId = this.uploadPolicy.accessid;
+                    this.uploadConfig.data.signature = this.uploadPolicy.signature;
+                });
+            }, (res) => {
+                this.$http.aop(res);
+            });
+        },
+        editTemple(type, opts) {
+            this.formType = type;
+            this.fromTitle = '编辑模版';
+            this.msgForm = opts;
+            if (type !== 'msg') {
+                this.initUpload();
+                this.fileList = [{ name: this.msgForm.templateName, url: this.msgForm.templateContent }];
+
+            }
+            console.log(this.msgForm);
+            this.formVisible = true;
+        },
         create(type) {
+            this.fromTitle = '新建模版';
             this.formType = type;
             if (type !== 'msg') {
-                this.$http.post('upload/getAliyunPostPolicy', { dir: 'template' }).then((res) => {
-                    this.$http.aop(res, () => {
-                        this.uploadPolicy = res.body.data || {};
-                        this.uploadConfig.data.policy = this.uploadPolicy.policy;
-                        this.uploadConfig.data.OSSAccessKeyId = this.uploadPolicy.accessid;
-                        this.uploadConfig.data.signature = this.uploadPolicy.signature;
-
-                    });
-                }, (res) => {
-                    this.$http.aop(res);
-                });
+                this.fileList = [];
+                this.initUpload();
             }
             this.formVisible = true;
             this.msgForm = {
-                lawFirmId: 2,
+                lawFirmId: 1,
                 status: 0,
                 templateContent: '',
                 templateName: '',

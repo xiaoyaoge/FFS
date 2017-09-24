@@ -4019,6 +4019,7 @@ th {
 }
 
 .slide-open .nav-list .nav-name {
+    cursor: default;
     min-width: 80px;
     opacity: 1
 }
@@ -4026,6 +4027,7 @@ th {
 .slide-close .nav-list .nav-name {
     width: 0;
     opacity: 0;
+    cursor: default;
     visibility: hidden
 }
 
@@ -4067,6 +4069,7 @@ th {
     height: 42px;
     line-height: 42px;
     font-size: 14px;
+    cursor: default;
     overflow: hidden
 }
 

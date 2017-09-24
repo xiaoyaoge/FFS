@@ -37,23 +37,25 @@
                 <div class="nav-list">
                     <div class="nav-list">
                         <ul ref="menuCollapsed">
-                            <li v-for="(item,index) in $router.options.routes" v-if="!item.hidden" :class="item.paths.indexOf($route.path.split('/')[1])>-1? 'open': ''">
-                                <template v-if="!item.leaf">
-                                    <a @click="showMenu(index,true)">
-                                        <span class="icon-box"><i class="bk-icon" :class="item.iconCls"></i></span>
-                                        <span class="nav-name">{{item.name}}</span>
-                                    </a>
-                                    <div class="flex-subnavs" :class="'submenu-hook-'+index" :style="item.paths.indexOf($route.path)>-1?'display: block;':'display:none;'">
-                                        <a v-for="child in item.children" v-if="!child.hidden" :class="$route.path==child.path?'on':''" @click="$router.push(child.path);"><i></i>{{child.name}}</a>
-                                    </div>
-                                </template>
-                                <template v-else>
-                                    <a @click="$router.push(item.children[0].path);">
-                                        <span class="icon-box"><i class="bk-icon" :class="item.iconCls"></i></span>
-                                        <span class="nav-name">{{item.children[0].name}}</span>
-                                    </a>
-                                </template>
-                            </li>
+                            <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
+                                <li v-if="roleFun(item.role,sysUserAvatar)" :class="item.paths.indexOf($route.path.split('/')[1])>-1? 'open': ''">
+                                    <template v-if="!item.leaf">
+                                        <a @click="showMenu(index,true)">
+                                            <span class="icon-box"><i class="bk-icon" :class="item.iconCls"></i></span>
+                                            <span class="nav-name">{{item.name}}</span>
+                                        </a>
+                                        <div class="flex-subnavs" :class="'submenu-hook-'+index" :style="item.paths.indexOf($route.path)>-1?'display: block;':'display:none;'">
+                                            <a v-for="child in item.children" v-if="!child.hidden" :class="$route.path==child.path?'on':''" @click="$router.push(child.path);"><i></i>{{child.name}}
+                                            </a>
+                                        </div>
+                                    </template>
+                                    <template v-else>
+                                        <a @click="$router.push(item.children[0].path);">
+                                            <span class="icon-box"><i class="bk-icon" :class="item.iconCls"></i></span><span class="nav-name">{{item.children[0].name}}</span>
+                                        </a>
+                                    </template>
+                                </li>
+                            </template>
                         </ul>
                     </div>
                 </div>
@@ -119,9 +121,19 @@ export default {
             this.$confirm('确认退出吗?', '提示', {
                 //type: 'warning'
             }).then(() => {
-                sessionStorage.removeItem('user');
+                this.$http.ajaxPost({
+                    url: 'logout',
+                    params: {}
+                }, (res) => {
+                    this.$http.aop(res, () => {
+                        sessionStorage.removeItem('user');
+                        this.$router.push({
+                            path: '/login'
+                        });
 
-                this.$router.push('/login');
+                    });
+
+                });
             }).catch(() => {
 
             });
@@ -130,18 +142,25 @@ export default {
             var box = this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-' + i)[0];
             var dis = box.style.display;
             box.style.display = (dis == 'none' ? 'block' : 'none');
+        },
+        roleFun(role, userRole) {
+            let flag = true;
+            if (role === 0 || (role !== 0 && role === userRole)) { //对应权限
+                flag = true;
+            } else {
+                flag = false;
+            }
+            return flag
+
         }
     },
     mounted() {
-        //var user = sessionStorage.getItem('user');
-        // if (user) {
-        //     user = JSON.parse(user);
-        //     this.sysUserName = user.name || '';
-        //     this.sysUserAvatar = user.role || '';
-        //     if (this.sysUserAvatar !== 99) {
-        //         //this.$router.push('/orderConten');
-        //     }
-        // }
+        var user = sessionStorage.getItem('user');
+        if (user) {
+            user = JSON.parse(user);
+            this.sysUserName = user.name || '';
+            this.sysUserAvatar = user.role || 0;
+        }
 
     }
 }

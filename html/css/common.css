@@ -62,7 +62,8 @@ a:focus{text-decoration: none;}
 
 .ffs .cont .bk-label{padding-left: 20px;color: #aaa;padding: 0 20px 0 0;line-height: 36px;}
 .ffs .cont .bk-table{background: #fff;}
-.ffs .cont .bk-form-content{margin-left: 150px;line-height: 34px;}
+.ffs .cont .bk-label .red{ color: #ff4949; margin-right:4px; }
+.ffs .cont .bk-form-content{margin-left: 160px;line-height: 34px;}
 .ffs .cont .bk-form-textarea{min-height: 50px;}
 .ffs .cont .bk-form-input[readonly],
 .ffs .cont .bk-form-textarea[readonly]{border: 1px solid transparent;background: transparent;}

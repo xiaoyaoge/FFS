@@ -1,7 +1,7 @@
 <template>
     <div class="index-cont">
         <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
-            <h1 class="logo" title="法法社CRM客户管理同"></h1>
+            <!-- <h1 class="logo" title="法法社CRM客户管理同"></h1> -->
             <input type="text" class="bk-form-input" v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></input>
             <input type="password" class="bk-form-input" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="密码"></input>
             <el-form-item prop="account"></el-form-item>

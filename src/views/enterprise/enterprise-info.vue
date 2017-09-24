@@ -20,7 +20,7 @@
                 </div>
                 <div class="bk-form">
                     <div class="bk-form-item">
-                        <label class="bk-label">账号：</label>
+                        <label class="bk-label"><span class="red">*</span>账号：</label>
                         <div class="bk-form-content">
                             <input type="text" class="bk-form-input" v-model="form.account" placeholder="" :readonly="formEdit">
                         </div>
@@ -44,20 +44,20 @@
                 </div>
                 <form class="bk-form" id="validate_form" method="POST" action="javascript:;">
                     <div class="bk-form-item">
-                        <label class="bk-label">企业名称：</label>
+                        <label class="bk-label"><span class="red">*</span>企业名称：</label>
                         <div class="bk-form-content">
                             <input type="text" class="bk-form-input" v-model="form.ename" placeholder="请输入企业名称" :readonly="formEdit">
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
-                        <label class="bk-label">企业简称：</label>
+                        <label class="bk-label"><span class="red">*</span>企业简称：</label>
                         <div class="bk-form-content">
                             <input type="text" class="bk-form-input" v-model="form.shortEname" placeholder="请输入企业简称" :readonly="formEdit">
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
-                        <label class="bk-label">注册地址：
-                            <br/>详细地址：</label>
+                        <label class="bk-label"><span class="red">*</span>注册地址：
+                            <br/><span class="red">*</span>详细地址：</label>
                         <div class="bk-form-content">
                             <el-cascader v-if="!formEdit" size="large" class="mb5" :options="provinceAndCityDataPlus" filterable v-model="registerAddress" @change="handleChange">
                             </el-cascader>
@@ -66,8 +66,8 @@
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
-                        <label class="bk-label">实际经营地址：
-                            <br/>详细地址：</label>
+                        <label class="bk-label"><span class="red">*</span>实际经营地址：
+                            <br/><span class="red">*</span>详细地址：</label>
                         <div class="bk-form-content">
                             <el-cascader v-if="!formEdit" size="large" class="mb5" :options="provinceAndCityDataPlus" filterable v-model="address" @change="handleChange">
                             </el-cascader>
@@ -76,38 +76,38 @@
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
-                        <label class="bk-label">统一社会信用代码：</label>
+                        <label class="bk-label"><span class="red">*</span>统一社会信用代码：</label>
                         <!-- <label class="bk-label">营业执照编号：</label> -->
                         <div class="bk-form-content">
                             <input type="text" class="bk-form-input" placeholder="请输入统一社会信用代码" v-model="form.licenseNumber" maxlength="18" :readonly="formEdit">
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
-                        <label class="bk-label">纳税人识别号：</label>
+                        <label class="bk-label"><span class="red">*</span>纳税人识别号：</label>
                         <div class="bk-form-content">
                             <input type="text" class="bk-form-input" placeholder="请输入纳税人识别号" v-model="form.taxpayerNumber" maxlength="15" :readonly="formEdit">
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
-                        <label class="bk-label">法人姓名：</label>
+                        <label class="bk-label"><span class="red">*</span>法人姓名：</label>
                         <div class="bk-form-content">
                             <input type="text" class="bk-form-input" placeholder="请输入法人姓名" v-model="form.legalPersonName" maxlength="10" :readonly="formEdit">
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
-                        <label class="bk-label">法人身份证：</label>
+                        <label class="bk-label"><span class="red">*</span>法人身份证：</label>
                         <div class="bk-form-content">
                             <input type="text" class="bk-form-input" placeholder="请输入法人身份证" v-model="form.legalPersonIdCard" maxlength="18" :readonly="formEdit">
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
-                        <label class="bk-label">企业联系人：</label>
+                        <label class="bk-label"><span class="red">*</span>企业联系人：</label>
                         <div class="bk-form-content">
                             <input type="text" class="bk-form-input" placeholder="请输入业联系人" v-model="form.linkman" maxlength="10" :readonly="formEdit">
                         </div>
                     </div>
                     <div class="bk-form-item mt5">
-                        <label class="bk-label">企业联系电话：</label>
+                        <label class="bk-label"><span class="red">*</span>企业联系电话：</label>
                         <div class="bk-form-content">
                             <input type="text" class="bk-form-input" placeholder="请输入企业联系电话" v-model="form.telephone" maxlength="12" :readonly="formEdit">
                         </div>
@@ -356,10 +356,11 @@ export default {
         editIonf(type) {
             if (type === 'edit') {
                 this.formEdit = false;
-                this.formEditBtn = false;
+                this.formEditBtn = false; 
             } else {
                 this.formEdit = true;
                 this.formEditBtn = true;
+                this.getDataList();
             }
         },
         balanceEditIonf(type) {

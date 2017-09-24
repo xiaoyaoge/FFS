@@ -2230,7 +2230,7 @@ th {
 }
 
 .bk-form .bk-label {
-    width: 150px;
+    width: 160px;
     text-align: right;
     vertical-align: middle;
     float: left;
@@ -2244,7 +2244,7 @@ th {
 
 .bk-form .bk-form-content {
     width: auto;
-    margin-left: 150px;
+    margin-left: 160px;
     position: relative
 }
 
@@ -4064,12 +4064,14 @@ th {
 
 .slide-open .nav-list .nav-name {
     min-width: 80px;
+    cursor: default;
     opacity: 1
 }
 
 .slide-close .nav-list .nav-name {
     width: 0;
     opacity: 0;
+    cursor: default;
     visibility: hidden
 }
 
@@ -4111,6 +4113,7 @@ th {
     height: 42px;
     line-height: 42px;
     font-size: 14px;
+    cursor: default;
     overflow: hidden
 }
 

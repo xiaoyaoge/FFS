@@ -5,10 +5,9 @@ import Main from './views/Main.vue'
 import UserCenter from './views/user/user-center.vue'
 import OrderMsg from './views/order/order-msg.vue'
 import OrderEmail from './views/order/order-email.vue'
-import OrderInfo from './views/order/order-info.vue'
 import Enterprise from './views/enterprise/enterprise-center.vue'
 import EnterInfo from './views/enterprise/enterprise-info.vue'
-import EnterForm from './views/enterprise/enterprise-form.vue' 
+import EnterForm from './views/enterprise/enterprise-form.vue'
 import EnterMsg from './views/enterprise/enterprise-msg.vue'
 import EnterEmail from './views/enterprise/enterprise-email.vue'
 import LawFirm from './views/firm/law-firm.vue'
@@ -18,13 +17,28 @@ let routes = [{
         path: '/login',
         component: Login,
         name: '',
+        role: 0,
         hidden: true
     },
     {
         path: '/404',
         component: NotFound,
         name: '',
+        role: 0,
         hidden: true
+    }, {
+        path: '/',
+        component: Home,
+        name: '律所管理',
+        iconCls: 'icon-id',
+        hidden: false,
+        leaf: true, //只有一个节点
+        paths: '/lawFirm',
+        role: 0,
+        children: [
+            { path: '/lawFirm', component: LawFirm, name: '仁良律所' }
+
+        ]
     },
     {
         path: '/',
@@ -34,26 +48,15 @@ let routes = [{
         leaf: false, //只有一个节点
         hidden: false,
         paths: '/msgOder,/emailOder,/letterOder',
+        role: 0,
         children: [
             { path: '/msgOder', component: OrderMsg, name: '短信订单' },
             { path: '/emailOder', component: OrderEmail, name: '电子信函' },
             //{ path: '/letterOder', component: OrderList, name: '纸质信函' }, 
-             
-        ]
-    },
-    {
-        path: '/',
-        component: Home,
-        name: '律所管理',
-        iconCls: 'icon-id',
-        hidden: false,
-        leaf: true, //只有一个节点
-        paths: '/lawFirm',
-        children: [
-            { path: '/lawFirm', component: LawFirm, name: '仁良律所' }
 
         ]
     },
+
     {
         path: '/',
         component: Home,
@@ -62,6 +65,7 @@ let routes = [{
         leaf: true, //只有一个节点
         hidden: false,
         paths: '/enterprise,/enterInfo/,/enterMsg/,/enterEmail/',
+        role: 0,
         children: [
             { path: '/enterprise', component: Enterprise, name: '企业管理' },
             { path: '/enterprise/enterForm', component: EnterForm, name: '入驻新企业', hidden: true },
@@ -78,6 +82,7 @@ let routes = [{
         hidden: false,
         leaf: true, //只有一个节点
         paths: '/manager',
+        role: 99,
         children: [
             { path: '/manager', component: UserCenter, name: '办公管理' }
         ]
@@ -85,6 +90,7 @@ let routes = [{
     {
         path: '*',
         hidden: true,
+        role: 0,
         redirect: { path: '/404' }
     }
 ];
