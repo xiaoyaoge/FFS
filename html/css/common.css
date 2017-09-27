@@ -5,6 +5,7 @@ a:focus{text-decoration: none;}
 @media all and (max-height: 550px){
   .copyright{display: none;}
 }
+.red{color:#FF4949; margin-right: 2px; }
 .ffs .modal-content{border: none;border-radius: 2px;}
 
 .none{display: none !important;}
@@ -69,6 +70,8 @@ a:focus{text-decoration: none;}
 .ffs .cont .bk-form-textarea[readonly]{border: 1px solid transparent;background: transparent;}
 .ffs .cont .bk-text-info{line-height: 38px;margin-left: 10px;}
 .ffs .cont .bk-info{line-height: 36px;}
+.ffs .cont .bk-text{line-height: 36px; color:#999999; }
+.bk-form-content .bk-text{color:#999999; font-size: 13px;}
 
 .ffs .cont-btns{width: 100%;overflow: hidden;}
 .ffs .b-manage-title{overflow: hidden;}

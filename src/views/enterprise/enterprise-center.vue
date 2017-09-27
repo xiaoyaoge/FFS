@@ -19,7 +19,7 @@
                             <div class="bk-form-item mb20">
                                 <label class="bk-label pr15" style="width:100px;">企业名称：</label>
                                 <div class="bk-form-content" style="margin-left:100px;">
-                                    <input type="text" v-model="form.ename" class="bk-form-input" placeholder="请输入身份证号码" style="width:100%;">
+                                    <input type="text" v-model="form.ename" class="bk-form-input" placeholder="请输入企业名称" style="width:100%;">
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@ export default {
     },
     methods: {
         dateTime(val) {
-            return moment(val).format('YYYY-MM-DD');
+            return moment(val).format('YYYY-MM-DD HH:mm:ss');
         },
         queryCreateTime(val) {
             switch (val) {

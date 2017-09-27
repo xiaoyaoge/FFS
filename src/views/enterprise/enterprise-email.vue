@@ -23,7 +23,8 @@
                             <el-radio-group v-model="orderStateSelect">
                                 <el-radio-button label="全部"></el-radio-button>
                                 <el-radio-button label="申请中"></el-radio-button>
-                                <el-radio-button label="已发送"></el-radio-button>
+                                <el-radio-button label="发送成功"></el-radio-button>
+                                <el-radio-button label="发送失败"></el-radio-button>
                             </el-radio-group>
                         </div>
                     </div>
@@ -41,6 +42,7 @@
                                 <label class="bk-label pr15" style="width:100px;">联系电话：</label>
                                 <div class="bk-form-content" style="margin-left:100px;">
                                     <input type="text" v-model="form.telephone" class="bk-form-input" placeholder="请输入联系电话" style="width:100%;">
+                                    <!-- maxlength="13"  @input="mobileView"  -->
                                 </div>
                             </div>
                         </div>
@@ -101,7 +103,7 @@
                                 <td>{{item.orderId}}</td>
                                 <!-- <td>{{sourceText(item.userType)}}</td>
                                 <td>{{item.name}}</td>
-                                <td>{{mobileView(item.telephone)}}</td> -->
+                                <td>{{item.telephone}}</td> -->
                                 <td>{{item.lawFirmName}}</td>
                                 <td v-html="templateStute(item.orderState)"></td>
                                 <td>{{dateTime(item.createTime)}}</td>
@@ -154,7 +156,7 @@
                             <div class="bk-form-item mt5">
                                 <label class="bk-label">联系电话：</label>
                                 <div class="bk-form-content">
-                                    {{orderInfo.telephone?mobileView(orderInfo.telephone):''}}
+                                    {{orderInfo.telephone}}
                                 </div>
                             </div>
                         </form>
@@ -171,7 +173,13 @@
                             <div class="bk-form-item mt5">
                                 <label class="bk-label">模板：</label>
                                 <div class="bk-form-content">
-                                    {{orderDeliveryInfo.templateName}}
+                                    <el-popover ref="popover1" placement="right" :title="orderDeliveryInfo.templateName" width="300" trigger="hover">
+                                        <div class="el-row ">
+                                            <span @click="dialogImage(orderDeliveryInfo.templateContent)" style="position: absolute; top:0;right: 0; width: 60px; height: 60px; margin-left:-30px; margin-top: -30px;  color:#8492a6; font-size: 50px;"><i class="el-icon-view"></i></span>
+                                            <img style="width: 100%;" :src="orderDeliveryInfo.templateContent" title="邮件信息模版">
+                                        </div>
+                                    </el-popover>
+                                    <span class="bk-text-button bk-info ml0" v-popover:popover1>{{orderDeliveryInfo.templateName}}</span>
                                 </div>
                             </div>
                             <div class="bk-form-item mt5">
@@ -190,7 +198,7 @@
                                 <label class="bk-label">到达时间：</label>
                                 <div class="bk-form-content">
                                     <p class="mb0"><span v-html="templateStute(orderInfo.orderState)"></span>
-                                        <span>({{orderInfo.succNum}}/{{orderInfo.sendNum}}) {{dateTimes(orderDeliveryInfo.sendTime)}}</span>
+                                        <span>({{orderInfo.succNum}}/{{orderInfo.sendNum}})</span>
                                     </p>
                                 </div>
                             </div>
@@ -204,7 +212,7 @@
                             <div class="bk-form-item mt5">
                                 <label class="bk-label">发送明细：</label>
                                 <div class="bk-form-content">
-                                    <a id="toggle_cont" @click="searchBtn({orderId:orderInfo.orderId})" class="bk-text-button bk-info ml10" title="查看明细">查看明细</a>
+                                    <a id="toggle_cont" @click="searchBtn({orderId:orderInfo.orderId})" class="bk-text-button bk-info ml0" title="查看明细">查看明细</a>
                                 </div>
                             </div>
                         </form>
@@ -224,7 +232,7 @@
                                 <div class="bk-form bk-inline-form bk-form-small">
                                     <div class="bk-form-item is-required">
                                         <div class="bk-form-content">
-                                            <input type="text" class="bk-form-input" v-model="keyword" placeholder="请输入关键字" style="width:150px;">
+                                            <input type="text" class="bk-form-input" v-model="keyword" placeholder="请输入手机号或姓名" style="width:150px;">
                                         </div>
                                     </div>
                                     <button class="bk-button bk-primary bk-button-small" @click="searchBtn({orderId:orderInfo.orderId})" title="查询">查询</button>
@@ -235,6 +243,7 @@
                             <table class="bk-table">
                                 <thead>
                                     <tr>
+                                        <th>姓名</th>
                                         <th>号码</th>
                                         <th>发送状态</th>
                                         <th>查看下载协议</th>
@@ -242,7 +251,8 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item,index) in deDetailData.dataList">
-                                        <td>{{item.mobile?mobileView(item.mobile):''}}</td>
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.mobile}}</td>
                                         <td v-html="deliveDetailStatus(item.status)">
                                         </td>
                                         <td>
@@ -262,6 +272,9 @@
             <div class="modal-footer ta-c">
                 <a class="bk-button bk-primary" @click="previewVisible=false" title="添加">关闭</a>
             </div>
+        </el-dialog>
+        <el-dialog v-model="dialogVisible" size="">
+            <img width="100%" :src="dialogImageUrl" alt="large">
         </el-dialog>
     </section>
 </template>
@@ -308,24 +321,32 @@ export default {
                 orderId: '',
                 name: '',
                 mobile: ''
-            }
+            },
+            dialogVisible: false,
+            dialogImageUrl: ''
         }
     },
     methods: {
+        dialogImage(val) {
+            this.dialogImageUrl = val;
+            this.dialogVisible = true;
+        },
         dateTime(val) {
-            return moment(val).format('YYYY-MM-DD');
+            return moment(val).format('YYYY-MM-DD HH:mm:ss');
         },
         dateTimes(val) {
-            return moment(val).format('YYYY年MM月DD日 hh:mm:ss');
+            return moment(val).format('YYYY年MM月DD日 HH:mm:ss');
         },
         orderState(val) {
             switch (val) {
                 case '全部':
                     return '';
+                case '发送失败':
+                    return '20';
                 case '申请中':
                     return '100';
-                case '已发送':
-                    return '360';
+                case '发送成功':
+                    return '350';
                 default:
                     return '未知状态';
             }
@@ -381,11 +402,13 @@ export default {
         templateStute(val) {
             switch (val) {
                 case 100:
-                    return '<span class="fb bk-text-info">申请中</span>';
+                    return '<span class="fb bk-text-info ml0">申请中</span>';
                 case 350:
-                    return '<span class="fb bk-text-success">发送成功</span>';
+                    return '<span class="fb bk-text-success ml0 ">发送成功</span>';
+                case 20:
+                    return '<span class="fb bk-text-danger ml0 ">发送失败</span>'
                 default:
-                    return '<span class="fb bk-text-danger">发送失败</span>';
+                    return '<span class="fb bk-text-info ml0">出现异常</span>';
             }
         },
         deliveDetailStatus(val) {
@@ -404,9 +427,11 @@ export default {
                     return '';
             }
         },
-        mobileView(val) {
-            //return val;
-            return val.replace(/\B(?=(?:\d{4})+$)/g, '-');
+        mobileView() {
+            if (validate.checkPhoneNum(this.form.telephone)) {
+                this.form.telephone = this.form.telephone.replace(/\B(?=(?:\d{4})+$)/g, '-');
+            }
+
         },
         handleCurrentChange(val) {
             this.table.pageNum = val;

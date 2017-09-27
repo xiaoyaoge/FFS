@@ -34,25 +34,9 @@ let routes = [{
         hidden: false,
         leaf: true, //只有一个节点
         paths: '/lawFirm',
-        role: 0,
+        role: 99,
         children: [
             { path: '/lawFirm', component: LawFirm, name: '仁良律所' }
-
-        ]
-    },
-    {
-        path: '/',
-        component: Home,
-        name: '订单管理',
-        iconCls: 'icon-order', //图标样式class
-        leaf: false, //只有一个节点
-        hidden: false,
-        paths: '/msgOder,/emailOder,/letterOder',
-        role: 0,
-        children: [
-            { path: '/msgOder', component: OrderMsg, name: '短信订单' },
-            { path: '/emailOder', component: OrderEmail, name: '电子信函' },
-            //{ path: '/letterOder', component: OrderList, name: '纸质信函' }, 
 
         ]
     },
@@ -72,6 +56,22 @@ let routes = [{
             { path: '/enterprise/enterInfo/:id', component: EnterInfo, name: '基本信息', hidden: true },
             { path: '/enterprise/enterMsg/:id', component: EnterMsg, name: '短信订单', hidden: true },
             { path: '/enterprise/enterEmail/:id', component: EnterEmail, name: '电子信函', hidden: true }
+        ]
+    },
+    {
+        path: '/',
+        component: Home,
+        name: '订单管理',
+        iconCls: 'icon-order', //图标样式class
+        leaf: false, //只有一个节点
+        hidden: false,
+        paths: '/msgOder,/emailOder,/letterOder',
+        role: 0,
+        children: [
+            { path: '/msgOder', component: OrderMsg, name: '短信订单' },
+            { path: '/emailOder', component: OrderEmail, name: '电子信函' },
+            //{ path: '/letterOder', component: OrderList, name: '纸质信函' }, 
+
         ]
     },
     {

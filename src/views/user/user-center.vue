@@ -14,17 +14,17 @@
                 <table class="bk-table">
                     <thead>
                         <tr>
-                            <th style="width:20%;">日期</th>
                             <th>姓名</th>
                             <th>电话</th>
+                            <th style="width:20%;">日期</th>
                             <th style="width:270px;">操作</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(item,index) in dataList">
-                            <td>{{dateTime(item.modifyTime)}}</td>
+                        <tr v-for="(item,index) in dataList"> 
                             <td>{{item.name}}</td>
-                            <td>{{mobileView(item.mobile)}}</td>
+                            <td>{{item.mobile}}</td>
+                             <td>{{dateTime(item.modifyTime)}}</td>
                             <td>
                                 <a class="bk-icon-button bk-warning bk-button-mini" title="修改" @click="handleEdit(index, item)">
                                     <i class="bk-icon icon-edit bk-icon"></i>
@@ -56,10 +56,10 @@
                         <el-input v-model="editForm.name" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="手机号码" prop="mobile">
-                        <el-input v-model="editForm.mobile" auto-complete="off"></el-input>
+                        <el-input v-model="editForm.mobile" :maxlength="11" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="密码" prop="password">
-                        <el-input type="password" v-model="editForm.password" placeholder="............................" auto-complete="off"></el-input>
+                        <el-input type="password" v-model="editForm.password" :maxlength="16" placeholder="............................" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="角色" prop="orderType" class="type-class">
                         <el-radio-group v-model="orderType">
@@ -82,10 +82,10 @@
                         <el-input v-model="addForm.name" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="手机号码" prop="mobile">
-                        <el-input v-model="addForm.mobile" auto-complete="off"></el-input>
+                        <el-input v-model="addForm.mobile" :maxlength="11" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="密码" prop="password">
-                        <el-input type="password" v-model="addForm.password" auto-complete="off"></el-input>
+                        <el-input type="password" v-model="addForm.password" :maxlength="16" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="角色" prop="orderType" class="type-class">
                         <el-radio-group v-model="orderType">
@@ -104,6 +104,7 @@
 </template>
 <script>
 import moment from 'moment'
+import md5 from 'js-md5'
 export default {
     data() {
         return {
@@ -132,13 +133,13 @@ export default {
                     type: 'string',
                     pattern: /^\d{11}$/,
                     message: '请输入正确的手机号码',
-                    trigger: 'blur,change'
+                    trigger: 'blur'
                 }],
                 password: [{
                     type: 'string',
                     pattern: /^\w{6,16}$/,
                     message: '请输入6~16密码',
-                    trigger: 'blur,change'
+                    trigger: 'blur'
                 }]
             },
             //编辑界面数据
@@ -187,9 +188,9 @@ export default {
 
         }
     },
-    methods: {
+    methods: { 
         dateTime(val) {
-            return moment(val).format('YYYY-MM-DD');
+            return moment(val).format('YYYY-MM-DD HH:mm:ss');
         },
         mobileView(val) {
             //return val;
@@ -275,6 +276,7 @@ export default {
             this.$refs.editForm.validate((valid) => {
                 if (valid) {
                     this.$confirm('确认要修改当前帐号吗？', '提示', {}).then(() => {
+                        this.editForm.password = md5(this.editForm.password);
                         let para = Object.assign({}, this.editForm);
                         para.role = ((this.orderType === '超级管理员') ? 99 : 1);
                         this.$http.ajaxPost({
@@ -305,6 +307,7 @@ export default {
             this.$refs.addForm.validate((valid) => {
                 if (valid) {
                     this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                        this.addForm.password = md5(this.addForm.password);
                         let para = Object.assign({}, this.addForm);
                         para.role = ((this.orderType === '超级管理员') ? 99 : 1);
                         this.$http.ajaxPost({
@@ -333,7 +336,7 @@ export default {
         }
     },
     mounted() {
-        this.getDataList(); 
+        this.getDataList();
     }
 }
 </script>

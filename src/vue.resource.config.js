@@ -39,7 +39,7 @@ Vue.http.aop = function(res, cb) {
                 // 异常
             default:
                 Message.warning(res.body.errmsg || '服务器忙');
-                break;
+                return;
         }
     }
 

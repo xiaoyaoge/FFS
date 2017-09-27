@@ -84,7 +84,7 @@ export default {
             sysName: '法法社CRM客户管理系统',
             parentUrlName: '',
             parentUrls: '',
-            collapsed: false,
+            collapsed: true,
             sysUserName: 'admin',
             sysUserAvatar: '',
             form: {
@@ -96,7 +96,8 @@ export default {
                 type: [],
                 resource: '',
                 desc: ''
-            }
+            },
+            initFlag: false
         }
     },
     methods: {
@@ -156,10 +157,10 @@ export default {
     },
     mounted() {
         var user = sessionStorage.getItem('user');
-        if (user) {
+        if (user) { 
             user = JSON.parse(user);
             this.sysUserName = user.name || '';
-            this.sysUserAvatar = user.role || 0;
+            this.sysUserAvatar = user.role || 0; 
         }
 
     }

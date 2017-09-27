@@ -24,9 +24,9 @@
                         <tr v-for="items in dataList">
                             <td>{{items.templateName}}</td>
                             <td>
-                                <select v-model="items.status" class="table-select" @change="changeMsgStatus(items)">
+                                <select v-model="items.status" class="table-select" @change="changeMsgStatus(items,'1')">
                                     <option value="0">未生效</option>
-                                    <option value="1">有效</option>
+                                    <option value="1">生效</option>
                                     <option value="2">删除</option>
                                 </select>
                             </td>
@@ -62,9 +62,9 @@
                         <tr v-for="item in emailList">
                             <td>{{item.templateName}}</td>
                             <td>
-                                <select v-model="item.status" class="table-select" @change="changeMsgStatus(item)">
+                                <select v-model="item.status" class="table-select" @change="changeMsgStatus(item,'2')">
                                     <option value="0">未生效</option>
-                                    <option value="1">有效</option>
+                                    <option value="1">生效</option>
                                     <option value="2">删除</option>
                                 </select>
                             </td>
@@ -87,44 +87,70 @@
                 <div v-if="previewSize=='msg'" class="cont" style=" margin: 0 auto;">
                     <p>{{msgForm.templateContent}} </p>
                 </div>
-                <iframe v-else ref="iframe" :src="msgForm.templateContent" style="width: 100%; height: 600px; margin: 0 auto; border: 0;"></iframe>
+                <div v-else>
+                    <h5>短信通知内容</h5>
+                    <div class="cont" style=" margin: 0 auto;">
+                        {{msgForm.smsNotice}}
+                    </div>
+                    <h5>邮件内容</h5>
+                    <img style="width: 100%;" :src="msgForm.templateContent">
+                </div>
             </div>
             <div class="modal-footer ta-c">
-                <a class="bk-button bk-primary" @click="previewVisible = false" title="取消">取消</a>
+                <a class="bk-button bk-primary" @click="previewVisible = false" title="关闭">关闭</a>
             </div>
         </el-dialog>
         <el-dialog :title="fromTitle" v-model="formVisible" :close-on-click-modal="false">
             <div class="temp ffs-modal">
-                <el-form class="bk-form pb15" ref="form" label-width="80px">
+                <el-form class="bk-form pb15" ref="form" label-width="120px">
                     <div class="bk-form-item mt5">
-                        <label class="bk-label w100 pr20">模版名称：</label>
-                        <div class="bk-form-content" style="margin-left: 100px">
+                        <label class="bk-label w120 pr20"><span class="red">*</span>模版名称：</label>
+                        <div class="bk-form-content" style="margin-left: 120px">
                             <input type="text" class="bk-form-input" placeholder="输入模版名字" v-model="msgForm.templateName" maxlength="10">
                         </div>
                     </div>
-                    <div class="bk-form-item mt5">
-                        <label class="bk-label w100 pr20">内容：</label>
-                        <div class="bk-form-content" style="margin-left: 100px">
-                            <!-- <input class="bk-form-input" v-model="msgForm.templateContent" placeholder="输入email模版url地址"> -->
+                    <div class="bk-form-item mt15">
+                        <label class="bk-label w120 pr20"><span class="red">*</span>内容：</label>
+                        <div class="bk-form-content" style="margin-left: 120px">
                             <el-upload v-if="formType==='email'" class="upload-demo" :action="uploadPolicy.host" :multiple="uploadConfig.multiple" :data="uploadConfig.data" :on-success="uploadSuccess" :on-change="uploadChange" :on-error="uploadError" :on-remove="uploadRemove" :accept="uploadConfig.accept" :file-list="fileList" :on-preview="uploadPictureCardPreview" :before-upload="beforeUpload">
                                 <el-button size="small" type="primary">点击上传</el-button>
-                                <span slot="tip" class="el-upload__tip ml15">只能上传html文件，且不超过5mb</span>
+                                <span slot="tip" class="el-upload__tip ml15">只能上传png,gif,jpeg,webp文件，且不超过5mb</span>
                             </el-upload>
                             <textarea v-else v-model="msgForm.templateContent" row="5" class="bk-form-textarea h80" placeholder="输入信息模版内容"></textarea>
                         </div>
                     </div>
-                    <div class="bk-form-item mt5">
-                        <label class="bk-label w100 pr20">内容：</label>
-                        <el-select v-model="msgForm.status" placeholder="请选择">
-                            <el-option label="不生效" :value="0"></el-option>
-                            <el-option label="生效" :value="1"></el-option>
-                            <option value="2">删除</option>
-                        </el-select>
+                    <div class="bk-form-item mt15">
+                        <label class="bk-label w120 pr20"><span class="red">*</span>状态：</label>
+                        <div class="bk-form-content" style="margin-left: 120px">
+                            <el-select v-model="msgForm.status" placeholder="请选择">
+                                <el-option label="未生效" :value="0"></el-option>
+                                <el-option label="生效" :value="1"></el-option>
+                                <!-- <el-option label="删除" :value="2"></el-option> -->
+                            </el-select>
+                        </div>
                     </div>
-                    <div class="bk-form-item mt10">
-                        <label class="bk-label w100 pr20"></label>
-                        <div class="bk-form-content" style="margin-left: 100px">
-                            <span class="info">提示：模板内容支持的变量如下：接收人${receiver_name}、公司简称${platform_short_name}、逾期天数${overdue_days}</span>
+                    <div v-if="formType==='email'" class="bk-form-item mt15">
+                        <label class="bk-label w120 pr20"><span class="red">*</span>模版h5 文件：</label>
+                        <div class="bk-form-content" style="margin-left: 120px">
+                            <input type="text" class="bk-form-input" placeholder="输入模版h5URL" v-model="msgForm.serverHtmlFile">
+                        </div>
+                    </div>
+                    <div v-if="formType==='email'" class="bk-form-item mt15">
+                        <label class="bk-label w120 pr20"><span class="red">*</span>模版css文件：</label>
+                        <div class="bk-form-content" style="margin-left: 120px">
+                            <input type="text" class="bk-form-input" placeholder="输入模版css Url" v-model="msgForm.serverCssFile">
+                        </div>
+                    </div>
+                    <div v-if="formType==='email'" class="bk-form-item mt15">
+                        <label class="bk-label w120 pr20">通知短信：</label>
+                        <div class="bk-form-content" style="margin-left: 120px">
+                            <textarea v-model="msgForm.smsNotice" row="5" class="bk-form-textarea h80" placeholder="输入通知短信内容"></textarea>
+                        </div>
+                    </div>
+                    <div v-if="formType!=='email'" class="bk-form-item mt15">
+                        <label class="bk-label w120 pr20">提示：</label>
+                        <div class="bk-form-content" style="margin-left: 120px">
+                            <span class="bk-text info">模板内容支持的变量，如下：<br/>1、接收人：${receiver_name}<br/>2、逾期天数：${overdue_days}<br/>3、公司简称：${platform_short_name}</span>
                         </div>
                     </div>
                 </el-form>
@@ -159,6 +185,9 @@ export default {
                 templateId: 0,
                 templateName: '',
                 templateType: 0,
+                smsNotice: '',
+                serverCssFile: '',
+                serverHtmlFile: ''
             },
             formPot: 'add',
             uploadPolicy: {
@@ -168,14 +197,14 @@ export default {
                 multiple: true,
                 thread: 5,
                 data: {},
-                accept: '.html'
+                accept: 'image/png,image/gif,image/jpeg,image/webp'
             },
             fileList: []
         }
     },
     methods: {
         dateTime(val) {
-            return moment(val).format('YYYY-MM-DD hh:mm');
+            return moment(val).format('YYYY-MM-DD HH:mm:ss');
         },
         preview(opts, type, opt) {
             if (opt === 'edit') {
@@ -208,13 +237,37 @@ export default {
                             }
                         } else {
                             if (data[val] == '') {
-                                text = '模版email地址不能为空';
+                                text = '模版图片地址不能为空';
                             }
                             if (!validate.checkUrl(data[val])) {
-                                text = '模版email地址不正确';
+                                text = '模版图片地址不正确';
                                 isOk = false;
                             }
 
+                        }
+                        break;
+                    case 'serverCssFile':
+                        if (data.templateType !== 1) {
+                            if (data[val] == '') {
+                                text = '模版css地址不能为空';
+                                isOk = false;
+                            }
+                            // if (!validate.checkUrl(data[val])) {
+                            //     text = '模版css地址不正确';
+                            //     isOk = false;
+                            // }
+                        }
+                        break;
+                    case 'serverHtmlFile':
+                        if (data.templateType !== 1) {
+                            if (data[val] == '') {
+                                text = '模版H5地址不能为空';
+                                isOk = false;
+                            }
+                            // if (!validate.checkUrl(data[val])) {
+                            //     text = '模版H5地址不正确';
+                            //     isOk = false;
+                            // }
                         }
                         break;
                 }
@@ -227,7 +280,7 @@ export default {
         },
         severForm(type) {
             let params = {};
-            let url = type == 'add' ? 'template/create' : 'template/modify'
+            let url = (type == 'add' ? 'template/create' : 'template/modify');
             params = {
                 templateInfo: this.msgForm
             }
@@ -239,7 +292,7 @@ export default {
                     }, (res) => {
                         this.$http.aop(res, () => {
                             this.$message({
-                                message: '创建成功',
+                                message: (type == 'add' ? '创建成功' : '编辑成功'),
                                 type: 'success'
                             });
                             this.formVisible = false;
@@ -247,6 +300,7 @@ export default {
                         });
                     });
                 }).catch(() => {
+                    this.gitData(this.msgForm.templateType);
                     this.$message({
                         type: 'info',
                         message: '已取消'
@@ -254,7 +308,7 @@ export default {
                 });
             }
         },
-        changeMsgStatus(opts) {
+        changeMsgStatus(opts, type) {
             let params = {};
             params = {
                 status: opts.status,
@@ -267,10 +321,11 @@ export default {
             }, (res) => {
                 this.$http.aop(res, () => {
                     this.$message({
-                        message: '修改成功',
+                        message: (opts.status == 2 ? '删除成功' : '修改成功'),
                         type: 'success'
                     });
                     this.listLoading = false;
+                    this.gitData(type);
                 });
             });
         },
@@ -318,7 +373,6 @@ export default {
                 this.fileList = [{ name: this.msgForm.templateName, url: this.msgForm.templateContent }];
 
             }
-            console.log(this.msgForm);
             this.formVisible = true;
         },
         create(type) {
