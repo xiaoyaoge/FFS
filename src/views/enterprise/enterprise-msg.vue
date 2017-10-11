@@ -37,22 +37,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-lg-4 col-xs-4">
+                        <!-- <div class="col-md-4 col-lg-4 col-xs-4">
                             <div class="bk-form-item mb20">
                                 <label class="bk-label pr15" style="width:100px;">联系电话：</label>
                                 <div class="bk-form-content" style="margin-left:100px;">
                                     <input type="text" v-model="form.telephone" class="bk-form-input" placeholder="请输入联系电话" style="width:100%;">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-lg-4 col-xs-4">
+                        </div> -->
+                        <!-- <div class="col-md-4 col-lg-4 col-xs-4">
                             <div class="bk-form-item mb20">
                                 <label class="bk-label pr15" style="width:100px;">企业名称：</label>
                                 <div class="bk-form-content" style="margin-left:100px;">
                                     <input type="text" v-model="form.ename" class="bk-form-input" placeholder="请输入企业名称" style="width:100%;">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-xs-12">
@@ -104,7 +104,7 @@
                                 <td>{{item.name}}</td>
                                 <td>{{item.telephone}}</td> -->
                                 <td>{{item.lawFirmName}}</td>
-                                <td v-html="templateStute(item.orderState)"></td>
+                                <td v-html="templateStute(item)"></td>
                                 <td>{{dateTime(item.createTime)}}</td>
                                 <td>
                                     <a @click="previewInfo(item)" class="bk-text-button">查看详情</a>
@@ -174,7 +174,7 @@
                                 <div class="bk-form-content">
                                     <el-popover ref="popover1" placement="right" :title="orderDeliveryInfo.templateName" width="300" trigger="hover" :content="orderDeliveryInfo.templateContent">
                                     </el-popover>
-                                    <span class="bk-text-button bk-info ml0" v-popover:popover1>{{orderDeliveryInfo.templateName}}</span>
+                                    <div class="bk-text-button bk-info divInline ml0" v-popover:popover1>{{orderDeliveryInfo.templateName}}</div>
                                 </div>
                             </div>
                             <div class="bk-form-item mt5">
@@ -189,18 +189,10 @@
                                     {{orderInfo.name}}
                                 </div>
                             </div> -->
-                            <div class="bk-form-item mt5" v-if="orderInfo.orderState>100">
-                                <label class="bk-label">到达时间：</label>
-                                <div class="bk-form-content">
-                                    <p class="mb0"><span v-html="templateStute(orderInfo.orderState)"></span>
-                                        <span>({{orderInfo.succNum}}/{{orderInfo.sendNum}}) </span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bk-form-item mt5" v-else>
+                            <div class="bk-form-item mt5">
                                 <label class="bk-label">状态：</label>
                                 <div class="bk-form-content">
-                                    <p class="mb0" v-html="templateStute(orderInfo.orderState)">
+                                    <p class="mb0" v-html="templateStute(orderInfo)">
                                     </p>
                                 </div>
                             </div>
@@ -208,6 +200,12 @@
                                 <label class="bk-label">发送明细：</label>
                                 <div class="bk-form-content">
                                     <a id="toggle_cont" @click="searchBtn({orderId:orderInfo.orderId})" class="bk-text-button bk-info ml0" title="查看明细">查看明细</a>
+                                </div>
+                            </div>
+                            <div class="bk-form-item mt5">
+                                <label class="bk-label">查看号码包：</label>
+                                <div class="bk-form-content">
+                                    <a id="toggle_cont" :href="orderDeliveryInfo.attachmentUrl" class="bk-text-button bk-info ml0" title="查看号码包">查看号码包</a> <span class="bk-info">(点击下载)</span>
                                 </div>
                             </div>
                         </form>
@@ -253,8 +251,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="bk-panel-footer">
-                            <el-pagination v-show="deDetailData.total>10" layout="prev, pager, next" @current-change="handlePageChange()" :page-size="deDetailData.pageSize" :total="deDetailData.total" style="float:right;">
+                        <div class="bk-panel-footer mt15">
+                            <el-pagination v-show="deDetailData.total>10" layout="prev, pager, next" @current-change="handlePageChange" :page-size="deDetailData.pageSize" :total="deDetailData.total" style="float:right;">
                             </el-pagination>
                         </div>
                     </div>
@@ -269,6 +267,7 @@
 <script>
 import moment from 'moment'
 import validate from '../../validate';
+moment.locale('zh-cn');
 export default {
     data() {
         return {
@@ -314,7 +313,8 @@ export default {
     },
     methods: {
         dateTime(val) {
-            return moment(val).format('YYYY-MM-DD HH:mm:ss');
+            let minute = moment(val).startOf('minute').fromNow();
+            return (minute.indexOf('分钟') > -1 || minute.indexOf('秒') > -1) ? moment(val).startOf('minute').fromNow() : moment(val).format('YYYY-MM-DD HH:mm:ss');
         },
         dateTimes(val) {
             return moment(val).format('YYYY年MM月DD日 HH:mm:ss');
@@ -381,14 +381,14 @@ export default {
                     return '';
             }
         },
-        templateStute(val) {
-            switch (val) {
+        templateStute(opts) {
+            switch (opts.orderState) {
                 case 100:
                     return '<span class="fb bk-text-info ml0">申请中</span>';
                 case 350:
-                    return '<span class="fb bk-text-success ml0 ">发送成功</span>';
+                     return '<span class="fb bk-text-success ml0 ">发送成功</span>（' + opts.succNum + '/' + opts.totalNum + '）';
                 case 20:
-                    return '<span class="fb bk-text-danger ml0 ">发送失败</span>'
+                    return '<span class="fb bk-text-danger ml0 ">发送失败</span>';
                 default:
                     return '<span class="fb bk-text-info ml0">出现异常</span>';
             }
@@ -396,11 +396,11 @@ export default {
         deliveDetailStatus(val) {
             switch (val) {
                 case 0:
-                    return '<span class="fb bk-text-info">为开始</span>';
+                    return '<span class="fb bk-text-info">未开始</span>';
                 case 50:
                     return '<span class="fb bk-text-info">处理中</span>';
                 case 60:
-                    return '<span class="fb bk-text-info">处理完</span>';
+                    return '<span class="fb bk-text-info">已发出</span>';
                 case 70:
                     return '<span class="fb bk-text-danger">发送失败</span>';
                 case 80:

@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const WebpackMd5Hash = require('webpack-md5-hash')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const url = require('url')
 const publicPath = ''
 
@@ -51,15 +52,32 @@ module.exports = (options = {}) => ({
         }]
     },
     devtool: "source-map",
-    plugins: [
-        new ExtractTextPlugin('[name].[contenthash:8].css'),
+    plugins: [ 
         new WebpackMd5Hash(),
-        new webpack.HashedModuleIdsPlugin(),
+        new webpack.HashedModuleIdsPlugin(), 
+        new CompressionWebpackPlugin({ //gzip 压缩
+            asset: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: new RegExp(
+                '\\.(js|css)$' //压缩 js 与 css
+            ),
+            threshold: 10240,
+            minRatio: 0.8
+        }),
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor', 'manifest']
         }),
+        new ExtractTextPlugin('[name].[contenthash:8].css'),
         new HtmlWebpackPlugin({
-            template: 'src/index.html'
+            template: 'src/index.html',
+            inject: true, // 自动注入
+            minify: {
+                removeComments: true, //去注释
+                collapseWhitespace: true, //压缩空格
+                removeAttributeQuotes: true //去除属性引用 
+            },
+            //必须通过上面的 CommonsChunkPlugin 的依赖关系自动添加 js，css 等
+            chunksSortMode: 'dependency'
         }),
         new InlineManifestWebpackPlugin({
             name: 'webpackManifest'
@@ -72,7 +90,7 @@ module.exports = (options = {}) => ({
     },
     devServer: {
         host: '127.0.0.1',
-        port: 8014,
+        port: 8015,
         proxy: {
             '/api/': {
                 target: '127.0.0.1',

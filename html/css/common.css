@@ -2,6 +2,7 @@ html, body {background: #fafafa; overflow: hidden; min-width: 1300px;height: 100
 a:focus{text-decoration: none;}
 .bk-layout{min-height: 500px;}
 .page-content{padding: 25px;flex: 1;height: 100%;overflow: auto;}
+.divInline{ display: inline;}
 @media all and (max-height: 550px){
   .copyright{display: none;}
 }
@@ -13,7 +14,7 @@ a:focus{text-decoration: none;}
 .ta-c{text-align: center !important;}
 .ta-l{text-align: left !important;}
 .ta-r{text-align: right !important;}
-
+span.bk-info{ font-size: 12px; color:#888;}
 .king-page-topbar{background: transparent;border: none;}
 
 .bk-form-radio input[type=radio]{background-image: url(../images/bk_check.png);}

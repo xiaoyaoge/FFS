@@ -73,7 +73,7 @@
                             <tr v-for="(item,index) in table.dataList">
                                 <td>{{item.ename}}</td>
                                 <td>{{item.telephone}}</td>
-                                <td>{{dateTime(item.createDate)}}</td>
+                                <td>{{dateTime(item.createTime)}}</td>
                                 <td>
                                     <router-link :to="{path:'/enterprise/enterInfo/'+item.eid}" class="bk-text-button" title="查看">
                                         基本信息

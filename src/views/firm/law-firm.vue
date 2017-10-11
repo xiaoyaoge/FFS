@@ -116,7 +116,7 @@
                                 <el-button size="small" type="primary">点击上传</el-button>
                                 <span slot="tip" class="el-upload__tip ml15">只能上传png,gif,jpeg,webp文件，且不超过5mb</span>
                             </el-upload>
-                            <textarea v-else v-model="msgForm.templateContent" row="5" class="bk-form-textarea h80" placeholder="输入信息模版内容"></textarea>
+                            <textarea v-else v-model="msgForm.templateContent" row="5" class="bk-form-textarea h200" placeholder="输入短信模版内容"></textarea>
                         </div>
                     </div>
                     <div class="bk-form-item mt15">
@@ -147,10 +147,14 @@
                             <textarea v-model="msgForm.smsNotice" row="5" class="bk-form-textarea h80" placeholder="输入通知短信内容"></textarea>
                         </div>
                     </div>
-                    <div v-if="formType!=='email'" class="bk-form-item mt15">
+                    <div class="bk-form-item mt15">
                         <label class="bk-label w120 pr20">提示：</label>
                         <div class="bk-form-content" style="margin-left: 120px">
-                            <span class="bk-text info">模板内容支持的变量，如下：<br/>1、接收人：${receiver_name}<br/>2、逾期天数：${overdue_days}<br/>3、公司简称：${platform_short_name}</span>
+                            <span class="bk-text info">短信模板内容支持的变量，如下：<br/>1、接收人：${receiver_name}<br/>
+                            2、逾期天数：${overdue_days}<br/>
+                            3、联系电话：${${contact_mobile}}<br/>
+                            4、公司简称：${platform_short_name} 
+                            </span>
                         </div>
                     </div>
                 </el-form>
@@ -166,7 +170,7 @@
 <script>
 import moment from 'moment'
 import md5 from 'js-md5'
-import validate from '../../validate'
+import validate from '../../validate' 
 export default {
     data() {
         return {
@@ -394,6 +398,7 @@ export default {
         uploadSuccess(response, file, fileList) { //文件长传成功  
             let url = this.uploadPolicy.host + '/' + this.uploadConfig.data.key;
             this.msgForm.templateContent = url;
+            console.log(this.msgForm.templateContent)
         },
         beforeUpload(file) {
             let key = this.uploadPolicy.dir + '/' + md5('' + Date.now + this.uploadPolicy.mid + Math.random());

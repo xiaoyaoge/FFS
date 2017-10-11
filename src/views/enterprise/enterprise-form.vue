@@ -100,7 +100,7 @@
                     <div class="bk-form-item mt5">
                         <label class="bk-label"><span class="red">*</span>企业联系电话：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" placeholder="请输入企业联系电话" v-model="form.telephone" maxlength="12">
+                            <input type="text" class="bk-form-input" placeholder="请输入企业联系电话" v-model="form.telephone" >
                         </div>
                     </div>
                 </form>
@@ -115,56 +115,56 @@
                     <div class="col-md-3 col-lg-3">
                         <div class="img-title">企业营业执照(必填)</div>
                         <div class="img-box">
-                            <img :src="form.licensePic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'">
+                            <img :src="form.licensePic||defaultImgUrl">
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <a class="bk-button bk-primary" @click="modifyUpload('企业营业执照','licensePic')">{{form.licensePic?'修改照片':'上传照片'}}</a>
                             </div>
                             <div class="col-md-6 col-lg-6">
-                                <a class="bk-button bk-default" @click="previewBox('企业营业执照',(form.licensePic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'))" target="_blank">预览照片</a>
+                                <a class="bk-button bk-default" @click="previewBox('企业营业执照',(form.licensePic||defaultImgUrl))" target="_blank">预览照片</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-lg-3">
                         <div class="img-title">企业印章图样(必填)</div>
                         <div class="img-box">
-                            <img :src="form.sealPic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'">
+                            <img :src="form.sealPic||defaultImgUrl">
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <a class="bk-button bk-primary" @click="modifyUpload('企业印章图样','sealPic')">{{form.sealPic?'修改照片':'上传照片'}}</a>
                             </div>
                             <div class="col-md-6 col-lg-6">
-                                <a class="bk-button bk-default" @click="previewBox('企业印章图样',(form.sealPic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'))" target="_blank">预览照片</a>
+                                <a class="bk-button bk-default" @click="previewBox('企业印章图样',(form.sealPic||defaultImgUrl))" target="_blank">预览照片</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-lg-3">
                         <div class="img-title">企业签约协议1(选填)</div>
                         <div class="img-box">
-                            <img :src="form.agreementPic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'">
+                            <img :src="form.agreementPic||defaultImgUrl">
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <a class="bk-button bk-primary" @click="modifyUpload('企业签约协议1','agreementPic')">{{form.agreementPic?'修改照片':'上传照片'}}</a>
                             </div>
                             <div class="col-md-6 col-lg-6">
-                                <a class="bk-button bk-default" @click="previewBox('企业签约协议1',(form.agreementPic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'))" target="_blank">预览照片</a>
+                                <a class="bk-button bk-default" @click="previewBox('企业签约协议1',(form.agreementPic||defaultImgUrl))" target="_blank">预览照片</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-lg-3">
                         <div class="img-title">企业签约协议2(选填)</div>
                         <div class="img-box">
-                            <img :src="form.agreement2Pic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'">
+                            <img :src="form.agreement2Pic||defaultImgUrl">
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <a class="bk-button bk-primary" @click="modifyUpload('企业签约协议2','agreement2Pic')">{{form.agreement2Pic?'修改照片':'上传照片'}}</a>
                             </div>
                             <div class="col-md-6 col-lg-6">
-                                <a class="bk-button bk-default" @click="previewBox('企业签约协议2',(form.agreement2Pic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'))" target="_blank">预览照片</a>
+                                <a class="bk-button bk-default" @click="previewBox('企业签约协议2',(form.agreement2Pic||defaultImgUrl))" target="_blank">预览照片</a>
                             </div>
                         </div>
                     </div>
@@ -201,6 +201,7 @@ import validate from '../../validate';
 export default {
     data() {
         return {
+            defaultImgUrl: 'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177',
             collapsed: true,
             collapsedText: '显示更多查询条件',
             TextToCode: TextToCode,
@@ -259,7 +260,7 @@ export default {
         },
         handleCurrentChange(val) {
             this.table.pageNum = val;
-             
+
         },
         checkForm(data) { //验证担保人信息
             let isOk = true;
@@ -292,8 +293,8 @@ export default {
                         }
                         break;
                     case 'telephone':
-                        if (!validate.checkPhoneNum(data[val])) {
-                            text = '联系电话不正确';
+                        if (data[val] === '') {
+                            text = '联系电话不能为空';
                             isOk = false;
                         }
                         break;
@@ -381,7 +382,7 @@ export default {
                         url: 'enterprise/create',
                         params: params
                     }, (res) => {
-                        this.$http.aop(res, () => { 
+                        this.$http.aop(res, () => {
                             let eid = res.body.data.eid;
                             this.$message({
                                 message: '入驻成功',
@@ -399,7 +400,7 @@ export default {
                     });
                 });
             }
-        }, 
+        },
         handleChange(value) {},
         modifyUpload(title, type) { // 初始化上传控件 
             if (type !== this.uploadType) {
@@ -431,7 +432,7 @@ export default {
             let key = this.uploadPolicy.dir + '/' + md5('' + Date.now + this.uploadPolicy.uid + Math.random());
             this.uploadConfig.data.key = key;
             const isLt5M = file.size / 1024 / 1024 < 5;
-            if (!isLt5M) { 
+            if (!isLt5M) {
                 this.fileList = [];
                 this.$message.error('上传图片大小不能超过 5MB!');
             }
@@ -443,7 +444,7 @@ export default {
         uploadChange(file, fileList) {
             if (fileList.length > 0) {
                 this.fileList = fileList.slice(-1);
-            }else{
+            } else {
                 this.fileList = [];
             }
 
@@ -473,7 +474,7 @@ export default {
             }
             return code
         },
-        previewBox(title, url){
+        previewBox(title, url) {
             this.dialogImageUrl = url;
             this.dialogVisible = true;
         }

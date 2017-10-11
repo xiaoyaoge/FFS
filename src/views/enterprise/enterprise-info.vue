@@ -30,9 +30,8 @@
                         <div class="bk-form-content">
                             <div class="bk-text-button bk-info">
                                 <a class="bk-text-button bk-info" @click="resetPassword(form.eid)" title="重置（身份证后6位）">重置</a> &nbsp;&nbsp;
-                                <span class="bk-text bk-info">（重置后的密码为法人身份证后6位）</span> 
+                                <span class="bk-text bk-info">（重置后的密码为法人身份证后6位）</span>
                             </div>
-                             
                         </div>
                     </div>
                 </div>
@@ -59,7 +58,8 @@
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label"><span class="red">*</span>注册地址：
-                            <br/></label>
+                            <br/>
+                        </label>
                         <div class="bk-form-content">
                             <el-cascader v-if="!formEdit" size="large" class="mb5" :options="provinceAndCityDataPlus" filterable v-model="registerAddress" @change="handleChange">
                             </el-cascader>
@@ -69,7 +69,8 @@
                     </div>
                     <div class="bk-form-item mt5">
                         <label class="bk-label"><span class="red">*</span>实际经营地址：
-                            <br/></label>
+                            <br/>
+                        </label>
                         <div class="bk-form-content">
                             <el-cascader v-if="!formEdit" size="large" class="mb5" :options="provinceAndCityDataPlus" filterable v-model="address" @change="handleChange">
                             </el-cascader>
@@ -111,7 +112,7 @@
                     <div class="bk-form-item mt5">
                         <label class="bk-label"><span class="red">*</span>企业联系电话：</label>
                         <div class="bk-form-content">
-                            <input type="text" class="bk-form-input" placeholder="请输入企业联系电话" v-model="form.telephone" maxlength="12" :readonly="formEdit">
+                            <input type="text" class="bk-form-input" placeholder="请输入企业联系电话" v-model="form.telephone" :readonly="formEdit">
                         </div>
                     </div>
                 </form>
@@ -126,56 +127,56 @@
                     <div class="col-md-3 col-lg-3">
                         <div class="img-title">企业营业执照(必填)</div>
                         <div class="img-box">
-                            <img :src="form.licensePic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'">
+                            <img :src="form.licensePic||defaultImgUrl">
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <a v-if="!formEdit" class="bk-button bk-primary" @click="modifyUpload('企业营业执照','licensePic')">{{form.licensePic?'修改照片':'上传照片'}}</a>
                             </div>
                             <div class="col-md-6 col-lg-6">
-                                <a class="bk-button bk-default" @click="previewBox('企业营业执照',(form.licensePic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'))" target="_blank">预览照片</a>
+                                <a class="bk-button bk-default" @click="previewBox('企业营业执照',(form.licensePic||defaultImgUrl))" target="_blank">预览照片</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-lg-3">
                         <div class="img-title">企业印章图样(必填)</div>
                         <div class="img-box">
-                            <img :src="form.sealPic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'">
+                            <img :src="form.sealPic||defaultImgUrl">
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <a v-if="!formEdit" class="bk-button bk-primary" @click="modifyUpload('企业印章图样','sealPic')">{{form.sealPic?'修改照片':'上传照片'}}</a>
                             </div>
                             <div class="col-md-6 col-lg-6">
-                                <a class="bk-button bk-default" @click="previewBox('企业印章图样',(form.sealPic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'))" target="_blank">预览照片</a>
+                                <a class="bk-button bk-default" @click="previewBox('企业印章图样',(form.sealPic||defaultImgUrl))" target="_blank">预览照片</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-lg-3">
                         <div class="img-title">企业签约协议1(选填)</div>
                         <div class="img-box">
-                            <img :src="form.agreementPic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'">
+                            <img :src="form.agreementPic||defaultImgUrl">
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <a v-if="!formEdit" class="bk-button bk-primary" @click="modifyUpload('企业签约协议1','agreementPic')">{{form.agreementPic?'修改照片':'上传照片'}}</a>
                             </div>
                             <div class="col-md-6 col-lg-6">
-                                <a class="bk-button bk-default" @click="previewBox('企业签约协议1',(form.agreementPic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'))" target="_blank">预览照片</a>
+                                <a class="bk-button bk-default" @click="previewBox('企业签约协议1',(form.agreementPic||defaultImgUrl))" target="_blank">预览照片</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-lg-3">
                         <div class="img-title">企业签约协议2(选填)</div>
                         <div class="img-box">
-                            <img :src="form.agreement2Pic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'">
+                            <img :src="form.agreement2Pic||defaultImgUrl">
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <a v-if="!formEdit" class="bk-button bk-primary" @click="modifyUpload('企业签约协议2','agreement2Pic')">{{form.agreement2Pic?'修改照片':'上传照片'}}</a>
                             </div>
                             <div class="col-md-6 col-lg-6">
-                                <a class="bk-button bk-default" @click="previewBox('企业签约协议2',(form.agreement2Pic||'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177'))" target="_blank">预览照片</a>
+                                <a class="bk-button bk-default" @click="previewBox('企业签约协议2',(form.agreement2Pic||defaultImgUrl))" target="_blank">预览照片</a>
                             </div>
                         </div>
                     </div>
@@ -286,6 +287,7 @@ import validate from '../../validate';
 export default {
     data() {
         return {
+            defaultImgUrl: 'http://fafashe.oss-cn-shenzhen.aliyuncs.com/images/f6ea28dd98b1ddb41c627d0c64197177',
             collapsed: true,
             collapsedText: '显示更多查询条件',
             TextToCode: TextToCode,
@@ -358,7 +360,7 @@ export default {
         editIonf(type) {
             if (type === 'edit') {
                 this.formEdit = false;
-                this.formEditBtn = false; 
+                this.formEditBtn = false;
             } else {
                 this.formEdit = true;
                 this.formEditBtn = true;
@@ -477,8 +479,8 @@ export default {
                         }
                         break;
                     case 'telephone':
-                        if (!validate.checkPhoneNum(data[val])) {
-                            text = '联系电话不正确';
+                        if (data[val] === '') {
+                            text = '联系电话不能为空';
                             isOk = false;
                         }
                         break;
@@ -669,7 +671,7 @@ export default {
             this.getDataList();
 
         },
-        resetPassword(eid) { 
+        resetPassword(eid) {
             let params = {
                 eid: eid
             }
@@ -686,14 +688,14 @@ export default {
                                 type: 'success'
                             });
                         } else {
-                             
+
                         }
                     });
                     this.formEdit = true;
                     this.formEditBtn = true;
                     this.listLoading = false;
                 });
-            }).catch(() => { 
+            }).catch(() => {
                 this.$message({
                     type: 'info',
                     message: '已取消'

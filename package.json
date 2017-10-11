@@ -8,6 +8,7 @@
     "build": "rimraf dist && webpack --progress -p --hide-modules"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "element-ui": "^1.4.1",
     "js-md5": "^0.6.0",
     "uglify-js": "^2.8.28",
@@ -20,6 +21,7 @@
     "node": ">=6"
   },
   "devDependencies": {
+    "compression-webpack-plugin": "^1.0.1",
     "autoprefixer": "^6.6.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.0",

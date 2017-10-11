@@ -23,10 +23,10 @@ body {
 
 .index-cont .logo {
     display: block;
-    width: 200px;
-    height: 80px;
+    width: 270px;
+    height: 86px;
     margin: 20px auto;
-    background: url('../style/img/logo.png') center top;
+    background: url('../style/img/logo.jpg') center top;
     background-repeat: no-repeat;
 }
 
