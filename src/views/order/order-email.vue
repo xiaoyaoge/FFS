@@ -204,6 +204,14 @@
                                 </div>
                             </div>
                             <div class="bk-form-item mt5">
+                                <label class="bk-label">是否邮件签名：</label>
+                                <div class="bk-form-content">
+                                    <p class="mb0">
+                                        {{ parseInt(orderDeliveryInfo.needSign)?'是':'否'}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="bk-form-item mt5">
                                 <label class="bk-label">是否同步发送短信：</label>
                                 <div class="bk-form-content">
                                     <p class="mb0">

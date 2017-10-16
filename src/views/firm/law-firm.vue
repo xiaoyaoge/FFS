@@ -130,11 +130,17 @@
                         </div>
                     </div>
                     <div v-if="formType==='email'" class="bk-form-item mt15">
-                        <label class="bk-label w120 pr20"><span class="red">*</span>模版h5 文件：</label>
+                        <label class="bk-label w120 pr20"><span class="red">*</span>模版h5文件：</label>
                         <div class="bk-form-content" style="margin-left: 120px">
-                            <input type="text" class="bk-form-input" placeholder="输入模版h5URL" v-model="msgForm.serverHtmlFile">
+                            <input type="text" class="bk-form-input" placeholder="输入模版h5URL" v-model="msgForm.serverH5File">
                         </div>
                     </div>
+                    <div v-if="formType==='email'" class="bk-form-item mt15">
+                        <label class="bk-label w120 pr20"><span class="red">*</span>模版pdf文件：</label>
+                        <div class="bk-form-content" style="margin-left: 120px">
+                            <input type="text" class="bk-form-input" placeholder="输入模版pdfURL" v-model="msgForm.serverHtmlFile">
+                        </div>
+                    </div> 
                     <div v-if="formType==='email'" class="bk-form-item mt15">
                         <label class="bk-label w120 pr20"><span class="red">*</span>模版css文件：</label>
                         <div class="bk-form-content" style="margin-left: 120px">
