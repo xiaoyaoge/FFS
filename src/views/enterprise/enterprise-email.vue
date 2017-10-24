@@ -202,7 +202,7 @@
                                 </div>
                             </div>
                             <div class="bk-form-item mt5">
-                                <label class="bk-label">是否邮件签名：</label>
+                                <label class="bk-label">是否电子签名：</label>
                                 <div class="bk-form-content">
                                     <p class="mb0">
                                         {{ parseInt(orderDeliveryInfo.needSign)?'是':'否'}}

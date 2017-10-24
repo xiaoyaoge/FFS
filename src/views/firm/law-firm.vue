@@ -130,21 +130,21 @@
                         </div>
                     </div>
                     <div v-if="formType==='email'" class="bk-form-item mt15">
-                        <label class="bk-label w120 pr20"><span class="red">*</span>模版h5文件：</label>
+                        <label class="bk-label w120 pr20"><span class="red">*</span>邮件H5文件：</label>
                         <div class="bk-form-content" style="margin-left: 120px">
-                            <input type="text" class="bk-form-input" placeholder="输入模版h5URL" v-model="msgForm.serverH5File">
+                            <input type="text" class="bk-form-input" placeholder="输入邮件H5文件名" v-model="msgForm.serverH5File">
                         </div>
                     </div>
                     <div v-if="formType==='email'" class="bk-form-item mt15">
-                        <label class="bk-label w120 pr20"><span class="red">*</span>模版pdf文件：</label>
+                        <label class="bk-label w120 pr20"><span class="red">*</span>模版H5文件：</label>
                         <div class="bk-form-content" style="margin-left: 120px">
-                            <input type="text" class="bk-form-input" placeholder="输入模版pdfURL" v-model="msgForm.serverHtmlFile">
+                            <input type="text" class="bk-form-input" placeholder="输入模版H5文件名" v-model="msgForm.serverHtmlFile">
                         </div>
                     </div> 
                     <div v-if="formType==='email'" class="bk-form-item mt15">
                         <label class="bk-label w120 pr20"><span class="red">*</span>模版css文件：</label>
                         <div class="bk-form-content" style="margin-left: 120px">
-                            <input type="text" class="bk-form-input" placeholder="输入模版css Url" v-model="msgForm.serverCssFile">
+                            <input type="text" class="bk-form-input" placeholder="输入模版css文件名" v-model="msgForm.serverCssFile">
                         </div>
                     </div>
                     <div v-if="formType==='email'" class="bk-form-item mt15">
@@ -158,7 +158,7 @@
                         <div class="bk-form-content" style="margin-left: 120px">
                             <span class="bk-text info">短信模板内容支持的变量，如下：<br/>1、接收人：${receiver_name}<br/>
                             2、逾期天数：${overdue_days}<br/>
-                            3、联系电话：${${contact_mobile}}<br/>
+                            3、联系电话：${${contact_mobile}<br/>
                             4、公司简称：${platform_short_name} 
                             </span>
                         </div>
