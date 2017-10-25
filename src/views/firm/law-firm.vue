@@ -158,7 +158,7 @@
                         <div class="bk-form-content" style="margin-left: 120px">
                             <span class="bk-text info">短信模板内容支持的变量，如下：<br/>1、接收人：${receiver_name}<br/>
                             2、逾期天数：${overdue_days}<br/>
-                            3、联系电话：${${contact_mobile}<br/>
+                            3、联系电话：${contact_mobile}<br/>
                             4、公司简称：${platform_short_name} 
                             </span>
                         </div>
