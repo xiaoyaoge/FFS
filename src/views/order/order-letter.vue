@@ -18,8 +18,8 @@
                             <el-radio-group v-model="orderStateSelect">
                                 <el-radio-button label="全部"></el-radio-button>
                                 <el-radio-button label="申请中"></el-radio-button>
-                                <el-radio-button label="发送成功"></el-radio-button>
-                                <el-radio-button label="发送失败"></el-radio-button>
+                                <el-radio-button label="生成成功"></el-radio-button>
+                                <el-radio-button label="生成失败"></el-radio-button>
                             </el-radio-group>
                         </div>
                         <div id="ferOwen" class="col-md-12 col-lg-12 col-xs-12">
@@ -259,8 +259,7 @@
                                 <thead>
                                     <tr>
                                         <th>姓名</th>
-                                        <th>邮件</th>
-                                        <!-- <th>手机号</th> -->
+                                        <th>邮件</th> 
                                         <th>发送状态</th>
                                         <th>查看下载协议</th>
                                     </tr>
@@ -269,7 +268,6 @@
                                     <tr v-for="(item,index) in deDetailData.dataList">
                                         <td>{{item.name}}</td>
                                         <td>{{item.email}}</td>
-                                        <!-- <td>{{item.mobile}}</td> -->
                                         <td v-html="deliveDetailStatus(item.status)">
                                         </td>
                                         <td>
@@ -310,7 +308,7 @@ export default {
                 ename: '', //企业电话
                 hours: '', //提交时间
                 orderState: '', //当前状态
-                orderType: 20, // msg:10,email:20,纸质:30
+                orderType: 30, // msg:10,email:20,纸质:30
                 userType: 1, //订单来源
             },
             collapsed: true,
@@ -358,11 +356,11 @@ export default {
             switch (val) {
                 case '全部':
                     return '';
-                case '发送失败':
+                case '生成失败':
                     return '20';
                 case '申请中':
                     return '100';
-                case '发送成功':
+                case '生成成功':
                     return '350';
                 default:
                     return '未知状态';
@@ -421,9 +419,9 @@ export default {
                 case 100:
                     return '<span class="fb bk-text-info ml0">申请中</span>';
                 case 350:
-                     return '<span class="fb bk-text-success ml0 ">发送成功</span>（' + opts.succNum + '/' + opts.totalNum + '）';
+                     return '<span class="fb bk-text-success ml0 ">生成成功</span>（' + opts.succNum + '/' + opts.totalNum + '）';
                 case 20:
-                    return '<span class="fb bk-text-danger ml0 ">发送失败</span>';
+                    return '<span class="fb bk-text-danger ml0 ">生成失败</span>';
                 default:
                     return '<span class="fb bk-text-info ml0">出现异常</span>';
             }
@@ -437,9 +435,9 @@ export default {
                 case 60:
                     return '<span class="fb bk-text-info">已发出</span>';
                 case 70:
-                    return '<span class="fb bk-text-danger">发送失败</span>';
+                    return '<span class="fb bk-text-danger">生成失败</span>';
                 case 80:
-                    return '<span class="fb bk-text-success">发送成功</span>';
+                    return '<span class="fb bk-text-success">生成成功</span>';
                 default:
                     return '';
             }
@@ -502,7 +500,7 @@ export default {
                         name: '',
                         orderId: '',
                         orderState: '',
-                        orderType: 20,
+                        orderType: 30,
                         sendNum: '',
                         status: '',
                         succNum: '',

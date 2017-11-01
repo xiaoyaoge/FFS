@@ -5,6 +5,7 @@ import Main from './views/Main.vue'
 import UserCenter from './views/user/user-center.vue'
 import OrderMsg from './views/order/order-msg.vue'
 import OrderEmail from './views/order/order-email.vue'
+import OderLetter from './views/order/order-letter.vue'
 import Enterprise from './views/enterprise/enterprise-center.vue'
 import EnterInfo from './views/enterprise/enterprise-info.vue'
 import EnterForm from './views/enterprise/enterprise-form.vue'
@@ -70,7 +71,7 @@ let routes = [{
         children: [
             { path: '/msgOder', component: OrderMsg, name: '短信订单' },
             { path: '/emailOder', component: OrderEmail, name: '电子信函' },
-            //{ path: '/letterOder', component: OrderList, name: '纸质信函' }, 
+            { path: '/letterOder', component: OderLetter, name: '纸质信函' }
 
         ]
     },

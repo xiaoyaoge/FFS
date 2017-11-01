@@ -1,5 +1,10 @@
 <template>
     <section>
+        <div class="cont-btns mb15">
+            <a class="bk-button bk-default bk-button-small fl" title="返回" @click="$router.push('/enterprise')">
+                <span>返回</span>
+            </a>
+        </div>
         <div class="bk-panel mb20">
             <div class="bk-panel-body p25">
                 <form class="bk-form" :model="form" @submit="onSubmit">
@@ -22,14 +27,6 @@
                                 <el-radio-button label="发送失败"></el-radio-button>
                             </el-radio-group>
                         </div>
-                        <div id="ferOwen" class="col-md-12 col-lg-12 col-xs-12">
-                            <label class="bk-label pr15" style="width:100px;">订单来源：</label>
-                            <el-radio-group v-model="orderSource">
-                                <el-radio-button label="全部"></el-radio-button>
-                                <el-radio-button label="企业"></el-radio-button>
-                                <el-radio-button label="用户"></el-radio-button>
-                            </el-radio-group>
-                        </div>
                     </div>
                     <div class="row more-query-cont mt15">
                         <div class="col-md-4 col-lg-4 col-xs-4">
@@ -40,29 +37,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-lg-4 col-xs-4">
-                            <div class="bk-form-item mb20">
-                                <label class="bk-label pr15" style="width:100px;">联系电话：</label>
-                                <div class="bk-form-content" style="margin-left:100px;">
-                                    <input type="text" v-model="form.telephone" class="bk-form-input" placeholder="请输入联系电话" style="width:100%;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-4 col-xs-4">
-                            <div class="bk-form-item mb20">
-                                <label class="bk-label pr15" style="width:100px;">企业名称：</label>
-                                <div class="bk-form-content" style="margin-left:100px;">
-                                    <input type="text" v-model="form.ename" class="bk-form-input" placeholder="请输入企业名称" style="width:100%;">
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-xs-12">
                             <div class="bk-form-content" style="margin-left:100px;">
                                 <button class="bk-button bk-success">查询</button>
                                 <!-- 交互说明 ：收起时更改文案为 展开更多查询条件，同时隐藏 more-query-cont -->
-                                <!-- <a @click="previewInfo()"></a> -->
                             </div>
                         </div>
                     </div>
@@ -91,9 +71,7 @@
                     <table class="bk-table has-thead-bordered">
                         <thead>
                             <tr>
-                                <th>订单号</th>
-                                <th>来源名称</th>
-                                <th>联系电话</th>
+                                <th>订单号</th> 
                                 <th>律所</th>
                                 <th>当前状态</th>
                                 <th>提交时间</th>
@@ -103,8 +81,6 @@
                         <tbody>
                             <tr v-for="(item,index) in table.dataList">
                                 <td>{{item.orderId}}</td>
-                                <td>{{item.name}}</td>
-                                <td>{{item.telephone}}</td>
                                 <td>{{item.lawFirmName}}</td>
                                 <td v-html="templateStute(item)"></td>
                                 <td>{{dateTime(item.createTime)}}</td>
@@ -182,7 +158,7 @@
                                     </el-popover>
                                     <div class="bk-text-button bk-info divInline ml0" v-popover:popover1>{{orderDeliveryInfo.templateName}}</div>
                                 </div>
-                            </div>
+                            </div> 
                             <!-- <div class="bk-form-item mt5">
                                 <label class="bk-label">第三方：</label>
                                 <div class="bk-form-content">
@@ -195,7 +171,7 @@
                                     <p class="mb0" v-html="templateStute(orderInfo)">
                                     </p>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="bk-form-item mt5">
                                 <label class="bk-label">发送时间：</label>
                                 <div class="bk-form-content">
@@ -260,7 +236,7 @@
                                     <tr>
                                         <th>姓名</th>
                                         <th>邮件</th>
-                                        <!-- <th>手机号</th> -->
+                                        <th>手机号</th>
                                         <th>发送状态</th>
                                         <th>查看下载协议</th>
                                     </tr>
@@ -269,7 +245,7 @@
                                     <tr v-for="(item,index) in deDetailData.dataList">
                                         <td>{{item.name}}</td>
                                         <td>{{item.email}}</td>
-                                        <!-- <td>{{item.mobile}}</td> -->
+                                        <td>{{item.mobile}}</td>
                                         <td v-html="deliveDetailStatus(item.status)">
                                         </td>
                                         <td>
@@ -305,12 +281,13 @@ export default {
             orderStateSelect: '全部',
             orderSource: '全部',
             form: {
+                uid: '',
                 orderId: '', //订单号
                 telephone: '', //企业联系电话
                 ename: '', //企业电话
                 hours: '', //提交时间
                 orderState: '', //当前状态
-                orderType: 20, // msg:10,email:20,纸质:30
+                orderType: 30, // msg:10,email:20,纸质:30
                 userType: 1, //订单来源
             },
             collapsed: true,
@@ -358,11 +335,11 @@ export default {
             switch (val) {
                 case '全部':
                     return '';
-                case '发送失败':
+                case '生成失败':
                     return '20';
                 case '申请中':
                     return '100';
-                case '发送成功':
+                case '生成成功':
                     return '350';
                 default:
                     return '未知状态';
@@ -421,9 +398,9 @@ export default {
                 case 100:
                     return '<span class="fb bk-text-info ml0">申请中</span>';
                 case 350:
-                     return '<span class="fb bk-text-success ml0 ">发送成功</span>（' + opts.succNum + '/' + opts.totalNum + '）';
+                     return '<span class="fb bk-text-success ml0 ">生成成功</span>（' + opts.succNum + '/' + opts.totalNum + '）';
                 case 20:
-                    return '<span class="fb bk-text-danger ml0 ">发送失败</span>';
+                    return '<span class="fb bk-text-danger ml0 ">生成失败</span>';
                 default:
                     return '<span class="fb bk-text-info ml0">出现异常</span>';
             }
@@ -437,16 +414,18 @@ export default {
                 case 60:
                     return '<span class="fb bk-text-info">已发出</span>';
                 case 70:
-                    return '<span class="fb bk-text-danger">发送失败</span>';
+                    return '<span class="fb bk-text-danger">生成失败</span>';
                 case 80:
-                    return '<span class="fb bk-text-success">发送成功</span>';
+                    return '<span class="fb bk-text-success">生成成功</span>';
                 default:
                     return '';
             }
         },
-        mobileView(val) {
-            //return val;
-            return val.replace(/\B(?=(?:\d{4})+$)/g, '-');
+        mobileView() {
+            if (validate.checkPhoneNum(this.form.telephone)) {
+                this.form.telephone = this.form.telephone.replace(/\B(?=(?:\d{4})+$)/g, '-');
+            }
+
         },
         handleCurrentChange(val) {
             this.table.pageNum = val;
@@ -460,10 +439,11 @@ export default {
                 orderId: this.form.orderId,
                 telephone: this.form.telephone,
                 ename: this.form.ename,
-                userType: this.querySource(this.orderSource),
+                userType: this.form.userType,
                 hours: this.queryTime(this.topTime),
                 orderState: this.orderState(this.orderStateSelect),
-                orderType: this.form.orderType
+                orderType: this.form.orderType,
+                uid: this.$route.params.id
             }
             this.listLoading = true;
             this.$http.ajaxPost({
@@ -502,7 +482,7 @@ export default {
                         name: '',
                         orderId: '',
                         orderState: '',
-                        orderType: 20,
+                        orderType: 30,
                         sendNum: '',
                         status: '',
                         succNum: '',
@@ -563,6 +543,8 @@ export default {
         }
     },
     mounted() {
+        this.$parent.parentUrlName = "企业管理";
+        this.$parent.parentUrls = '/enterprise';
         this.getDataList();
     }
 }

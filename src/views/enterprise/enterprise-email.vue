@@ -37,23 +37,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-4 col-lg-4 col-xs-4">
-                            <div class="bk-form-item mb20">
-                                <label class="bk-label pr15" style="width:100px;">联系电话：</label>
-                                <div class="bk-form-content" style="margin-left:100px;">
-                                    <input type="text" v-model="form.telephone" class="bk-form-input" placeholder="请输入联系电话" style="width:100%;">
-                                    <!-- maxlength="13"  @input="mobileView" 
-                                </div>
-                            </div>
-                        </div>-->
-                        <!-- <div class="col-md-4 col-lg-4 col-xs-4">
-                            <div class="bk-form-item mb20">
-                                <label class="bk-label pr15" style="width:100px;">企业名称：</label>
-                                <div class="bk-form-content" style="margin-left:100px;">
-                                    <input type="text" v-model="form.ename" class="bk-form-input" placeholder="请输入企业名称" style="width:100%;">
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-xs-12">
@@ -88,10 +71,7 @@
                     <table class="bk-table has-thead-bordered">
                         <thead>
                             <tr>
-                                <th>订单号</th>
-                                <!-- <th>订单来源</th>
-                                <th>来源名称</th>
-                                <th>联系电话</th> -->
+                                <th>订单号</th> 
                                 <th>律所</th>
                                 <th>当前状态</th>
                                 <th>提交时间</th>
@@ -101,9 +81,6 @@
                         <tbody>
                             <tr v-for="(item,index) in table.dataList">
                                 <td>{{item.orderId}}</td>
-                                <!-- <td>{{sourceText(item.userType)}}</td>
-                                <td>{{item.name}}</td>
-                                <td>{{item.telephone}}</td> -->
                                 <td>{{item.lawFirmName}}</td>
                                 <td v-html="templateStute(item)"></td>
                                 <td>{{dateTime(item.createTime)}}</td>
@@ -306,12 +283,12 @@ export default {
             form: {
                 uid: '',
                 orderId: '', //订单号
-                telephone: '', //企业联系电话 
-                ename: '', //企业电话  
+                telephone: '', //企业联系电话
+                ename: '', //企业电话
                 hours: '', //提交时间
                 orderState: '', //当前状态
                 orderType: 20, // msg:10,email:20,纸质:30
-                userType: 1, //订单来源 
+                userType: 1, //订单来源
             },
             collapsed: true,
             table: {
@@ -505,7 +482,7 @@ export default {
                         name: '',
                         orderId: '',
                         orderState: '',
-                        orderType: 10,
+                        orderType: 20,
                         sendNum: '',
                         status: '',
                         succNum: '',
