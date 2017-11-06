@@ -92,23 +92,39 @@
                                 <th>来源名称</th>
                                 <th>联系电话</th> -->
                                 <th>律所</th>
-                                <th>当前状态</th>
+                                <th>当前状态<span class="txt-info">（成功/失败/总）</span></th>
                                 <th>提交时间</th>
                                 <th style="width:165px">操作</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody v-if="!table.dataList.length>0" >
                             <tr v-for="(item,index) in table.dataList">
                                 <td>{{item.orderId}}</td>
                                 <!-- <td>{{sourceText(item.userType)}}</td>
                                 <td>{{item.name}}</td>
                                 <td>{{item.telephone}}</td> -->
                                 <td>{{item.lawFirmName}}</td>
-                                <td v-html="templateStute(item)"></td>
+                                <td>
+                                    <el-popover v-if="item.orderState===20"
+                                        placement="left"
+                                        title="失败原因："
+                                        width="200"
+                                        trigger="hover">
+                                        <span class="fb bk-text-danger" v-html="item.failReason||'未知错误'"></span>
+                                       <span slot="reference" v-html="templateStute(item)"></span>
+                                    </el-popover>
+                                    <div v-else v-html="templateStute(item)">
+                                    </div>
+                                </td>
                                 <td>{{dateTime(item.createTime)}}</td>
                                 <td>
                                     <a @click="previewInfo(item)" class="bk-text-button">查看详情</a>
                                 </td>
+                            </tr> 
+                        </tbody>
+                        <tbody v-else>
+                            <tr>
+                                <td colspan="5" align="center">没有数据</td>
                             </tr>
                         </tbody>
                     </table>
@@ -245,7 +261,17 @@
                                     <tr v-for="(item,index) in deDetailData.dataList">
                                         <td>{{item.name}}</td>
                                         <td>{{item.mobile}}</td>
-                                        <td v-html="deliveDetailStatus(item.status)">
+                                        <td>
+                                            <el-popover v-if="item.orderState===20"
+                                                placement="left"
+                                                title="失败原因："
+                                                width="200"
+                                                trigger="hover">
+                                                <span class="fb bk-text-danger" v-html="item.failReason||'未知错误'"></span>
+                                               <span slot="reference" v-html="templateStute(item)"></span>
+                                            </el-popover>
+                                            <div v-else v-html="templateStute(item)">
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -386,9 +412,9 @@ export default {
                 case 100:
                     return '<span class="fb bk-text-info ml0">申请中</span>';
                 case 350:
-                     return '<span class="fb bk-text-success ml0 ">发送成功</span>（' + opts.succNum + '/' + opts.totalNum + '）';
+                     return '<span class="fb bk-text-success ml0 ">发送成功</span>（' + opts.succNum + ' / <i class="fb bk-text-danger">'+ opts.failNum +'</i> / ' + opts.totalNum + '）';
                 case 20:
-                    return '<span class="fb bk-text-danger ml0 ">发送失败</span>';
+                    return '<span class="fb bk-text-danger ml0 ">发送失败  <i class="el-icon-warning" style="color:#D3DCE6;"> </i></span>';
                 default:
                     return '<span class="fb bk-text-info ml0">出现异常</span>';
             }
@@ -402,7 +428,7 @@ export default {
                 case 60:
                     return '<span class="fb bk-text-info">已发出</span>';
                 case 70:
-                    return '<span class="fb bk-text-danger">发送失败</span>';
+                    return '<span class="fb bk-text-danger">发送失败  <i class="el-icon-warning" style="color:#D3DCE6;"> </i></span>';
                 case 80:
                     return '<span class="fb bk-text-success">发送成功</span>';
                 default:
@@ -438,7 +464,7 @@ export default {
             }, (res) => {
                 this.$http.aop(res, () => {
                     this.table.total = res.body.data.total;
-                    this.table.dataList = res.body.data.orderInfoList;
+                    this.table.dataList = res.body.data.orderInfoList||[];
                     this.listLoading = false;
                 });
             });

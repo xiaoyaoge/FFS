@@ -69,22 +69,30 @@
                                 <th style="width:325px">操作</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody v-if="table.dataList.length>0">
                             <tr v-for="(item,index) in table.dataList">
                                 <td>{{item.ename}}</td>
                                 <td>{{item.telephone}}</td>
                                 <td>{{dateTime(item.createTime)}}</td>
                                 <td>
-                                    <router-link :to="{path:'/enterprise/enterInfo/'+item.eid}" class="bk-text-button" title="查看">
+                                    <router-link :to="{path:'/enterprise/enterInfo/'+item.eid}" class="bk-text-button" title="基本信息">
                                         基本信息
                                     </router-link>
-                                    <router-link :to="{path:'/enterprise/enterMsg/'+item.eid}" class="bk-text-button" title="查看"> 
+                                    <router-link :to="{path:'/enterprise/enterMsg/'+item.eid}" class="bk-text-button" title="短信订单"> 
                                         短信订单
                                     </router-link>
-                                    <router-link :to="{path:'/enterprise/enterEmail/'+item.eid}" class="bk-text-button" title="查看">
+                                    <router-link :to="{path:'/enterprise/enterEmail/'+item.eid}" class="bk-text-button" title="电子信函">
                                         电子信函
                                     </router-link>
+                                    <router-link :to="{path:'/enterprise/enterLetter/'+item.eid}" class="bk-text-button" title="信函下载">
+                                        信函下载
+                                    </router-link>
                                 </td>
+                            </tr>
+                        </tbody>
+                        <tbody v-else>
+                            <tr>
+                                <td colspan="4" align="center">没数据</td>
                             </tr>
                         </tbody>
                     </table>
@@ -165,7 +173,7 @@ export default {
             }, (res) => {
                 this.$http.aop(res, () => {
                     this.table.total = res.body.data.total;
-                    this.table.dataList = res.body.data.enterpriseInfoList;
+                    this.table.dataList = res.body.data.enterpriseInfoList||[];
                     this.listLoading = false;
                 });
             });
