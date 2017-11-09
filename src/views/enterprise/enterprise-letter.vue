@@ -82,7 +82,18 @@
                             <tr v-for="(item,index) in table.dataList">
                                 <td>{{item.orderId}}</td>
                                 <td>{{item.lawFirmName}}</td>
-                                <td v-html="templateStute(item)"></td>
+                                <td>
+                                    <el-popover v-if="item.orderState===20"
+                                        placement="left"
+                                        title="失败原因："
+                                        width="200"
+                                        trigger="hover">
+                                        <span class="fb bk-text-danger" v-html="item.failReason||'未知错误'"></span>
+                                       <span slot="reference" v-html="templateStute(item)"></span>
+                                    </el-popover>
+                                    <div v-else v-html="templateStute(item)">
+                                    </div>
+                                </td>
                                 <td>{{dateTime(item.createTime)}}</td>
                                 <td>
                                     <a @click="previewInfo(item)" class="bk-text-button">查看详情</a>
@@ -257,7 +268,17 @@
                                         <td>{{item.name}}</td>
                                         <td>{{item.email}}</td>
                                         <td>{{item.mobile}}</td>
-                                        <td v-html="deliveDetailStatus(item.status)">
+                                        <td>
+                                            <el-popover v-if="item.status===70"
+                                                placement="left"
+                                                title="失败原因："
+                                                width="200"
+                                                trigger="hover">
+                                                <span class="fb bk-text-danger" v-html="item.failReason||'未知错误'"></span>
+                                               <span slot="reference" v-html="deliveDetailStatus(item.status)"></span>
+                                            </el-popover>
+                                            <div v-else v-html="deliveDetailStatus(item.status)">
+                                            </div>
                                         </td>
                                         <td>
                                             <a class="bk-text-button" target="_blank" :href="item.letterUrl">电子协议</a>

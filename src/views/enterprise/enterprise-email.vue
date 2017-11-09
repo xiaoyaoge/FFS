@@ -239,7 +239,7 @@
                                 <div class="bk-form bk-inline-form bk-form-small">
                                     <div class="bk-form-item is-required">
                                         <div class="bk-form-content">
-                                            <input type="text" class="bk-form-input" v-model="keyword" placeholder="请输入手机号或姓名" style="width:150px;">
+                                            <input type="text" class="bk-form-input" v-model="keyword" placeholder="请输入手机号或姓名及邮箱" style="width:150px;">
                                         </div>
                                     </div>
                                     <button class="bk-button bk-primary bk-button-small" @click="searchBtn({orderId:orderInfo.orderId})" title="查询">查询</button>
@@ -263,7 +263,7 @@
                                         <td>{{item.email}}</td>
                                         <td>{{item.mobile}}</td>
                                         <td>
-                                            <el-popover v-if="item.orderState===70"
+                                            <el-popover v-if="item.status===70"
                                                 placement="left"
                                                 title="失败原因："
                                                 width="200"
@@ -533,6 +533,7 @@ export default {
             let params = {
                 mobile: this.search.mobile,
                 name: this.search.name,
+                email: this.search.email,
                 orderId: this.search.orderId,
                 pageNum: this.deDetailData.pageNum,
                 pageSize: this.deDetailData.pageSize
@@ -555,13 +556,19 @@ export default {
             this.deliveryDetail();
         },
         searchBtn(obj) {
-            this.search.orderId = obj.orderId;
-            if (validate.checkPhoneNum(this.keyword)) {
+            this.search.orderId = obj.orderId; 
+            if(validate.checkEmail(this.keyword)){
+                this.search.mobile = '';
+                this.search.name = '';
+                this.search.email = this.keyword;
+            } else if (validate.checkPhoneNum(this.keyword)) {
                 this.search.mobile = this.keyword;
                 this.search.name = '';
-            } else {
-                this.search.name = this.keyword;
+                this.search.email = '';
+            }else {
                 this.search.mobile = '';
+                this.search.name = this.keyword;
+                this.search.email = '';
             }
             this.deliveryDetail();
         },

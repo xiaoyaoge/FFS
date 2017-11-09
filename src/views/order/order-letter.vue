@@ -112,7 +112,7 @@
                                         title="失败原因："
                                         width="200"
                                         trigger="hover">
-                                        <span class="fb bk-text-danger" v-html="item.memo||'未知错误'"></span>
+                                        <span class="fb bk-text-danger" v-html="item.failReason||'未知错误'"></span>
                                        <span slot="reference" v-html="templateStute(item)"></span>
                                     </el-popover>
                                     <div v-else v-html="templateStute(item)">
@@ -291,12 +291,12 @@
                                         <td>{{item.name}}</td>
                                         <td>{{item.email}}</td>
                                         <td>
-                                            <el-popover v-if="item.orderState===70"
+                                            <el-popover v-if="item.status===70"
                                                 placement="left"
                                                 title="失败原因："
                                                 width="200"
                                                 trigger="hover">
-                                                <span class="fb bk-text-danger" v-html="item.memo||'未知错误'"></span>
+                                                <span class="fb bk-text-danger" v-html="item.failReason||'未知错误'"></span>
                                                <span slot="reference" v-html="deliveDetailStatus(item.status)"></span>
                                             </el-popover>
                                             <div v-else v-html="deliveDetailStatus(item.status)">

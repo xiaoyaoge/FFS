@@ -264,7 +264,7 @@
                                         <td>{{item.name}}</td>
                                         <td>{{item.mobile}}</td>
                                         <td>
-                                            <el-popover v-if="item.orderState===70"
+                                            <el-popover v-if="item.status===70"
                                                 placement="left"
                                                 title="失败原因："
                                                 width="200"

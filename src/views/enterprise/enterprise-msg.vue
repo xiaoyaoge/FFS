@@ -97,7 +97,7 @@
                                 <th style="width:165px">操作</th>
                             </tr>
                         </thead>
-                        <tbody v-if="!table.dataList.length>0" >
+                        <tbody v-if="table.dataList.length>0" >
                             <tr v-for="(item,index) in table.dataList">
                                 <td>{{item.orderId}}</td>
                                 <!-- <td>{{sourceText(item.userType)}}</td>
@@ -262,15 +262,15 @@
                                         <td>{{item.name}}</td>
                                         <td>{{item.mobile}}</td>
                                         <td>
-                                            <el-popover v-if="item.orderState===20"
+                                            <el-popover v-if="item.status===70"
                                                 placement="left"
                                                 title="失败原因："
                                                 width="200"
                                                 trigger="hover">
                                                 <span class="fb bk-text-danger" v-html="item.failReason||'未知错误'"></span>
-                                               <span slot="reference" v-html="templateStute(item)"></span>
+                                               <span slot="reference" v-html="deliveDetailStatus(item.status)"></span>
                                             </el-popover>
-                                            <div v-else v-html="templateStute(item)">
+                                            <div v-else v-html="deliveDetailStatus(item.status)">
                                             </div>
                                         </td>
                                     </tr>
