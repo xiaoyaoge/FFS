@@ -102,6 +102,7 @@
                                 </template>
                                 <template v-if="item.orderState===350">
                                     <a v-if="item.packageUrl" class="bk-text-button" :href="item.packageUrl">打包下载</a>
+                                    <a v-if="item.orderState===100" class="bk-text-button ml10" @click="orderCancel(item.orderId)">取消</a>
                                 </template>
                                 </td>
                             </tr>
@@ -430,9 +431,11 @@ export default {
                 case 100:
                     return '<span class="fb bk-text-info ml0">申请中</span>';
                 case 350:
-                     return '<span class="fb bk-text-success ml0 ">发送成功</span>（' + opts.succNum + ' / <i class="fb bk-text-danger">'+ opts.failNum +'</i> / ' + opts.totalNum + '）';
+                     return '<span class="fb bk-text-success ml0 ">成功</span>（' + opts.succNum + ' / <i class="fb bk-text-danger">'+ opts.failNum +'</i> / ' + opts.totalNum + '）';
                 case 20:
                     return '<span class="fb bk-text-danger ml0 ">失败</span>';
+                case 21:
+                    return '<span class="fb bk-text-info ml0">订单已取消</span>（' + opts.succNum + ' / <i class="fb bk-text-danger">'+ opts.failNum +'</i> / ' + opts.totalNum + '）';
                 default:
                     return '<span class="fb bk-text-info ml0">出现异常</span>';
             }
@@ -572,6 +575,39 @@ export default {
         },
         delieryInfo() {
             this.deDetailShow = true;
+        },
+        orderCancel: function(id){
+            let reqParam = {};
+            reqParam = {
+                orderId: id
+            };
+            this.$confirm('确定要取消当前订单?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.listLoading = true;
+                this.listLoading = true;
+                this.$http.ajaxPost({
+                    url: 'order/cancel',
+                    params: reqParam
+                }, (res) => {
+                    this.$http.aop(res, () => { 
+                        this.$message({
+                            type: 'success',
+                            message: '取消成功'
+                        });
+                        this.getDataList(); 
+                        this.listLoading = false;
+                    });
+
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '  操作已取消'
+                });
+            });
         }
     },
     mounted() {
