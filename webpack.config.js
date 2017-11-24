@@ -18,7 +18,7 @@ module.exports = (options = {}) => ({
         filename: options.dev ? '[name].js' : '[name].[chunkhash:8].js',
         chunkFilename: '[id].[chunkhash:8].js',
         publicPath: options.dev ? '/assets/' : publicPath
-    },
+    }, 
     module: {
         rules: [{
             test: /\.vue$/,
@@ -37,7 +37,7 @@ module.exports = (options = {}) => ({
                 loader: 'url-loader',
                 options: {
                     limit: 1000,
-                    name: 'style/img/[name].[hash:8].[ext]'
+                    name: 'css/img/[name].[hash:8].[ext]'
                 }
             }]
         }, {
@@ -46,15 +46,15 @@ module.exports = (options = {}) => ({
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: 'style/font/[name].[hash:8].[ext]'
+                    name: 'css/font/[name].[hash:8].[ext]'
                 }
             }]
         }]
     },
     devtool: "source-map",
-    plugins: [ 
+    plugins: [
         new WebpackMd5Hash(),
-        new webpack.HashedModuleIdsPlugin(), 
+        new webpack.HashedModuleIdsPlugin(),
         new CompressionWebpackPlugin({ //gzip 压缩
             asset: '[path].gz[query]',
             algorithm: 'gzip',
@@ -63,11 +63,7 @@ module.exports = (options = {}) => ({
             ),
             threshold: 10240,
             minRatio: 0.8
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ['vendor', 'manifest']
-        }),
-        new ExtractTextPlugin('[name].[contenthash:8].css'),
+        }), 
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             inject: true, // 自动注入
@@ -79,6 +75,10 @@ module.exports = (options = {}) => ({
             //必须通过上面的 CommonsChunkPlugin 的依赖关系自动添加 js，css 等
             chunksSortMode: 'dependency'
         }),
+        new ExtractTextPlugin({ filename: 'css/[name].[contenthash:8].css' }), 
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor', 'manifest']
+        }), 
         new InlineManifestWebpackPlugin({
             name: 'webpackManifest'
         })
@@ -90,7 +90,7 @@ module.exports = (options = {}) => ({
     },
     devServer: {
         host: '127.0.0.1',
-        port: 8017,
+        port: 8021,
         proxy: {
             '/api/': {
                 target: '127.0.0.1',

@@ -16,6 +16,7 @@
                         <tr>
                             <th>模板名称</th>
                             <th>是否有效</th>
+                            <th>短信运营商</th>
                             <th>创建时间</th>
                             <th>操作</th>
                         </tr>
@@ -30,7 +31,8 @@
                                     <option value="2">删除</option>
                                 </select>
                             </td>
-                            <td>{{dateTime(items.modifyTime)}}</td>
+                            <td>{{nameStr(items.smsProviderList)}}</td>
+                            <td>{{dateTime(items.smsProviderList)}}</td>
                             <td>
                                 <a @click="preview(items,'msg','info')" class="bk-text-button">查看详情</a>
                                 <a @click="preview(items,'msg','edit')" class="bk-text-button">编辑</a>
@@ -54,6 +56,7 @@
                         <tr>
                             <th>模板名称</th>
                             <th>是否有效</th>
+                            <th>短信运营商</th>
                             <th>创建时间</th>
                             <th>操作</th>
                         </tr>
@@ -68,6 +71,7 @@
                                     <option value="2">删除</option>
                                 </select>
                             </td>
+                            <td>{{nameStr(item.smsProviderList)}}</td>
                             <td>{{dateTime(item.modifyTime)}}</td>
                             <td>
                                 <a @click="preview(item,'email','info')" class="bk-text-button">查看详情</a>
@@ -153,6 +157,14 @@
                             <textarea v-model="msgForm.smsNotice" row="5" class="bk-form-textarea h80" placeholder="输入通知短信内容"></textarea>
                         </div>
                     </div>
+                    <div class="bk-form-item row mt15" style="margin-left:0; margin-right:0; ">
+                         <label class="bk-label w120 pr20">短信运营商：</label>
+                         <div class="bk-form-content" style="margin-left: 120px">
+                            <el-checkbox-group v-model="smsProviderList" size='mini' style="margin-top:6px;" >
+                                <el-checkbox v-for="itme in getlist" :label="itme.providerId" :key="itme.providerId">{{itme.providerName}}</el-checkbox>
+                            </el-checkbox-group>
+                        </div>
+                    </div>
                     <div class="bk-form-item mt15">
                         <label class="bk-label w120 pr20">提示：</label>
                         <div class="bk-form-content" style="margin-left: 120px">
@@ -197,7 +209,8 @@ export default {
                 templateType: 0,
                 smsNotice: '',
                 serverCssFile: '',
-                serverHtmlFile: ''
+                serverHtmlFile: '',
+                smsProviderList:[]
             },
             formPot: 'add',
             uploadPolicy: {
@@ -209,7 +222,9 @@ export default {
                 data: {},
                 accept: 'image/png,image/gif,image/jpeg,image/webp'
             },
-            fileList: []
+            fileList: [],
+            getlist: [],
+            smsProviderList:[]
         }
     },
     methods: {
@@ -291,9 +306,10 @@ export default {
         severForm(type) {
             let params = {};
             let url = (type == 'add' ? 'template/create' : 'template/modify');
+            this.msgForm.smsProviderList = this.smsProviderList;
             params = {
                 templateInfo: this.msgForm
-            }
+            } 
             if (this.checkForm(params.templateInfo)) {
                 this.$confirm('确认要保存吗？', '提示', {}).then(() => {
                     this.$http.ajaxPost({
@@ -352,7 +368,7 @@ export default {
             }, (res) => {
                 this.$http.aop(res, () => {
                     if (type == 1) {
-                        this.dataList = res.body.data.templateInfoList;
+                        this.dataList = res.body.data.templateInfoList; 
                     } else {
                         this.emailList = res.body.data.templateInfoList;
                     }
@@ -378,6 +394,7 @@ export default {
             this.formType = type;
             this.fromTitle = '编辑模版';
             this.msgForm = opts;
+            this.smsProviderList = opts.smsProviderList; 
             if (type !== 'msg') {
                 this.initUpload();
                 this.fileList = [{ name: this.msgForm.templateName, url: this.msgForm.templateContent }];
@@ -400,6 +417,8 @@ export default {
                 templateName: '',
                 templateType: (type == 'msg' ? 1 : 2)
             };
+            this.smsProviderList = [];
+
         },
         uploadSuccess(response, file, fileList) { //文件长传成功  
             let url = this.uploadPolicy.host + '/' + this.uploadConfig.data.key;
@@ -436,10 +455,38 @@ export default {
                 type: 'info',
                 message: '文件上传失败'
             });
+        },
+        getyunyinshan() {
+            let params = {}; 
+            this.listLoading = true;
+            this.$http.ajaxPost({
+                url: 'sms/query',
+                params: params
+            }, (res) => {
+                this.$http.aop(res, () => {  
+                    this.getlist = res.body.data.smsProviderList||[]; 
+                    this.listLoading = false;
+                });
+            });
+
+        },
+        nameStr(aList){
+            let aNname = [];
+            if(aList.length){
+                for( var val of aList){
+                    this.getlist.forEach(function(itme){
+                        if(val == itme.providerId){
+                            aNname.push(itme.providerName);
+                        }
+                    });
+                }
+            }
+            return aNname.join();
         }
 
     },
     mounted() {
+        this.getyunyinshan()
         this.gitData(1);
         this.gitData(2);
     }

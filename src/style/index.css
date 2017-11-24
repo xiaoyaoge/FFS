@@ -26,7 +26,7 @@ body {
     width: 270px;
     height: 86px;
     margin: 20px auto;
-    background: url('../style/img/logo.png') center top;
+    background: url('img/logo.png') center top;
     background-repeat: no-repeat;
 }
 

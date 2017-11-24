@@ -18,7 +18,7 @@ a:focus{text-decoration: none;}
 span.bk-info{ font-size: 12px; color:#888;}
 .king-page-topbar{background: transparent;border: none;}
 
-.bk-form-radio input[type=radio]{background-image: url(../images/bk_check.png);}
+.bk-form-radio input[type=radio]{background-image: url(images/bk_check.png);}
 
 .bk-horz-nav{background:#616ed6;padding: 0px;}
 .bk-horz-nav a{color: #fff;}
@@ -53,8 +53,8 @@ span.bk-info{ font-size: 12px; color:#888;}
 .ffs-breadcrumb .fir:before,
 .ffs-breadcrumb .sec:before{content: "";position: absolute;width: 14px;height: 60px;right: -14px;top: 0px;}
 
-.ffs-breadcrumb .fir:before{background: url(../images/breadcrumb_fir.png) no-repeat;}
-.ffs-breadcrumb .sec:before{background: url(../images/breadcrumb_sec.png) no-repeat;}
+.ffs-breadcrumb .fir:before{background: url(images/breadcrumb_fir.png) no-repeat;}
+.ffs-breadcrumb .sec:before{background: url(images/breadcrumb_sec.png) no-repeat;}
 
 .ffs-breadcrumb .last{padding-left: 39px;}
 .ffs-breadcrumb li.active a{color: #fafafa !important;}
