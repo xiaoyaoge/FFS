@@ -21,8 +21,8 @@ export default {
         return {
             logining: false,
             ruleForm2: {
-                account: '',//17025310757
-                checkPass: ''//123456
+                account: '', //17025310757
+                checkPass: '' //123456
             },
             rules2: {
                 account: [{
@@ -40,8 +40,8 @@ export default {
         };
     },
     methods: {
-        inputkey(){
-            this.ruleForm2.checkPass = this.ruleForm2.checkPass.replace(/^\s+|\s+$/g,"");
+        inputkey() {
+            this.ruleForm2.checkPass = this.ruleForm2.checkPass.replace(/^\s+|\s+$/g, "");
         },
         handleReset2() {
             this.$refs.ruleForm2.resetFields();
@@ -53,7 +53,7 @@ export default {
                     var loginParams = {
                         account: this.ruleForm2.account,
                         password: md5(this.ruleForm2.checkPass)
-                    }; 
+                    };
                     this.$http.ajaxPost({
                         url: 'login',
                         params: loginParams

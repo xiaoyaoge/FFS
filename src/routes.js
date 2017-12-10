@@ -3,6 +3,8 @@ import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
 import Main from './views/Main.vue'
 import UserCenter from './views/user/user-center.vue'
+import manangeMsg from './views/user/manange-msg.vue'
+import manangeSeach from './views/user/manange-seach.vue'
 import OrderMsg from './views/order/order-msg.vue'
 import OrderEmail from './views/order/order-email.vue'
 import OderLetter from './views/order/order-letter.vue'
@@ -12,6 +14,7 @@ import EnterForm from './views/enterprise/enterprise-form.vue'
 import EnterMsg from './views/enterprise/enterprise-msg.vue'
 import EnterEmail from './views/enterprise/enterprise-email.vue'
 import EnterLetter from './views/enterprise/enterprise-letter.vue'
+
 import LawFirm from './views/firm/law-firm.vue'
 
 
@@ -57,8 +60,8 @@ let routes = [{
             { path: '/enterprise/enterForm', component: EnterForm, name: '入驻新企业', hidden: true },
             { path: '/enterprise/enterInfo/:id', component: EnterInfo, name: '基本信息', hidden: true },
             { path: '/enterprise/enterMsg/:id', component: EnterMsg, name: '短信订单', hidden: true },
-            { path: '/enterprise/enterEmail/:id', component: EnterEmail, name: '电子信函',hidden: true },
-            { path: '/enterprise/enterLetter/:id', component: EnterLetter, name: '纸质信函', hidden: true  }
+            { path: '/enterprise/enterEmail/:id', component: EnterEmail, name: '电子信函', hidden: true },
+            { path: '/enterprise/enterLetter/:id', component: EnterLetter, name: '纸质信函', hidden: true }
         ]
     },
     {
@@ -74,7 +77,6 @@ let routes = [{
             { path: '/msgOder', component: OrderMsg, name: '短信订单' },
             { path: '/emailOder', component: OrderEmail, name: '电子信函' },
             { path: '/letterOder', component: OderLetter, name: '信函下载' }
-
         ]
     },
     {
@@ -83,11 +85,13 @@ let routes = [{
         name: '办公管理',
         iconCls: 'icon-empty',
         hidden: false,
-        leaf: true, //只有一个节点
-        paths: '/manager',
+        leaf: false, //只有一个节点
+        paths: '/manager,/user,/search,/msg',
         role: 99,
         children: [
-            { path: '/manager', component: UserCenter, name: '办公管理' }
+            { path: '/manager/user', component: UserCenter, name: '人员管理' },
+            { path: '/manager/search', component: manangeSeach, name: '订单查询' },
+            { path: '/manange/msg', component: manangeMsg, name: '运营商短信查询' }
         ]
     },
     {

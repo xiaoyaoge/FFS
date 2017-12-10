@@ -21,10 +21,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(item,index) in dataList"> 
+                        <tr v-for="(item,index) in dataList">
                             <td>{{item.name}}</td>
                             <td>{{item.mobile}}</td>
-                             <td>{{dateTime(item.modifyTime)}}</td>
+                            <td>{{dateTime(item.modifyTime)}}</td>
                             <td>
                                 <a class="bk-icon-button bk-warning bk-button-mini" title="修改" @click="handleEdit(index, item)">
                                     <i class="bk-icon icon-edit bk-icon"></i>
@@ -188,7 +188,7 @@ export default {
 
         }
     },
-    methods: { 
+    methods: {
         dateTime(val) {
             return moment(val).format('YYYY-MM-DD HH:mm:ss');
         },
@@ -332,10 +332,12 @@ export default {
                         });
                     });
                 }
-            }); 
+            });
         }
     },
     mounted() {
+        this.$parent.parentUrlName = "办公管理";
+        this.$parent.parentUrls = '/manage';
         this.getDataList();
     }
 }

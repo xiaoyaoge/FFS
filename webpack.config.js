@@ -18,7 +18,7 @@ module.exports = (options = {}) => ({
         filename: options.dev ? '[name].js' : '[name].[chunkhash:8].js',
         chunkFilename: '[id].[chunkhash:8].js',
         publicPath: options.dev ? '/assets/' : publicPath
-    }, 
+    },
     module: {
         rules: [{
             test: /\.vue$/,
@@ -63,22 +63,22 @@ module.exports = (options = {}) => ({
             ),
             threshold: 10240,
             minRatio: 0.8
-        }), 
+        }),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             inject: true, // 自动注入
             minify: {
                 removeComments: true, //去注释
                 collapseWhitespace: true, //压缩空格
-                removeAttributeQuotes: true //去除属性引用 
+                removeAttributeQuotes: true //去除属性引用
             },
             //必须通过上面的 CommonsChunkPlugin 的依赖关系自动添加 js，css 等
             chunksSortMode: 'dependency'
         }),
-        new ExtractTextPlugin({ filename: 'css/[name].[contenthash:8].css' }), 
+        new ExtractTextPlugin({ filename: 'css/[name].[contenthash:8].css' }),
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor', 'manifest']
-        }), 
+        }),
         new InlineManifestWebpackPlugin({
             name: 'webpackManifest'
         })
