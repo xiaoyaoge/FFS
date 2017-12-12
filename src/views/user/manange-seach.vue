@@ -31,7 +31,7 @@
                                 <div class="bk-form bk-inline-form bk-form-small">
                                     <div class="bk-form-item is-required">
                                         <div class="bk-form-content">
-                                            <input type="text" class="bk-form-input" v-model="keyword" placeholder="请输入手机号或邮件查询" style="width:320px;">
+                                            <input type="text" class="bk-form-input" v-model="keyword" placeholder="请输入手机号、姓名、身份证或邮件查询" style="width:420px;">
                                         </div>
                                     </div>
                                     <button class="bk-button bk-primary bk-button-small">查询</button>
@@ -67,7 +67,7 @@
                         <thead>
                             <tr>
                                 <th>订单号</th>
-                                <th>来源名称</th>
+                                <th>企业名称</th>
                                 <th>类别</th>
                                 <th>姓名</th>
                                 <th>联系电话</th>
@@ -192,12 +192,16 @@ export default {
             if (this.keyword) {
                 if (validate.checkPhoneNum(this.keyword)) {
                     params.mobile = this.keyword;
+                } else if (validate.checkEmail(this.keyword)) {
+                    params.email = this.keyword;
+                } else if (validate.checkID(this.keyword)) {
+                    params.idCard = this.keyword;
                 } else {
-                    params.email = this.keyword
+                    params.name = this.keyword;
                 }
             } else {
                 this.$message({
-                    message: '请输入手机号或邮件地址查询',
+                    message: '请输入手机号、姓名、身份证或邮件查询',
                     type: 'warning'
                 });
                 return;
