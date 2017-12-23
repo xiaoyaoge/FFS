@@ -14,6 +14,7 @@ import EnterForm from './views/enterprise/enterprise-form.vue'
 import EnterMsg from './views/enterprise/enterprise-msg.vue'
 import EnterEmail from './views/enterprise/enterprise-email.vue'
 import EnterLetter from './views/enterprise/enterprise-letter.vue'
+import DownDetail from './views/order/down-detail.vue'
 
 import LawFirm from './views/firm/law-firm.vue'
 
@@ -92,6 +93,19 @@ let routes = [{
             { path: '/manager/user', component: UserCenter, name: '人员管理' },
             { path: '/manager/search', component: manangeSeach, name: '订单查询' },
             { path: '/manange/msg', component: manangeMsg, name: '运营商短信查询' }
+        ]
+    },
+    {
+        path: '/',
+        component: Home,
+        name: '下载明细',
+        iconCls: 'icon-download',
+        hidden: false,
+        leaf: true, //只有一个节点
+        paths: '/downdetail',
+        role: 99,
+        children: [
+            { path: '/downdetail', component: DownDetail, name: '下载明细' }
         ]
     },
     {

@@ -150,7 +150,7 @@ export default {
                 password: '',
                 role: 0
             },
-            addFormVisible: false, //新增界面是否显示 
+            addFormVisible: false, //新增界面是否显示
             addFormRules: {
                 name: [{
                     required: true,

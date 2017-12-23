@@ -178,7 +178,7 @@ export default {
         },
         handleCurrentChange(val) {
             this.table.pageNum = val;
-            this.getDataList();
+            this.onSubmit();
         },
         onSubmit() {
             let params = {};
