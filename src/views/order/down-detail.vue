@@ -102,7 +102,31 @@ export default {
             }
             console.log(start, end, type);
 
-            //document.location.href = '?start=' + start + '&end=' + end + '&type=' + type;
+            this.$confirm('确定要下载当前条件下的数据吗？', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.listLoading = true;
+                this.$http.ajaxPost({
+                    url: 'order/deliveryDetailDownload',
+                    params: { orderType: parseInt(type), beginDate: start, endDate: end }
+                }, (res) => {
+                    this.$http.aop(res, () => {
+                        console.log(res);
+                        //document.location.href= res.body.data.excelUrl
+                        this.listLoading = false;
+                    });
+
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: ' 下载已取消'
+                });
+            });
+
+
         }
     },
     mounted() {}
